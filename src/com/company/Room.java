@@ -3,6 +3,7 @@ package com.company;
 public class Room {
   private String name;
   private String description;
+  private boolean lockedDoor;
   private Room north = null;
   private Room east = null;
   private Room south = null;
@@ -13,6 +14,7 @@ public class Room {
 
     this.name = name;
     this.description = description;
+    this.lockedDoor = false;
     this.north = north;
     this.east = east;
     this.south = south;
@@ -59,6 +61,18 @@ public class Room {
 
   public String getDescription() {
     return this.description;
+  }
+
+  public void setDoorLocked() {
+    if (lockedDoor) {
+      lockedDoor = false;
+    } else {
+      lockedDoor = true;
+    }
+  }
+
+  public boolean getDoorLocked(){
+    return this.lockedDoor;
   }
 
   public Room getNorth() {

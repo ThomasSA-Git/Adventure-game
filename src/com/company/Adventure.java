@@ -37,6 +37,7 @@ public class Adventure {
 
     //ROOM 5
     room5.setSouth(room8);
+    room5.setDoorLocked();
 
     //ROOM 6
     room6.setNorth(room3);
@@ -82,7 +83,11 @@ public class Adventure {
 
           if (currentRoom.getNorth() == null) {
             System.out.println("You can't go this way");
-          } else {
+          }
+          else if (currentRoom.getNorth().getDoorLocked() == true){
+            System.out.println("You can't go this way. The door is locked.");
+          }
+          else {
             currentRoom = currentRoom.getNorth();
           }
         }
