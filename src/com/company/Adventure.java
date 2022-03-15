@@ -75,6 +75,8 @@ public class Adventure {
 
           if (currentRoom.getEast() == null) {
             System.out.println("You can't go this way");
+          } else if (currentRoom.getEast().getDoorLocked()) {
+            System.out.println("You can't go this way. The door is locked.");
           } else {
             currentRoom = currentRoom.getEast();
           }
@@ -83,17 +85,18 @@ public class Adventure {
 
           if (currentRoom.getNorth() == null) {
             System.out.println("You can't go this way");
-          }
-          else if (currentRoom.getNorth().getDoorLocked() == true){
+          } else if (currentRoom.getNorth().getDoorLocked()) {
             System.out.println("You can't go this way. The door is locked.");
-          }
-          else {
+          } else {
             currentRoom = currentRoom.getNorth();
           }
         }
         case "go west" -> {
           if (currentRoom.getWest() == null) {
             System.out.println("You can't go this way");
+          } else if (currentRoom.getWest().getDoorLocked()) {
+            System.out.println("You can't go this way. The door is locked.");
+
           } else {
             currentRoom = currentRoom.getWest();
           }
@@ -101,6 +104,8 @@ public class Adventure {
         case "go south" -> {
           if (currentRoom.getSouth() == null) {
             System.out.println("You can't go this way");
+          } else if (currentRoom.getSouth().getDoorLocked()) {
+            System.out.println("You can't go this way. The door is locked.");
           } else {
             currentRoom = currentRoom.getSouth();
           }
