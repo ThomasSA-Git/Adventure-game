@@ -18,17 +18,18 @@ public class Room {
     this.south = south;
     this.west = west;
   }
+
   public Room(String name, String description) {
 
     this.name = name;
     this.description = description;
   }
 
-  public String toString(){
+  public String toString() {
     return name;
   }
 
-  public void setDescription(String input){
+  public void setDescription(String input) {
     description = input;
   }
 
@@ -48,15 +49,15 @@ public class Room {
     this.west = west;
   }
 
-  public void setName(String input){
+  public void setName(String input) {
     name = input;
   }
 
-  public String getName(){
+  public String getName() {
     return this.name;
   }
 
-  public String getDescription(){
+  public String getDescription() {
     return this.description;
   }
 

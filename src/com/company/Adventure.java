@@ -27,7 +27,7 @@ public class Adventure {
     room2.setEast(room3);
     room2.setWest(room1);
 
-    //Room 3
+    //ROOM 3
     room3.setWest(room2);
     room3.setSouth(room6);
 
@@ -55,12 +55,6 @@ public class Adventure {
     room9.setNorth(room6);
     room9.setWest(room8);
   }
-
-  //INITIALIZE ROOMS
-
-
-  //CONNECT ROOMS
-
 
   public void execute() {
     createRooms();
@@ -114,10 +108,7 @@ public class Adventure {
         }
         case "exit" -> running = false;
       }
-
     }
-
-
   }
 
   public void presentGame() {
