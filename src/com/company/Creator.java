@@ -1,8 +1,8 @@
 package com.company;
 
 public class Creator {
-  Room currentRoom;
 
+  Room currentRoom;
 
   public void createRooms() {
     Room room1 = new Room("Room: 1", "");
@@ -15,7 +15,7 @@ public class Creator {
     Room room8 = new Room("Room: 8", "");
     Room room9 = new Room("Room: 9", "");
 
-    currentRoom = room1;
+    setCurrentRoom(room1);
 
     //ROOM 1
     room1.setEast(room2);
@@ -55,11 +55,11 @@ public class Creator {
     room9.setWest(room8);
   }
 
-  public Room getCurrentRoom(){
+  public Room getCurrentRoom() {
     return currentRoom;
   }
 
   public void setCurrentRoom(Room room){
-    this.currentRoom = room;
+    currentRoom = room;
   }
 }

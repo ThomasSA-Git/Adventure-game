@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class UserInterface {
 
   Scanner sc = new Scanner(System.in);
+  Creator cr = new Creator();
 
   public String getUserInput(){
 
@@ -34,7 +35,7 @@ public class UserInterface {
   }
 
   public void currentRoom(){
-    System.out.println("You're currently in room" + currentRoom(););
+    System.out.println("You're currently in room" + cr.currentRoom);
   }
 
   public void lockedDoor() {
@@ -51,6 +52,11 @@ public class UserInterface {
         " |\" .  |  :  .  |\n" +
         " |____;----.____|");
     System.out.println("You can't go this direction. The door is locked.");
+  }
+
+  public void printCurrentRoom(){
+
+    System.out.println(cr.getCurrentRoom());
   }
 
 }

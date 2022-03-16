@@ -22,6 +22,11 @@ public class Room {
   }
 
   public Room(String name, String description) {
+    this.name = name;
+    this.description = description;
+  }
+
+  public Room() {
 
     this.name = name;
     this.description = description;
