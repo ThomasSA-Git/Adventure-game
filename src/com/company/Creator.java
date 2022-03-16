@@ -2,7 +2,7 @@ package com.company;
 
 public class Creator {
 
-  Room currentRoom;
+  private Room currentRoom;
 
   public void createRooms() {
     Room room1 = new Room("Room: 1", "");

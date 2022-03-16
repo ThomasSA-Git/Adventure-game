@@ -3,10 +3,9 @@ package com.company;
 public class GameEngine {
 
   public void runGame() {
-    Creator cr = new Creator();
+    Creator creator = new Creator();
     UserInterface ui = new UserInterface();
-    Room room = new Room();
-    cr.createRooms();
+    creator.createRooms();
     ui.presentGame();
 
     boolean running = true;
@@ -14,38 +13,37 @@ public class GameEngine {
 
       ui.printCurrentRoom();
 
-
       switch (ui.getUserInput()) {
         case "go east" -> {
-          if (cr.getCurrentRoom() == null) {
+          if (creator.getCurrentRoom() == null) {
 
           } else {
-            cr.setCurrentRoom(room.getEast());
+            creator.setCurrentRoom(creator.getCurrentRoom().getEast());
           }
         }
         case "go north" -> {
-          if (cr.getCurrentRoom() == null) {
+          if (creator.getCurrentRoom() == null) {
             ui.blockedDirection();
           } else {
-            cr.setCurrentRoom(room.getNorth());
+            creator.setCurrentRoom(creator.getCurrentRoom().getNorth());
           }
         }
         case "go west" -> {
-          if (cr.getCurrentRoom() == null) {
+          if (creator.getCurrentRoom() == null) {
             ui.blockedDirection();
           } else {
-            cr.setCurrentRoom(room.getWest());
+            creator.setCurrentRoom(creator.getCurrentRoom().getWest());
           }
         }
         case "go south" -> {
-          if (cr.getCurrentRoom() == null) {
+          if (creator.getCurrentRoom() == null) {
             ui.blockedDirection();
           } else {
-            cr.setCurrentRoom(room.getSouth());
+            creator.setCurrentRoom(creator.getCurrentRoom().getSouth());
           }
         }
         case "look" -> {
-          cr.getCurrentRoom().getDescription();
+          creator.getCurrentRoom().getDescription();
         }
         case "help" -> {
           ui.getHelpMenu();

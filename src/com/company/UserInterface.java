@@ -2,10 +2,18 @@ package com.company;
 
 import java.util.Scanner;
 
-public class UserInterface {
 
+public class UserInterface {
   Scanner sc = new Scanner(System.in);
-  Creator cr = new Creator();
+  Creator creator = new Creator();
+
+public void printOneLetterAtATime(String text, double speed) throws InterruptedException {
+        for (int i = 0; i < text.length(); i++){
+        System.out.printf(String.valueOf(text.charAt(i)));
+        Thread.sleep((long) (speed * 1000L));
+        }
+        System.out.println("\n");
+        }
 
   public String getUserInput(){
 
@@ -35,7 +43,7 @@ public class UserInterface {
   }
 
   public void currentRoom(){
-    System.out.println("You're currently in room" + cr.currentRoom);
+    System.out.println("You're currently in room" + creator.getCurrentRoom());
   }
 
   public void lockedDoor() {
@@ -55,8 +63,7 @@ public class UserInterface {
   }
 
   public void printCurrentRoom(){
-
-    System.out.println(cr.getCurrentRoom());
+    System.out.println(creator.getCurrentRoom());
   }
 
 }
