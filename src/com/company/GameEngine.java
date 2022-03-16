@@ -1,55 +1,37 @@
 package com.company;
 
-public class GameEngine {
+import com.company.rooms.cabin.Cabin;
+import com.company.ui.MainMenu;
+import com.company.ui.UserInterface;
 
-  public void runGame() {
+
+public class GameEngine {
+    boolean running = true;
     Creator creator = new Creator();
     UserInterface ui = new UserInterface();
-    creator.createRooms();
-    ui.presentGame();
+    MainMenu mainMenu = new MainMenu();
+    Cabin cabin = new Cabin();
 
-    boolean running = true;
-    while (running) {
+    boolean compassHasNotHappened = true;
+    private com.company.gags.CompassGag CompassGag;
 
-      ui.printCurrentRoom();
 
-      switch (ui.getUserInput()) {
-        case "go east" -> {
-          if (creator.getCurrentRoom() == null) {
-
-          } else {
-            creator.setCurrentRoom(creator.getCurrentRoom().getEast());
-          }
-        }
-        case "go north" -> {
-          if (creator.getCurrentRoom() == null) {
-            ui.blockedDirection();
-          } else {
-            creator.setCurrentRoom(creator.getCurrentRoom().getNorth());
-          }
-        }
-        case "go west" -> {
-          if (creator.getCurrentRoom() == null) {
-            ui.blockedDirection();
-          } else {
-            creator.setCurrentRoom(creator.getCurrentRoom().getWest());
-          }
-        }
-        case "go south" -> {
-          if (creator.getCurrentRoom() == null) {
-            ui.blockedDirection();
-          } else {
-            creator.setCurrentRoom(creator.getCurrentRoom().getSouth());
-          }
-        }
-        case "look" -> {
-          creator.getCurrentRoom().getDescription();
-        }
-        case "help" -> {
-          ui.getHelpMenu();
-        }
-        case "exit" -> running = false;
-      }
+    public void setRunning(boolean input) {
+        running = input;
     }
-  }
+
+    public void runGame() {
+        creator.createRooms();
+        ui.presentGame();
+
+        while (running) {
+            switch (creator.getCurrentRoom().getName()) {
+                case "Cabin" -> {
+                    cabin.cabinCommands();
+                    break;
+                }
+                case "room2" -> System.out.println("room2 works");
+            }
+        }
+    }
 }
