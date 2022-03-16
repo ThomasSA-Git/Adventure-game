@@ -153,7 +153,7 @@ public class Adventure {
         " )_ !  ,  ;  ;  |\n" +
         " || .  .  :  :  |\n" +
         " |\" .  |  :  .  |\n" +
-        " |____;----..____|");
+        " |____;----.____|");
     System.out.println("You can't go this direction. The door is locked.");
   }
 
