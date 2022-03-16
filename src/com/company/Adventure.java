@@ -3,22 +3,24 @@ package com.company;
 import java.util.Scanner;
 
 public class Adventure {
-  //DECLARE VARIABLES
+
   Scanner sc = new Scanner(System.in);
 
-  Room room1 = new Room("Room: 1", "");
-  Room room2 = new Room("Room: 2", "");
-  Room room3 = new Room("Room: 3", "");
-  Room room4 = new Room("Room: 4", "");
-  Room room5 = new Room("Room: 5", "");
-  Room room6 = new Room("Room: 6", "");
-  Room room7 = new Room("Room: 7", "");
-  Room room8 = new Room("Room: 8", "");
-  Room room9 = new Room("Room: 9", "");
-
-  Room currentRoom = room1;
+  Room currentRoom;
 
   public void createRooms() {
+    Room room1 = new Room("Room: 1", "");
+    Room room2 = new Room("Room: 2", "");
+    Room room3 = new Room("Room: 3", "");
+    Room room4 = new Room("Room: 4", "");
+    Room room5 = new Room("Room: 5", "");
+    Room room6 = new Room("Room: 6", "");
+    Room room7 = new Room("Room: 7", "");
+    Room room8 = new Room("Room: 8", "");
+    Room room9 = new Room("Room: 9", "");
+
+    currentRoom = room1;
+
     //ROOM 1
     room1.setEast(room2);
     room1.setSouth(room4);
@@ -69,24 +71,21 @@ public class Adventure {
 
       String userIn = sc.nextLine();
 
-
       switch (userIn) {
         case "go east" -> {
-
           if (currentRoom.getEast() == null) {
             System.out.println("You can't go this way");
           } else if (currentRoom.getEast().getDoorLocked()) {
-            System.out.println("You can't go this way. The door is locked.");
+            lockedDoor();
           } else {
             currentRoom = currentRoom.getEast();
           }
         }
         case "go north" -> {
-
           if (currentRoom.getNorth() == null) {
             System.out.println("You can't go this way");
           } else if (currentRoom.getNorth().getDoorLocked()) {
-            System.out.println("You can't go this way. The door is locked.");
+            lockedDoor();
           } else {
             currentRoom = currentRoom.getNorth();
           }
@@ -95,8 +94,7 @@ public class Adventure {
           if (currentRoom.getWest() == null) {
             System.out.println("You can't go this way");
           } else if (currentRoom.getWest().getDoorLocked()) {
-            System.out.println("You can't go this way. The door is locked.");
-
+            lockedDoor();
           } else {
             currentRoom = currentRoom.getWest();
           }
@@ -105,7 +103,7 @@ public class Adventure {
           if (currentRoom.getSouth() == null) {
             System.out.println("You can't go this way");
           } else if (currentRoom.getSouth().getDoorLocked()) {
-            System.out.println("You can't go this way. The door is locked.");
+            lockedDoor();
           } else {
             currentRoom = currentRoom.getSouth();
           }
@@ -138,12 +136,26 @@ public class Adventure {
         """);
   }
 
-
-  public String getParameter(String input) {
+  /*public String getParameter(String input) {
     int firstSpace = input.indexOf(" ");
     return input.substring(firstSpace + 1);
-  }
+  }*/
 
+  public void lockedDoor() {
+    System.out.println("      ______\n" +
+        "   ,-' ;  ! `-.\n" +
+        "  / :  !  :  . \\\n" +
+        " |_ ;   __:  ;  |\n" +
+        " )| .  :)(.  !  |\n" +
+        " |\"    (##)  _  |\n" +
+        " |  :  ;`'  (_) (\n" +
+        " |  :  :  .     |\n" +
+        " )_ !  ,  ;  ;  |\n" +
+        " || .  .  :  :  |\n" +
+        " |\" .  |  :  .  |\n" +
+        " |____;----..____|");
+    System.out.println("You can't go this direction. The door is locked.");
+  }
 
   public static void main(String[] args) {
     new Adventure().execute();
