@@ -4,9 +4,11 @@ import com.company.Creator;
 import com.company.GameEngine;
 import com.company.ui.UserInterface;
 import com.company.gags.CompassGag;
+import com.company.gags.FunnyBeeEncounter;
 
 public class Cabin {
     UserInterface ui = new UserInterface();
+    FunnyBeeEncounter bee = new FunnyBeeEncounter();
 
     boolean compassHasNotHappened = true;
     private CompassGag CompassGag;
@@ -75,6 +77,15 @@ public class Cabin {
                     }
                     case "look" -> {
                         System.out.println(creator.getCurrentRoom().getDescription());
+                        invalidInput = false;
+                    }
+
+                    case "open crate" -> {
+                        try {
+                            bee.execute();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         invalidInput = false;
                     }
 
