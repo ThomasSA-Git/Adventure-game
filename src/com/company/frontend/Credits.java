@@ -1,4 +1,4 @@
-package com.company.ui;
+package com.company.frontend;
 
 public class Credits {
     public String getCredits(){

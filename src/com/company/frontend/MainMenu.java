@@ -1,6 +1,6 @@
-package com.company.ui;
+package com.company.frontend;
 
-import com.company.GameEngine;
+import com.company.backend.GameEngine;
 
 import java.util.Scanner;
 

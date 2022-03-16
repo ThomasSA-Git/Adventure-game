@@ -1,13 +1,13 @@
-package com.company.ui;
+package com.company.frontend;
 
-import com.company.Creator;
+import com.company.backend.RoomCreator;
 
 import java.util.Scanner;
 
 
 public class UserInterface {
     Scanner sc = new Scanner(System.in);
-    Creator creator = new Creator();
+    RoomCreator roomCreator = new RoomCreator();
 
 
     public void printOneLetterAtATime(String text, double speed) throws InterruptedException {
@@ -103,7 +103,7 @@ public class UserInterface {
     }
 
     public void currentRoom() {
-        System.out.println("You're currently in room" + creator.getCurrentRoom());
+        System.out.println("You're currently in room" + roomCreator.getCurrentRoom());
     }
 
     public void lockedDoor() {
@@ -124,7 +124,7 @@ public class UserInterface {
     }
 
     public void printCurrentRoom() {
-        System.out.println(creator.getCurrentRoom());
+        System.out.println(roomCreator.getCurrentRoom());
     }
 
 }

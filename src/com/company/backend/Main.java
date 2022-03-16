@@ -1,7 +1,7 @@
-package com.company;
+package com.company.backend;
 
 
-import com.company.ui.MainMenu;
+import com.company.frontend.MainMenu;
 
 public class Main {
   public static void main(String[] args) {

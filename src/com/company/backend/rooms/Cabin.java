@@ -1,18 +1,18 @@
-package com.company.rooms.cabin;
+package com.company.backend.rooms;
 
-import com.company.Creator;
-import com.company.GameEngine;
-import com.company.ui.UserInterface;
-import com.company.gags.CompassGag;
-import com.company.gags.FunnyBeeEncounter;
+import com.company.backend.RoomCreator;
+import com.company.backend.GameEngine;
+import com.company.frontend.UserInterface;
+import com.company.frontend.gags.CompassGag;
+import com.company.frontend.gags.BeeEncounterGag;
 
 public class Cabin {
     UserInterface ui = new UserInterface();
-    FunnyBeeEncounter bee = new FunnyBeeEncounter();
+    BeeEncounterGag bee = new BeeEncounterGag();
 
     boolean compassHasNotHappened = true;
     private CompassGag CompassGag;
-    private Creator creator = new Creator();
+    private RoomCreator roomCreator = new RoomCreator();
 
     public void checkCompassGag() {
         CompassGag = new CompassGag();
@@ -30,55 +30,52 @@ public class Cabin {
 
         boolean invalidInput = true;
         boolean inCabin = true;
-        creator.createRooms();
+        roomCreator.connectRooms();
 
         while (inCabin) {
             while (invalidInput) {
                 switch (ui.getUserInput()) {
                     case "go east" -> {
                         checkCompassGag();
-                        if (creator.getCurrentRoom().getEast() == null) {
+                        if (roomCreator.getCurrentRoom().getEast() == null) {
                             ui.blockedDirection();
                         } else {
-                            creator.setCurrentRoom(creator.getCurrentRoom().getEast());
+                            roomCreator.setCurrentRoom(roomCreator.getCurrentRoom().getEast());
                             invalidInput = false;
                             inCabin = false;
                         }
                     }
                     case "go north" -> {
                         checkCompassGag();
-                        if (creator.getCurrentRoom().getNorth() == null) {
+                        if (roomCreator.getCurrentRoom().getNorth() == null) {
                             ui.blockedDirection();
                         } else {
-                            creator.setCurrentRoom(creator.getCurrentRoom().getNorth());
+                            roomCreator.setCurrentRoom(roomCreator.getCurrentRoom().getNorth());
                             inCabin = false;
                         }
                         invalidInput = false;
                     }
                     case "go west" -> {
                         checkCompassGag();
-                        if (creator.getCurrentRoom().getWest() == null) {
+                        if (roomCreator.getCurrentRoom().getWest() == null) {
                             ui.blockedDirection();
                         } else {
-                            creator.setCurrentRoom(creator.getCurrentRoom().getWest());
+                            roomCreator.setCurrentRoom(roomCreator.getCurrentRoom().getWest());
                             inCabin = false;
                         }
                         invalidInput = false;
                     }
                     case "go south" -> {
                         checkCompassGag();
-                        if (creator.getCurrentRoom().getSouth() == null) {
+                        if (roomCreator.getCurrentRoom().getSouth() == null) {
                             ui.blockedDirection();
                         } else {
-                            creator.setCurrentRoom(creator.getCurrentRoom().getSouth());
+                            roomCreator.setCurrentRoom(roomCreator.getCurrentRoom().getSouth());
                             inCabin = false;
                         }
                         invalidInput = false;
                     }
-                    case "look" -> {
-                        System.out.println(creator.getCurrentRoom().getDescription());
-                        invalidInput = false;
-                    }
+                    case "look" -> System.out.println(roomCreator.getCurrentRoom().getDescription());
 
                     case "open crate" -> {
                         try {
@@ -91,6 +88,7 @@ public class Cabin {
 
                     case "exit" -> {
                         new GameEngine().setRunning(false);
+                        invalidInput = false;
                     }
                     default -> System.out.println("Invalid input");
                 }

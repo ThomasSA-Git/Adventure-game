@@ -1,10 +1,10 @@
-package com.company.gags;
+package com.company.frontend.gags;
 
-import com.company.ui.UserInterface;
+import com.company.frontend.UserInterface;
 
 import java.util.Scanner;
 
-  public class FunnyBeeEncounter {
+  public class BeeEncounterGag {
 
     UserInterface ui = new UserInterface();
 
@@ -74,7 +74,7 @@ import java.util.Scanner;
     }
 
     public static void main(String[] args) throws InterruptedException {
-     new FunnyBeeEncounter().execute();
+     new BeeEncounterGag().execute();
     }
   }
 

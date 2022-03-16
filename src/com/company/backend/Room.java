@@ -1,4 +1,4 @@
-package com.company;
+package com.company.backend;
 
 public class Room {
   private String name;
@@ -11,7 +11,6 @@ public class Room {
 
 
   public Room(String name, String description, Room north, Room east, Room south, Room west) {
-
     this.name = name;
     this.description = description;
     this.lockedDoor = false;
@@ -26,11 +25,7 @@ public class Room {
     this.description = description;
   }
 
-  public Room() {
-
-    this.name = name;
-    this.description = description;
-  }
+  public Room() {}
 
   public String toString() {
     return name;

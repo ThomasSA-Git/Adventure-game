@@ -1,6 +1,8 @@
-package com.company;
+package com.company.backend;
 
-public class Creator {
+import com.company.backend.Room;
+
+public class RoomCreator {
 
     Room room1;
     Room room2;
@@ -13,10 +15,11 @@ public class Creator {
     Room room9;
     Room currentRoom;
 
-    public Creator() {
-        this.room1 = new Room("Cabin", "You find yourself in what looks like a cabin on a larger ship. The room has one door\n" +
-                "You feel the shift of gravity going from one end of the room to the other in a rhythmic motion\n" +
-                "Next to one of the bunk beds you see a large wooden crate");
+    public RoomCreator() {
+        this.room1 = new Room("Cabin", """
+                You find yourself in what looks like a cabin on a larger ship. The room has one door
+                You feel the shift of gravity going from one end of the room to the other in a rhythmic motion
+                Next to one of the bunk beds you see a large wooden crate""");
 
         this.room2 = new Room("Room: 2", "");
         this.room3 = new Room("Room: 3", "");
@@ -29,7 +32,7 @@ public class Creator {
         this.currentRoom = room1;
     }
 
-    public void createRooms() {
+    public void connectRooms() {
 
         //ROOM 1
         room1.setEast(room2);

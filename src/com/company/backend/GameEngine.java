@@ -1,17 +1,17 @@
-package com.company;
+package com.company.backend;
 
-import com.company.rooms.cabin.Cabin;
-import com.company.ui.UserInterface;
+import com.company.backend.rooms.Cabin;
+import com.company.frontend.UserInterface;
 
 
 public class GameEngine {
     boolean running = true;
-    Creator creator = new Creator();
+    RoomCreator roomCreator = new RoomCreator();
     UserInterface ui = new UserInterface();
     Cabin cabin = new Cabin();
 
     boolean compassHasNotHappened = true;
-    private com.company.gags.CompassGag CompassGag;
+    private com.company.frontend.gags.CompassGag CompassGag;
 
 
     public void setRunning(boolean input) {
@@ -19,11 +19,11 @@ public class GameEngine {
     }
 
     public void runGame() {
-        creator.createRooms();
+        roomCreator.connectRooms();
         ui.presentGame();
 
         while (running) {
-            switch (creator.getCurrentRoom().getName()) {
+            switch (roomCreator.getCurrentRoom().getName()) {
                 case "Cabin" -> cabin.cabinCommands();
 
                 case "room2" -> System.out.println("room2 works");
