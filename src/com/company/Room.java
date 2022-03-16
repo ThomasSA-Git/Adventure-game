@@ -3,6 +3,7 @@ package com.company;
 public class Room {
   private String name;
   private String description;
+  private boolean lockedDoor;
   private Room north = null;
   private Room east = null;
   private Room south = null;
@@ -13,6 +14,7 @@ public class Room {
 
     this.name = name;
     this.description = description;
+    this.lockedDoor = false;
     this.north = north;
     this.east = east;
     this.south = south;
@@ -20,16 +22,21 @@ public class Room {
   }
 
   public Room(String name, String description) {
+    this.name = name;
+    this.description = description;
+  }
+
+  public Room() {
 
     this.name = name;
     this.description = description;
   }
 
-  public String toString(){
+  public String toString() {
     return name;
   }
 
-  public void setDescription(String input){
+  public void setDescription(String input) {
     description = input;
   }
 
@@ -49,16 +56,28 @@ public class Room {
     this.west = west;
   }
 
-  public void setName(String input){
+  public void setName(String input) {
     name = input;
   }
 
-  public String getName(){
+  public String getName() {
     return this.name;
   }
 
-  public String getDescription(){
+  public String getDescription() {
     return this.description;
+  }
+
+  public void setDoorLocked() {
+    if (lockedDoor) {
+      lockedDoor = false;
+    } else {
+      lockedDoor = true;
+    }
+  }
+
+  public boolean getDoorLocked(){
+    return this.lockedDoor;
   }
 
   public Room getNorth() {
