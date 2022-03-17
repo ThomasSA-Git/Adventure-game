@@ -54,7 +54,7 @@ public class Room {
   }
 
   public void setDescription(String input) {
-    description = input;
+    this.description = input;
   }
 
   public void setEast(Room east) {
