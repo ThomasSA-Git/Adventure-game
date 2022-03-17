@@ -24,6 +24,9 @@ public class UserInterface {
         ---------HELP MENU---------
         go <direction>: Moves your character to the next room in chosen location
         look: Look around (You might find something interesting)
+        take: Pick up item and put in your inventory
+        drop: Drop item from inventory on ground
+        
         help: Display this menu
         exit: Close game
         """);

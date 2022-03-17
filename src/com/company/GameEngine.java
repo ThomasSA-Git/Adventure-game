@@ -25,7 +25,8 @@ public class GameEngine {
           }
         }
         case "go north" -> {
-          if (cr.getCurrentRoom().getNorth() == null) {;
+          if (cr.getCurrentRoom().getNorth() == null) {
+            ;
             ui.blockedDirection();
           } else {
             cr.setCurrentRoom(cr.getCurrentRoom().getNorth());
@@ -50,8 +51,8 @@ public class GameEngine {
         case "take" -> {
           System.out.println("What do you want to take?");
           String take = ui.getUserInput();
-          for (int i = 0; i < cr.getCurrentRoom().getMapInventory().size(); i++){
-            if (cr.getCurrentRoom().getMapInventory().get(i).getDescription().equals(take)){
+          for (int i = 0; i < cr.getCurrentRoom().getMapInventory().size(); i++) {
+            if (cr.getCurrentRoom().getMapInventory().get(i).getDescription().equals(take)) {
               player.takeItem(cr.getCurrentRoom(), cr.getCurrentRoom().getMapInventory().get(i));
             } else {
               System.out.println("This item does not exist");
@@ -59,19 +60,17 @@ public class GameEngine {
           }
         }
 
-       /* case "drop" -> {
+        case "drop" -> {
           System.out.println("What do you want to drop?");
           String drop = ui.getUserInput();
-          for (int i = 0; i < cr.getCurrentRoom().getMapInventory().size(); i++){
-            if (cr.getCurrentRoom().getMapInventory().get(i).getDescription().equals(take)){
-              player.takeItem(cr.getCurrentRoom(), cr.getCurrentRoom().getMapInventory().get(i));
-            } else {
+          for (int i = 0; i < player.getPlayerInventory().size(); i++) {
+            if (player.getPlayerInventory().get(i).getDescription().equals(drop)) {
+              player.dropItem(player.getPlayerInventory().get(i));
+              } else {
               System.out.println("This item does not exist");
             }
           }
         }
-        }*/
-
         case "look" -> {
           cr.getCurrentRoom().getDescription();
         }
@@ -82,22 +81,23 @@ public class GameEngine {
       }
 
     }
+
   }
-
     public boolean checkTake (String input){
-    return getPrefix(input).equals("take");
+      return getPrefix(input).equals("take");
     }
 
-    public int getSpace(String input){
-    return input.indexOf(" ");
+    public int getSpace (String input){
+      return input.indexOf(" ");
     }
 
-    public String getPrefix(String input){
-    return input.substring(0, getSpace(input));
+    public String getPrefix (String input){
+      return input.substring(0, getSpace(input));
     }
 
-    public String getUserSuffix(String input){
+    public String getUserSuffix (String input){
       int space = getSpace(input);
       return input.substring(space + 1);
     }
-}
+  }
+

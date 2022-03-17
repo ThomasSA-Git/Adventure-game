@@ -7,7 +7,7 @@ import java.util.Scanner;
   public class FunnyBeeEncounter {
 
     UserInterface ui = new UserInterface();
-
+/*
     public void clearConsole(){
       System.out.println("\033[H\033[2J");
     }
@@ -75,6 +75,6 @@ import java.util.Scanner;
 
     public static void main(String[] args) throws InterruptedException {
      new FunnyBeeEncounter().execute();
-    }
+    }*/
   }
 

@@ -3,6 +3,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Adventure" options="--add-modules java.base" />
+      <module name="Adventure-game" options="--add-modules java.base" />
     </option>
   </component>
 </project>
