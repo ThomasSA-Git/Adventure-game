@@ -24,9 +24,9 @@ public class GameEngine {
 
         while (running) {
             switch (roomCreator.getCurrentRoom().getName()) {
-                case "Cabin" -> cabin.cabinCommands();
+                case "Cabin" -> roomCreator.setCurrentRoom(cabin.cabinCommands());
 
-                case "room2" -> System.out.println("room2 works");
+                case "Room: 2" -> System.out.println("room2 works");
             }
         }
     }
