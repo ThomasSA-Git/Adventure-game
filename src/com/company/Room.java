@@ -1,5 +1,9 @@
 package com.company;
 
+import java.util.ArrayList;
+import com.company.Item;
+
+
 public class Room {
   private String name;
   private String description;
@@ -8,10 +12,9 @@ public class Room {
   private Room east = null;
   private Room south = null;
   private Room west = null;
-
+  private ArrayList<Item> mapInventory = new ArrayList<>();
 
   public Room(String name, String description, Room north, Room east, Room south, Room west) {
-
     this.name = name;
     this.description = description;
     this.lockedDoor = false;
@@ -19,11 +22,25 @@ public class Room {
     this.east = east;
     this.south = south;
     this.west = west;
+
   }
 
-  public Room(String name, String description) {
+  public ArrayList<Item> getMapInventory() {
+    return this.mapInventory;
+  }
+
+   public Room(String name, String description, ArrayList<Item> mapInventory) {
     this.name = name;
     this.description = description;
+     this.mapInventory = mapInventory;
+  }
+
+  public void setMapInventory(String getItem){
+    mapInventory.remove(getItem);
+  }
+
+  public void addToInventory(Item item){
+    mapInventory.add(item);
   }
 
   public Room() {

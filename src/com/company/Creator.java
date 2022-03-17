@@ -1,19 +1,29 @@
 package com.company;
 
+import java.util.ArrayList;
+import com.company.Item;
+
 public class Creator {
 
   Room currentRoom;
 
+  ArrayList<Item> cabinInventory = new ArrayList<Item>();
+  ArrayList<Item> galleyInventory = new ArrayList<Item>();
+
   public void createRooms() {
-    Room room1 = new Room("Room: 1", "");
-    Room room2 = new Room("Room: 2", "");
-    Room room3 = new Room("Room: 3", "");
-    Room room4 = new Room("Room: 4", "");
-    Room room5 = new Room("Room: 5", "");
-    Room room6 = new Room("Room: 6", "");
-    Room room7 = new Room("Room: 7", "");
-    Room room8 = new Room("Room: 8", "");
-    Room room9 = new Room("Room: 9", "");
+
+    Room room1 = new Room("Room: 1", "", new ArrayList<Item>());
+    room1.addToInventory(new Item("key"));
+    System.out.println(room1.getMapInventory());
+
+    Room room2 = new Room("Room: 2", "", new ArrayList<Item>());
+    Room room3 = new Room("Room: 3", "", new ArrayList<Item>());
+    Room room4 = new Room("Room: 4", "", new ArrayList<Item>());
+    Room room5 = new Room("Room: 5", "", new ArrayList<Item>());
+    Room room6 = new Room("Room: 6", "", new ArrayList<Item>());
+    Room room7 = new Room("Room: 7", "", new ArrayList<Item>());
+    Room room8 = new Room("Room: 8", "", new ArrayList<Item>());
+    Room room9 = new Room("Room: 9", "", new ArrayList<Item>());
 
     setCurrentRoom(room1);
 
