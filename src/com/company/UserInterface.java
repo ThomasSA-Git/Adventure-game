@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -59,6 +60,10 @@ public class UserInterface {
   public void printCurrentRoom(Room currentRoom){
 
     System.out.println(currentRoom);
+  }
+
+  public void printList(ArrayList<Item> print){
+    System.out.println(print);
   }
 
 }

@@ -14,6 +14,7 @@ public class Creator {
 
     Room room1 = new Room("Room: 1", "", new ArrayList<Item>());
     room1.addToInventory(new Item("key"));
+    room1.addToInventory(new Item("banana"));
     System.out.println(room1.getMapInventory());
 
     Room room2 = new Room("Room: 2", "", new ArrayList<Item>());
