@@ -59,6 +59,19 @@ public class GameEngine {
           }
         }
 
+       /* case "drop" -> {
+          System.out.println("What do you want to drop?");
+          String drop = ui.getUserInput();
+          for (int i = 0; i < cr.getCurrentRoom().getMapInventory().size(); i++){
+            if (cr.getCurrentRoom().getMapInventory().get(i).getDescription().equals(take)){
+              player.takeItem(cr.getCurrentRoom(), cr.getCurrentRoom().getMapInventory().get(i));
+            } else {
+              System.out.println("This item does not exist");
+            }
+          }
+        }
+        }*/
+
         case "look" -> {
           cr.getCurrentRoom().getDescription();
         }
