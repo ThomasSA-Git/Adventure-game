@@ -27,6 +27,7 @@ public class UserInterface {
         look: Look around (You might find something interesting)
         take: Pick up item and put in your inventory
         drop: Drop item from inventory on ground
+        inventory: Get a list of your inventory
         
         help: Display this menu
         exit: Close game

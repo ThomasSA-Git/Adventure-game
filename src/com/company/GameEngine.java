@@ -51,7 +51,7 @@ public class GameEngine {
         case "take" -> {
           System.out.println("What do you want to take?");
           String take = ui.getUserInput();
-          for (int i = 0; i < cr.getCurrentRoom().getMapInventory().size()-1; i++) {
+          for (int i = 0; i < cr.getCurrentRoom().getMapInventory().size() - 1; i++) {
             if (cr.getCurrentRoom().getMapInventory().get(i).getDescription().equals(take)) {
               player.takeItem(cr.getCurrentRoom(), cr.getCurrentRoom().getMapInventory().get(i));
               room.setMapInventory(take);
@@ -67,7 +67,7 @@ public class GameEngine {
           for (int i = 0; i < player.getPlayerInventory().size(); i++) {
             if (player.getPlayerInventory().get(i).getDescription().equals(drop)) {
               player.dropItem(player.getPlayerInventory().get(i));
-              } else {
+            } else {
               System.out.println("This item does not exist");
             }
           }
@@ -83,21 +83,22 @@ public class GameEngine {
       }
     }
   }
-    public boolean checkTake (String input){
-      return getPrefix(input).equals("take");
-    }
 
-    public int getSpace (String input){
-      return input.indexOf(" ");
-    }
-
-    public String getPrefix (String input){
-      return input.substring(0, getSpace(input));
-    }
-
-    public String getUserSuffix (String input){
-      int space = getSpace(input);
-      return input.substring(space + 1);
-    }
+  public boolean checkTake(String input) {
+    return getPrefix(input).equals("take");
   }
+
+  public int getSpace(String input) {
+    return input.indexOf(" ");
+  }
+
+  public String getPrefix(String input) {
+    return input.substring(0, getSpace(input));
+  }
+
+  public String getUserSuffix(String input) {
+    int space = getSpace(input);
+    return input.substring(space + 1);
+  }
+}
 
