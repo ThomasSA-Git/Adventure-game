@@ -3,7 +3,6 @@ package com.company;
 import java.util.ArrayList;
 import com.company.Item;
 
-
 public class Room {
   private String name;
   private String description;

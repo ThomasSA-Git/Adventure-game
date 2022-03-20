@@ -12,7 +12,6 @@ public class UserInterface {
     return sc.nextLine();
   }
 
-
   public void presentGame() {
     System.out.println("""
         WELCOME TO <placeholder>

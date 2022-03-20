@@ -60,7 +60,6 @@ public class GameEngine {
             }
           }
         }
-
         case "drop" -> {
           System.out.println("What do you want to drop?");
           String drop = ui.getUserInput();
