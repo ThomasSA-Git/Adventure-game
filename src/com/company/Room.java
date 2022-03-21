@@ -34,8 +34,12 @@ public class Room {
      this.mapInventory = mapInventory;
   }
 
-  public void setMapInventory(String getItem){
-    mapInventory.remove(getItem);
+  public void setMapInventory(ArrayList<Item> newArrayList){
+    mapInventory = newArrayList;
+  }
+
+  public void removeFromInventory(Item item){
+    mapInventory.remove(item);
   }
 
   public void addToInventory(Item item){

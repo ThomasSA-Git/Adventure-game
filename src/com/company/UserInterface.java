@@ -12,6 +12,15 @@ public class UserInterface {
     return sc.nextLine();
   }
 
+
+  public void printOneLetterAtATime(String text, double speed) throws InterruptedException {
+    for (int i = 0; i < text.length(); i++) {
+      System.out.print(String.valueOf(text.charAt(i)));
+      Thread.sleep((long) (speed * 1000L));
+    }
+    System.out.println("\n");
+  }
+
   public void presentGame() {
     System.out.println("""
         WELCOME TO <placeholder>
