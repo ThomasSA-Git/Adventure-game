@@ -54,7 +54,6 @@ public class GameEngine {
           for (int i = 0; i < cr.getCurrentRoom().getMapInventory().size() - 1; i++) {
             if (cr.getCurrentRoom().getMapInventory().get(i).getDescription().equals(take)) {
               player.takeItem(cr.getCurrentRoom(), cr.getCurrentRoom().getMapInventory().get(i));
-              room.setMapInventory(take);
             } else {
               System.out.println("This item does not exist");
             }
@@ -65,7 +64,7 @@ public class GameEngine {
           String drop = ui.getUserInput();
           for (int i = 0; i < player.getPlayerInventory().size(); i++) {
             if (player.getPlayerInventory().get(i).getDescription().equals(drop)) {
-              player.dropItem(player.getPlayerInventory().get(i));
+              player.dropItem(cr.getCurrentRoom() ,player.getPlayerInventory().get(i));
             } else {
               System.out.println("This item does not exist");
             }

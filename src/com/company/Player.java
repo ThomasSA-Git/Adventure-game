@@ -14,8 +14,8 @@ public class Player {
 
   public void takeItem(Room currentRoom, Item item) {
     playerInventory.add(item);
+    currentRoom.removeFromInventory(item);
     System.out.println(playerInventory);
-
   }
 
   public ArrayList<Item> getPlayerInventory() {
@@ -26,8 +26,8 @@ public class Player {
     return String.valueOf(playerInventory);
   }
 
-  public void dropItem(Item item) {
-  room.addToInventory(item);
+  public void dropItem(Room currentRoom, Item item) {
+  currentRoom.addToInventory(item);
   playerInventory.remove(item);
   }
 }
