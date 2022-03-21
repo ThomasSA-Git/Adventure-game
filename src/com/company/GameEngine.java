@@ -3,11 +3,11 @@ package com.company;
 public class GameEngine {
 
   public void runGame() {
-    Creator cr = new Creator();
+    Creator creator = new Creator();
     UserInterface ui = new UserInterface();
     Room room = new Room();
-    cr.createRooms();
-    Player player = new Player(cr.firstRoom);
+    creator.createRooms();
+    Player player = new Player(creator.firstRoom);
     ui.presentGame();
 
     boolean running = true;
@@ -46,7 +46,7 @@ public class GameEngine {
             player.setCurrentRoom(player.getCurrentRoom().getSouth());
           }
         }
-        case "inventory" -> System.out.println(player.playerInventory);
+        case "inventory" -> ui.printArrayList(player.getPlayerInventory());
 
         case "take" -> {
           System.out.println("What do you want to take?");
@@ -55,18 +55,18 @@ public class GameEngine {
             if (player.getCurrentRoom().getMapInventory().get(i).getDescription().equals(take)) {
               player.takeItem(player.getCurrentRoom(), player.getCurrentRoom().getMapInventory().get(i));
             } else {
-              System.out.println("This item does not exist");
+              ui.printString("This item does not exist");
             }
           }
         }
         case "drop" -> {
-          System.out.println("What do you want to drop?");
+          ui.printString("What do you want to drop?");
           String drop = ui.getUserInput();
           for (int i = 0; i < player.getPlayerInventory().size(); i++) {
             if (player.getPlayerInventory().get(i).getDescription().equals(drop)) {
               player.dropItem(player.getCurrentRoom() ,player.getPlayerInventory().get(i));
             } else {
-              System.out.println("This item does not exist");
+              ui.printString("This item does not exist");
             }
           }
         }

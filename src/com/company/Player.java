@@ -2,12 +2,10 @@ package com.company;
 
 import java.util.ArrayList;
 
-
 public class Player {
   Room currentRoom;
   ArrayList<Item> playerInventory;
   Room room = new Room();
-  Creator creator = new Creator();
 
   public Player(Room currentRoom) {
     this.currentRoom = currentRoom;

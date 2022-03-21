@@ -6,8 +6,6 @@ import com.company.Item;
 public class Creator {
 
   Room firstRoom;
-  ArrayList<Item> cabinInventory = new ArrayList<Item>();
-  ArrayList<Item> galleyInventory = new ArrayList<Item>();
 
   public void createRooms() {
 
