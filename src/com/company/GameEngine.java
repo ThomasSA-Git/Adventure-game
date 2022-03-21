@@ -5,7 +5,6 @@ public class GameEngine {
   public void runGame() {
     Creator creator = new Creator();
     UserInterface ui = new UserInterface();
-    Room room = new Room();
     creator.createRooms();
     Player player = new Player(creator.firstRoom);
     ui.presentGame();
@@ -26,7 +25,6 @@ public class GameEngine {
         }
         case "go north" -> {
           if (player.getCurrentRoom().getNorth() == null) {
-            ;
             ui.blockedDirection();
           } else {
             player.setCurrentRoom(player.getCurrentRoom().getNorth());
@@ -49,34 +47,36 @@ public class GameEngine {
         case "inventory" -> ui.printArrayList(player.getPlayerInventory());
 
         case "take" -> {
-          System.out.println("What do you want to take?");
+          boolean containsItem = false;
+          ui.printString("What do you want to take?");
           String take = ui.getUserInput();
-          for (int i = 0; i < player.getCurrentRoom().getMapInventory().size() - 1; i++) {
+          for (int i = 0; i < player.getCurrentRoom().getMapInventory().size(); i++) {
             if (player.getCurrentRoom().getMapInventory().get(i).getDescription().equals(take)) {
               player.takeItem(player.getCurrentRoom(), player.getCurrentRoom().getMapInventory().get(i));
-            } else {
-              ui.printString("This item does not exist");
+              containsItem = true;
             }
           }
+            if (!containsItem){
+              ui.printString("This item does not exist");
+            }
         }
+
         case "drop" -> {
           ui.printString("What do you want to drop?");
           String drop = ui.getUserInput();
           for (int i = 0; i < player.getPlayerInventory().size(); i++) {
             if (player.getPlayerInventory().get(i).getDescription().equals(drop)) {
-              player.dropItem(player.getCurrentRoom() ,player.getPlayerInventory().get(i));
+              player.dropItem(player.getCurrentRoom(), player.getPlayerInventory().get(i));
             } else {
               ui.printString("This item does not exist");
             }
           }
         }
         case "look" -> {
-          player.getCurrentRoom().getDescription();
+          ui.printString(player.getCurrentRoom().getDescription());
           ui.printList(player.getCurrentRoom().getMapInventory());
         }
-        case "help" -> {
-          ui.getHelpMenu();
-        }
+        case "help" -> ui.getHelpMenu();
         case "exit" -> running = false;
       }
     }
