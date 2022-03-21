@@ -3,47 +3,47 @@ package com.company;
 public class GameEngine {
 
   public void runGame() {
-    Player player = new Player();
     Creator cr = new Creator();
     UserInterface ui = new UserInterface();
     Room room = new Room();
     cr.createRooms();
+    Player player = new Player(cr.firstRoom);
     ui.presentGame();
 
     boolean running = true;
     while (running) {
 
-      ui.printCurrentRoom(cr.getCurrentRoom());
+      ui.printCurrentRoom(player.getCurrentRoom());
 
       String userInput = ui.getUserInput();
       switch (userInput) {
         case "go east" -> {
-          if (cr.getCurrentRoom().getEast() == null) {
+          if (player.getCurrentRoom().getEast() == null) {
             ui.blockedDirection();
           } else {
-            cr.setCurrentRoom(cr.getCurrentRoom().getEast());
+            player.setCurrentRoom(player.getCurrentRoom().getEast());
           }
         }
         case "go north" -> {
-          if (cr.getCurrentRoom().getNorth() == null) {
+          if (player.getCurrentRoom().getNorth() == null) {
             ;
             ui.blockedDirection();
           } else {
-            cr.setCurrentRoom(cr.getCurrentRoom().getNorth());
+            player.setCurrentRoom(player.getCurrentRoom().getNorth());
           }
         }
         case "go west" -> {
-          if (cr.getCurrentRoom().getWest() == null) {
+          if (player.getCurrentRoom().getWest() == null) {
             ui.blockedDirection();
           } else {
-            cr.setCurrentRoom(cr.getCurrentRoom().getWest());
+            player.setCurrentRoom(player.getCurrentRoom().getWest());
           }
         }
         case "go south" -> {
-          if (cr.getCurrentRoom().getSouth() == null) {
+          if (player.getCurrentRoom().getSouth() == null) {
             ui.blockedDirection();
           } else {
-            cr.setCurrentRoom(cr.getCurrentRoom().getSouth());
+            player.setCurrentRoom(player.getCurrentRoom().getSouth());
           }
         }
         case "inventory" -> System.out.println(player.playerInventory);
@@ -51,9 +51,9 @@ public class GameEngine {
         case "take" -> {
           System.out.println("What do you want to take?");
           String take = ui.getUserInput();
-          for (int i = 0; i < cr.getCurrentRoom().getMapInventory().size() - 1; i++) {
-            if (cr.getCurrentRoom().getMapInventory().get(i).getDescription().equals(take)) {
-              player.takeItem(cr.getCurrentRoom(), cr.getCurrentRoom().getMapInventory().get(i));
+          for (int i = 0; i < player.getCurrentRoom().getMapInventory().size() - 1; i++) {
+            if (player.getCurrentRoom().getMapInventory().get(i).getDescription().equals(take)) {
+              player.takeItem(player.getCurrentRoom(), player.getCurrentRoom().getMapInventory().get(i));
             } else {
               System.out.println("This item does not exist");
             }
@@ -64,15 +64,15 @@ public class GameEngine {
           String drop = ui.getUserInput();
           for (int i = 0; i < player.getPlayerInventory().size(); i++) {
             if (player.getPlayerInventory().get(i).getDescription().equals(drop)) {
-              player.dropItem(cr.getCurrentRoom() ,player.getPlayerInventory().get(i));
+              player.dropItem(player.getCurrentRoom() ,player.getPlayerInventory().get(i));
             } else {
               System.out.println("This item does not exist");
             }
           }
         }
         case "look" -> {
-          cr.getCurrentRoom().getDescription();
-          ui.printList(cr.getCurrentRoom().getMapInventory());
+          player.getCurrentRoom().getDescription();
+          ui.printList(player.getCurrentRoom().getMapInventory());
         }
         case "help" -> {
           ui.getHelpMenu();

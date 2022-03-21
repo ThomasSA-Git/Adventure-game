@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 
 public class Player {
+  Room currentRoom;
   ArrayList<Item> playerInventory;
   Room room = new Room();
   Creator creator = new Creator();
 
-  public Player() {
+  public Player(Room currentRoom) {
+    this.currentRoom = currentRoom;
     playerInventory = new ArrayList<>();
   }
 
@@ -20,6 +22,14 @@ public class Player {
 
   public ArrayList<Item> getPlayerInventory() {
     return playerInventory;
+  }
+
+  public Room getCurrentRoom() {
+    return currentRoom;
+  }
+
+  public void setCurrentRoom(Room currentRoom) {
+    this.currentRoom = currentRoom;
   }
 
   public String toString() {

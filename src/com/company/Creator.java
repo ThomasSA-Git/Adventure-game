@@ -5,8 +5,7 @@ import com.company.Item;
 
 public class Creator {
 
-  private Room currentRoom;
-
+  Room firstRoom;
   ArrayList<Item> cabinInventory = new ArrayList<Item>();
   ArrayList<Item> galleyInventory = new ArrayList<Item>();
 
@@ -26,7 +25,8 @@ public class Creator {
     Room room8 = new Room("Room: 8", "", new ArrayList<Item>());
     Room room9 = new Room("Room: 9", "", new ArrayList<Item>());
 
-    setCurrentRoom(room1);
+    firstRoom = room1;
+
 
     //ROOM 1
     room1.setEast(room2);
@@ -64,13 +64,5 @@ public class Creator {
     //ROOM 9
     room9.setNorth(room6);
     room9.setWest(room8);
-  }
-
-  public Room getCurrentRoom() {
-    return currentRoom;
-  }
-
-  public void setCurrentRoom(Room room){
-    currentRoom = room;
   }
 }
