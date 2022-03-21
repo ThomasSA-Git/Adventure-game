@@ -27,7 +27,7 @@ public class Player {
   }
 
   public void dropItem(Item item) {
-  room.addToInventory(item);
+    creator.getCurrentRoom().getMapInventory(item);
   playerInventory.remove(item);
   }
 }

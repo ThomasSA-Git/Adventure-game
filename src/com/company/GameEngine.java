@@ -51,10 +51,10 @@ public class GameEngine {
         case "take" -> {
           System.out.println("What do you want to take?");
           String take = ui.getUserInput();
-          for (int i = 0; i < cr.getCurrentRoom().getMapInventory().size() - 1; i++) {
+          for (int i = 0; i < cr.getCurrentRoom().getMapInventory().size(); i++) {
             if (cr.getCurrentRoom().getMapInventory().get(i).getDescription().equals(take)) {
               player.takeItem(cr.getCurrentRoom(), cr.getCurrentRoom().getMapInventory().get(i));
-              room.setMapInventory(take);
+              cr.getCurrentRoom().setMapInventory(take);
             } else {
               System.out.println("This item does not exist");
             }
