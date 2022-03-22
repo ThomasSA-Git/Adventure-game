@@ -7,6 +7,19 @@ public class Player {
   ArrayList<Item> playerInventory;
   Room room = new Room();
 
+  private int health = 70;
+
+  public void eat(Food food){
+    health = health + food.getHealthGain();
+    if (health > 100){
+      health = 100;
+    }
+  }
+
+  public int getHealth(){
+    return health;
+  }
+
   public Player(Room currentRoom) {
     this.currentRoom = currentRoom;
     playerInventory = new ArrayList<>();

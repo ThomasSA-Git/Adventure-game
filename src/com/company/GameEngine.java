@@ -56,9 +56,9 @@ public class GameEngine {
               containsItem = true;
             }
           }
-            if (!containsItem){
-              ui.printString("This item does not exist");
-            }
+          if (!containsItem) {
+            ui.printString("This item does not exist");
+          }
         }
 
         case "drop" -> {
@@ -78,6 +78,33 @@ public class GameEngine {
         }
         case "help" -> ui.getHelpMenu();
         case "exit" -> running = false;
+        case "health" -> {
+          ui.printString("Health: " + player.getHealth());
+          if (player.getHealth() <= 50){
+            try {
+              ui.printOneLetterAtATime("Narrator: You look alive enough, but i wouldn't wrestle a bear in your condition", 0.05);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+          }
+        }
+
+        case "eat" -> {
+          ui.printString("What do you want to eat?");
+          String food = ui.getUserInput();
+          boolean found = false;
+          for (int i = 0; i < player.getPlayerInventory().size(); i++) {
+            if (player.getPlayerInventory().get(i).getDescription().equals(food)) {
+              found = true;
+              Food foundFood = (Food) player.getPlayerInventory().get(i);
+              player.eat(foundFood);
+              player.getPlayerInventory().remove(foundFood);
+            }
+            if (!found) {
+              ui.printString("You can't eat that!");
+            }
+          }
+        }
       }
     }
   }
