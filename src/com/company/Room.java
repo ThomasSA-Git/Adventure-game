@@ -33,7 +33,7 @@ public class Room {
 
   public Room(String name, String description, ArrayList<Item> mapInventory, Interactables interactable) {
     this.name = name;
-    this.description = description;
+    this.description = description + "" + interactable.getDescription();
     this.mapInventory = mapInventory;
     this.interactable = interactable;
   }

@@ -1,15 +1,14 @@
 package com.company;
 
 import java.util.ArrayList;
-import com.company.Item;
 
 public class Creator {
 
   Room firstRoom;
 
   public void createRooms() {
-    Interactables interactables1 = new Interactables("Door", "You can't open this.");
-    Room room1 = new Room("Room: 1", "", new ArrayList<Item>(), interactables1);
+    Interactables interactables1 = new Interactables("Door", "You can't open this.", new ArrayList<Item>());
+    Room room1 = new Room("Room: 1", "The room contains:\n", new ArrayList<Item>(), interactables1);
     room1.addToInventory(new Item("key"));
     room1.addToInventory(new Food("banana", 20));
     System.out.println(room1.getMapInventory());
