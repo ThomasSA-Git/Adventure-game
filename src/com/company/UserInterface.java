@@ -42,6 +42,14 @@ public class UserInterface {
         """);
   }
 
+  public void printArrayList(ArrayList<Item> arrayList){
+    System.out.println(String.valueOf(arrayList));
+  }
+
+  public void printString(String input){
+    System.out.println(input);
+  }
+
   public void blockedDirection(){
     System.out.println("You can't go this way.");
   }

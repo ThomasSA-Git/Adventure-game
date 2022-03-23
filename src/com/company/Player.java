@@ -2,13 +2,26 @@ package com.company;
 
 import java.util.ArrayList;
 
-
 public class Player {
+  Room currentRoom;
   ArrayList<Item> playerInventory;
   Room room = new Room();
-  Creator creator = new Creator();
 
-  public Player() {
+  private int health = 70;
+
+  public void eat(Food food){
+    health = health + food.getHealthGain();
+    if (health > 100){
+      health = 100;
+    }
+  }
+
+  public int getHealth(){
+    return health;
+  }
+
+  public Player(Room currentRoom) {
+    this.currentRoom = currentRoom;
     playerInventory = new ArrayList<>();
   }
 
@@ -20,6 +33,14 @@ public class Player {
 
   public ArrayList<Item> getPlayerInventory() {
     return playerInventory;
+  }
+
+  public Room getCurrentRoom() {
+    return currentRoom;
+  }
+
+  public void setCurrentRoom(Room currentRoom) {
+    this.currentRoom = currentRoom;
   }
 
   public String toString() {

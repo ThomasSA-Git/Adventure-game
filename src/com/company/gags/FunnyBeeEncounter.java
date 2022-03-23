@@ -1,4 +1,4 @@
-package com.company.enemies;
+package com.company.gags;
 
 import com.company.UserInterface;
 
