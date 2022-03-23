@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+
 import com.company.Item;
 
 public class Room {
@@ -12,6 +13,7 @@ public class Room {
   private Room south = null;
   private Room west = null;
   private ArrayList<Item> mapInventory = new ArrayList<>();
+  private Interactables interactable;
 
   public Room(String name, String description, Room north, Room east, Room south, Room west) {
     this.name = name;
@@ -22,27 +24,29 @@ public class Room {
     this.south = south;
     this.west = west;
 
+
   }
 
   public ArrayList<Item> getMapInventory() {
     return this.mapInventory;
   }
 
-   public Room(String name, String description, ArrayList<Item> mapInventory) {
+  public Room(String name, String description, ArrayList<Item> mapInventory, Interactables interactable) {
     this.name = name;
     this.description = description;
-     this.mapInventory = mapInventory;
+    this.mapInventory = mapInventory;
+    this.interactable = interactable;
   }
 
-  public void setMapInventory(ArrayList<Item> newArrayList){
+  public void setMapInventory(ArrayList<Item> newArrayList) {
     mapInventory = newArrayList;
   }
 
-  public void removeFromInventory(Item item){
+  public void removeFromInventory(Item item) {
     mapInventory.remove(item);
   }
 
-  public void addToInventory(Item item){
+  public void addToInventory(Item item) {
     mapInventory.add(item);
   }
 
@@ -88,6 +92,10 @@ public class Room {
     return this.description;
   }
 
+  public Interactables getInteractable() {
+    return this.interactable;
+  }
+
   public void setDoorLocked() {
     if (lockedDoor) {
       lockedDoor = false;
@@ -96,7 +104,7 @@ public class Room {
     }
   }
 
-  public boolean getDoorLocked(){
+  public boolean getDoorLocked() {
     return this.lockedDoor;
   }
 

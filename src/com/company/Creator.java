@@ -8,20 +8,22 @@ public class Creator {
   Room firstRoom;
 
   public void createRooms() {
-
-    Room room1 = new Room("Room: 1", "", new ArrayList<Item>());
+    Interactables interactables1 = new Interactables("Door", "You can't open this.");
+    Room room1 = new Room("Room: 1", "", new ArrayList<Item>(), interactables1);
     room1.addToInventory(new Item("key"));
     room1.addToInventory(new Food("banana", 20));
     System.out.println(room1.getMapInventory());
 
-    Room room2 = new Room("Room: 2", "", new ArrayList<Item>());
-    Room room3 = new Room("Room: 3", "", new ArrayList<Item>());
-    Room room4 = new Room("Room: 4", "", new ArrayList<Item>());
-    Room room5 = new Room("Room: 5", "", new ArrayList<Item>());
-    Room room6 = new Room("Room: 6", "", new ArrayList<Item>());
-    Room room7 = new Room("Room: 7", "", new ArrayList<Item>());
-    Room room8 = new Room("Room: 8", "", new ArrayList<Item>());
-    Room room9 = new Room("Room: 9", "", new ArrayList<Item>());
+
+
+    Room room2 = new Room("Room: 2", "", new ArrayList<Item>(), interactables1);
+    Room room3 = new Room("Room: 3", "", new ArrayList<Item>(), interactables1);
+    Room room4 = new Room("Room: 4", "", new ArrayList<Item>(), interactables1);
+    Room room5 = new Room("Room: 5", "", new ArrayList<Item>(), interactables1);
+    Room room6 = new Room("Room: 6", "", new ArrayList<Item>(), interactables1);
+    Room room7 = new Room("Room: 7", "", new ArrayList<Item>(), interactables1);
+    Room room8 = new Room("Room: 8", "", new ArrayList<Item>(), interactables1);
+    Room room9 = new Room("Room: 9", "", new ArrayList<Item>(), interactables1);
 
     firstRoom = room1;
 

@@ -75,6 +75,7 @@ public class GameEngine {
         case "look" -> {
           ui.printString(player.getCurrentRoom().getDescription());
           ui.printList(player.getCurrentRoom().getMapInventory());
+          ui.printString(player.getCurrentRoom().getInteractable().getDescription());
         }
         case "help" -> ui.getHelpMenu();
         case "exit" -> running = false;
