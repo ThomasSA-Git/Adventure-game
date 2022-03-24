@@ -49,6 +49,10 @@ public class Player {
     return health;
   }
 
+  public void setHealth(int damage){
+    health -= damage;
+  }
+
   public Player(Room currentRoom) {
     this.currentRoom = currentRoom;
     playerInventory = new ArrayList<>();
@@ -80,4 +84,8 @@ public class Player {
   currentRoom.addToInventory(item);
   playerInventory.remove(item);
   }
+
+/*  public void attack(){
+    enemyHealth -= eqippedWeapon.getDamage();
+  }*/
 }
