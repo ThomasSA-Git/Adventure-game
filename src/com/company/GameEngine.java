@@ -89,6 +89,23 @@ public class GameEngine {
           }
         }
 
+        case "equip" -> {
+          ui.printString("What do you want to equip?");
+          String weapon = ui.getUserInput();
+          boolean found = false;
+          for (int i = 0; i < player.getPlayerInventory().size(); i++){
+            if (player.getPlayerInventory().get(i).getDescription().equals(weapon)){
+              found = true;
+              Weapon foundWeapon = (Weapon) player.getPlayerInventory().get(i);
+              player.equip(foundWeapon);
+            }
+          }
+        }
+
+        case "deequip" -> player.deEquip();
+
+        case "weapon" -> ui.printString(player.getEquippedWeapon() + ", Damage: " + player.getDamage());
+
         case "eat" -> {
           ui.printString("What do you want to eat?");
           String food = ui.getUserInput();

@@ -7,13 +7,42 @@ public class Player {
   ArrayList<Item> playerInventory;
   Room room = new Room();
 
+  private int damage = 1;
   private int health = 70;
+  private Weapon fists = new Weapon ("Fists", 1);
+  private Weapon equippedWeapon = fists;
 
   public void eat(Food food){
     health = health + food.getHealthGain();
     if (health > 100){
       health = 100;
     }
+  }
+
+  public void equip(Weapon weapon){
+    setEquippedWeapon(weapon);
+    setDamage(equippedWeapon.getDamage());
+  }
+
+  public int getDamage(){
+    return damage;
+  }
+
+  public void deEquip(){
+    setEquippedWeapon(fists);
+    setDamage(1);
+  }
+
+  public void setDamage(int damage) {
+    this.damage = damage;
+  }
+
+  public Weapon getEquippedWeapon() {
+    return equippedWeapon;
+  }
+
+  public void setEquippedWeapon(Weapon equippedWeapon) {
+    this.equippedWeapon = equippedWeapon;
   }
 
   public int getHealth(){
