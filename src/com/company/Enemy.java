@@ -4,10 +4,13 @@ public class Enemy {
 
   private String description;
   private int health;
-  private Item weapon;
-  private Player player;
+  private Weapon weapon;
+  UserInterface ui = new UserInterface();
+  Room room;
+  Player player;
 
-  public Enemy(String description, int health, Item weapon){
+
+  public Enemy(String description, int health, Weapon weapon) {
     this.description = description;
     this.health = health;
     this.weapon = weapon;
@@ -21,8 +24,12 @@ public class Enemy {
     return this.health;
   }
 
-  public Item getWeapon(){
+  public Weapon getWeapon() {
     return this.weapon;
+  }
+
+  public void dropWeapon(){
+    player.getCurrentRoom().addToInventory(weapon);
   }
 
   public void setDescription(String description) {
@@ -33,13 +40,19 @@ public class Enemy {
     this.health = health;
   }
 
-  public void setWeapon(Item weapon) {
+  public void setWeapon(Weapon weapon) {
     this.weapon = weapon;
   }
 
-  public void attack(){
-    Item.get
-
-    player.setHealth();
+  public void attack() {
+    ui.printString("Slap noise");
+    player.setHealth(player.getHealth() - this.weapon.getDamage());
+    ui.printString(this.description + " did " + this.weapon.getDamage() + " damage to you.");
   }
+
+  public void dyingEnemy() {
+
+  }
+
+
 }
