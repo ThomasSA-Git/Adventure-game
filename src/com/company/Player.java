@@ -20,6 +20,10 @@ public class Player {
     return health;
   }
 
+  public void setHealth(int damage){
+    health -= damage;
+  }
+
   public Player(Room currentRoom) {
     this.currentRoom = currentRoom;
     playerInventory = new ArrayList<>();
@@ -52,7 +56,7 @@ public class Player {
   playerInventory.remove(item);
   }
 
-  public void attack(){
+/*  public void attack(){
     enemyHealth -= eqippedWeapon.getDamage();
-  }
+  }*/
 }
