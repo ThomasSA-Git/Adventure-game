@@ -56,6 +56,7 @@ public class Room {
 
     this.name = name;
     this.description = description;
+
   }
 
   public String toString() {
@@ -104,6 +105,10 @@ public class Room {
     } else {
       lockedDoor = true;
     }
+  }
+
+  public Enemy getEnemy() {
+    return this.enemy;
   }
 
   public boolean getDoorLocked() {
