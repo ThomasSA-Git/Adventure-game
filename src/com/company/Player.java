@@ -6,10 +6,12 @@ public class Player {
   Room currentRoom;
   ArrayList<Item> playerInventory;
   Room room = new Room();
+  UserInterface ui = new UserInterface();
+  Enemy enemy;
 
   private int damage = 1;
   private int health = 70;
-  private Weapon fists = new Weapon ("Fists", 1);
+  private Weapon fists = new Weapon ("Fists", 1, 2);
   private Weapon equippedWeapon = fists;
 
   public void eat(Food food){
@@ -85,7 +87,14 @@ public class Player {
   playerInventory.remove(item);
   }
 
-/*  public void attack(){
-    enemyHealth -= eqippedWeapon.getDamage();
-  }*/
-}
+  public void attack(){
+    ui.printString("Slap noise");
+    int damage = getHealth() - this.equippedWeapon.getDamage();
+    if(damage == this.equippedWeapon.getMaxDamage()){
+      //critical hit
+      damage *= this.equippedWeapon.getMaxDamage();
+    }
+    enemy.takeDamage(damage);
+    ui.printString("You did " + damage + " damage to your enemy.");
+  }
+  }

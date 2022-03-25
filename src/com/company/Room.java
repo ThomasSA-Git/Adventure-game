@@ -8,6 +8,7 @@ public class Room {
   private String name;
   private String description;
   private boolean lockedDoor;
+  private Enemy enemy;
   private Room north = null;
   private Room east = null;
   private Room south = null;
@@ -31,11 +32,12 @@ public class Room {
     return this.mapInventory;
   }
 
-  public Room(String name, String description, ArrayList<Item> mapInventory, Interactables interactable) {
+  public Room(String name, String description, ArrayList<Item> mapInventory, Interactables interactable, Enemy enemy) {
     this.name = name;
     this.description = description + "" + interactable.getDescription();
     this.mapInventory = mapInventory;
     this.interactable = interactable;
+    this.enemy = enemy;
   }
 
   public void setMapInventory(ArrayList<Item> newArrayList) {

@@ -40,14 +40,23 @@ public class Enemy {
     this.health = health;
   }
 
+  public void takeDamage(int damage){
+    this.health -= damage;
+  }
+
   public void setWeapon(Weapon weapon) {
     this.weapon = weapon;
   }
 
   public void attack() {
     ui.printString("Slap noise");
-    player.setHealth(player.getHealth() - this.weapon.getDamage());
-    ui.printString(this.description + " did " + this.weapon.getDamage() + " damage to you.");
+    int damage = player.getHealth() - this.weapon.getDamage();
+    if(damage == this.weapon.getMaxDamage()){
+      //critical hit
+      damage *= this.weapon.getMaxDamage();
+    }
+    player.setHealth(damage);
+    ui.printString(this.description + " did " + damage + " damage to you.");
   }
 
   public void dyingEnemy() {
