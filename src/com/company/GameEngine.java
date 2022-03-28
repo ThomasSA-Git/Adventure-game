@@ -76,11 +76,52 @@ public class GameEngine {
           ui.printString(player.getCurrentRoom().getDescription());
           ui.printList(player.getCurrentRoom().getMapInventory());
         }
+        case "interact" -> {
+
+          boolean interact = true;
+          ui.printString("What do you want to interact with?");
+          String take = ui.getUserInput();
+          if (player.getCurrentRoom().getInteractable().getDescription().equalsIgnoreCase(take)) {
+            ui.printString(player.getCurrentRoom().getInteractable().getDescription() + " and it contains:\n" + player.getCurrentRoom().getInteractable().getInterList());
+            while (interact) {
+              ui.printString("Do you wish to take anything from " + player.getCurrentRoom().getInteractable().getDescription() + "?");
+              ui.printString("Enter take followed by items name or exit to return to current area.");
+              String intTake = ui.getUserInput();
+              if (intTake.equalsIgnoreCase("take")) {
+                boolean containsItem = false;
+                ui.printString("What do you want to take?");
+                String takeInt = ui.getUserInput();
+                for (int i = 0; i < player.getCurrentRoom().getInteractable().getInterList().size(); i++) {
+                  if (player.getCurrentRoom().getInteractable().getInterList().get(i).getDescription().equalsIgnoreCase(takeInt)) {
+                    player.takeIntItem(player.getCurrentRoom().getInteractable(), player.getCurrentRoom().getInteractable().getInterList().get(i));
+                    containsItem = true;
+                  }
+                }
+                if (!containsItem) {
+                  ui.printString("This item does not exist");
+                }
+              }
+            if(intTake.equalsIgnoreCase("exit")){
+              interact = false;
+            }
+            }
+
+          }
+          else{ui.printString("This item does not exist.");}
+        }/*String intItem = ui.getUserInput();
+              if (player.currentRoom.getInteractable().getDescription().equalsIgnoreCase(intItem))
+              player.takeItem(player.currentRoom.getInteractable(), intItem);
+            }
+          }
+          }
+          else{
+            ui.printString("This item does not exist");
+          }*/
         case "help" -> ui.getHelpMenu();
         case "exit" -> running = false;
         case "health" -> {
           ui.printString("Health: " + player.getHealth());
-          if (player.getHealth() <= 50){
+          if (player.getHealth() <= 50) {
             try {
               ui.printOneLetterAtATime("Narrator: You look alive enough, but i wouldn't wrestle a bear in your condition", 0.05);
             } catch (InterruptedException e) {
@@ -93,8 +134,8 @@ public class GameEngine {
           ui.printString("What do you want to equip?");
           String weapon = ui.getUserInput();
           boolean found = false;
-          for (int i = 0; i < player.getPlayerInventory().size(); i++){
-            if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(weapon)){
+          for (int i = 0; i < player.getPlayerInventory().size(); i++) {
+            if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(weapon)) {
               found = true;
               Weapon foundWeapon = (Weapon) player.getPlayerInventory().get(i);
               player.setEquippedWeapon(foundWeapon);
@@ -114,26 +155,25 @@ public class GameEngine {
         case "attack" -> {
           boolean engaged = true;
           if (player.getCurrentRoom().getEnemy() != null) {
-          while(engaged){
-            if(player.getHealth() > 0){
-            player.attack();}
-            else if (player.getHealth() <= 0){
-              engaged = false;
-              ui.printString("You have been killed. The game is over.");
-              //End game?
+            while (engaged) {
+              if (player.getHealth() > 0) {
+                player.attack();
+              } else if (player.getHealth() <= 0) {
+                engaged = false;
+                ui.printString("You have been killed. The game is over.");
+                running = false;
 
+              }
+              if (player.getCurrentRoom().getEnemy().getHealth() > 0) {
+                player.takeDamage(player.getCurrentRoom().getEnemy().attack());
+                ui.printString("You have " + player.getHealth() + " health left.");
+              } else if (player.getCurrentRoom().getEnemy().getHealth() <= 0) {
+                engaged = false;
+                player.getCurrentRoom().addToInventory(player.getCurrentRoom().getEnemy().dropWeapon());
+                ui.printString("Your enemy has been defeated.");
+              }
             }
-            if(player.getCurrentRoom().getEnemy().getHealth() > 0){
-            player.takeDamage(player.getCurrentRoom().getEnemy().attack());
-            ui.printString("You have " + player.getHealth() + " health left.");}
-            else if(player.getCurrentRoom().getEnemy().getHealth() <= 0){
-              engaged = false;
-              player.getCurrentRoom().addToInventory(player.getCurrentRoom().getEnemy().dropWeapon());
-              ui.printString("Your enemy has been defeated.");
-            }
-          }
-          }
-          else if(player.getCurrentRoom().getEnemy() == null){
+          } else if (player.getCurrentRoom().getEnemy() == null) {
             ui.printString("Who are you attacking? There's no one there.");
           }
         }

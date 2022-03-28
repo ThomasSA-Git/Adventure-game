@@ -9,8 +9,10 @@ public class Creator {
 
   public void createRooms() {
 
-    Interactables blindDoor = new Interactables("Door", "You can't open this.", new ArrayList<Item>());
-    Interactables kitchenCounter = new Interactables("It's a kitchen counter", "Maybe there's something you can use", new ArrayList<Item>());
+    Interactables blindDoor = new Interactables("Door", "It's closed", new ArrayList<Item>());
+    Weapon rollingPin = new Weapon("Dirty rolling pin", 8, 11);
+    Interactables kitchenCounter = new Interactables("Kitchen counter", "Maybe there's something you can use", new ArrayList<Item>());
+    kitchenCounter.addToInventory(rollingPin);
     Weapon testWeapon = new Weapon("club", 2, 4);
     Enemy testEnemy = new Enemy("troll", 20, testWeapon);
     Room room1 = new Room("Room: 1", "The room contains:\n", new ArrayList<Item>(), blindDoor, testEnemy);
@@ -18,7 +20,6 @@ public class Creator {
     room1.addToInventory(new Food("banana", 20));
     room1.addToInventory(new Weapon("Frying Pan", 3, 5
     ));
-    System.out.println(room1.getMapInventory());
 
 
 

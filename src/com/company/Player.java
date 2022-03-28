@@ -66,7 +66,12 @@ public class Player {
   public void takeItem(Room currentRoom, Item item) {
     playerInventory.add(item);
     currentRoom.removeFromInventory(item);
-    System.out.println(playerInventory);
+  }
+
+  public void takeIntItem(Interactables interactables, Item item){
+    playerInventory.add(item);
+    interactables.removeFromInventory(item);
+
   }
 
   public ArrayList<Item> getPlayerInventory() {

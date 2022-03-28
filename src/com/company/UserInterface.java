@@ -36,6 +36,9 @@ public class UserInterface {
         take: Pick up item and put in your inventory
         drop: Drop item from inventory on ground
         inventory: Get a list of your inventory
+        equip: Equip weapon
+        deequip: Unequip weapon
+        attack: Attack enemy
         
         help: Display this menu
         exit: Close game

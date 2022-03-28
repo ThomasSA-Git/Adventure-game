@@ -109,7 +109,7 @@ public class Room {
   }
 
   public Interactables getInteractable() {
-    return this.interactable;
+    return interactable;
   }
 
   public void setDoorLocked() {
