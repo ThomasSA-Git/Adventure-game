@@ -9,10 +9,11 @@ public class Creator {
 
   public void createRooms() {
 
-    Interactables interactables1 = new Interactables("Door", "You can't open this.", new ArrayList<Item>());
+    Interactables blindDoor = new Interactables("Door", "You can't open this.", new ArrayList<Item>());
+    Interactables kitchenCounter = new Interactables("It's a kitchen counter", "Maybe there's something you can use", new ArrayList<Item>());
     Weapon testWeapon = new Weapon("club", 2, 4);
     Enemy testEnemy = new Enemy("troll", 20, testWeapon);
-    Room room1 = new Room("Room: 1", "The room contains:\n", new ArrayList<Item>(), interactables1, testEnemy);
+    Room room1 = new Room("Room: 1", "The room contains:\n", new ArrayList<Item>(), blindDoor, testEnemy);
     room1.addToInventory(new Item("key"));
     room1.addToInventory(new Food("banana", 20));
     room1.addToInventory(new Weapon("Frying Pan", 3, 5
@@ -21,14 +22,14 @@ public class Creator {
 
 
 
-    Room room2 = new Room("Galley", "", new ArrayList<Item>(), interactables1, null);
-    Room room3 = new Room("Ship hold", "", new ArrayList<Item>(), interactables1, null);
-    Room room4 = new Room("Brig", "", new ArrayList<Item>(), interactables1, null);
-    Room room5 = new Room("Stern deck", "", new ArrayList<Item>(), interactables1, null);
-    Room room6 = new Room("Stern bow", "", new ArrayList<Item>(), interactables1, null);
-    Room room7 = new Room("Mast", "", new ArrayList<Item>(), interactables1, null);
-    Room room8 = new Room("Deck helm", "", new ArrayList<Item>(), interactables1, null);
-    Room room9 = new Room("Captain's quarters", "", new ArrayList<Item>(), interactables1, null);
+    Room room2 = new Room("Galley", "", new ArrayList<Item>(), kitchenCounter, null);
+    Room room3 = new Room("Ship hold", "", new ArrayList<Item>(), blindDoor, null);
+    Room room4 = new Room("Brig", "", new ArrayList<Item>(), blindDoor, null);
+    Room room5 = new Room("Stern deck", "", new ArrayList<Item>(), blindDoor, null);
+    Room room6 = new Room("Stern bow", "", new ArrayList<Item>(), blindDoor, null);
+    Room room7 = new Room("Mast", "", new ArrayList<Item>(), blindDoor, null);
+    Room room8 = new Room("Deck helm", "", new ArrayList<Item>(), blindDoor, null);
+    Room room9 = new Room("Captain's quarters", "", new ArrayList<Item>(), blindDoor, null);
 
     firstRoom = room1;
 

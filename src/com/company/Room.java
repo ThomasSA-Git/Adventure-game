@@ -34,7 +34,7 @@ public class Room {
 
   public Room(String name, String description, ArrayList<Item> mapInventory, Interactables interactable, Enemy enemy) {
     this.name = name;
-    this.description = description + "" + interactable.getDescription();
+    this.description = description;
     this.mapInventory = mapInventory;
     this.interactable = interactable;
     this.enemy = enemy;
@@ -92,7 +92,20 @@ public class Room {
   }
 
   public String getDescription() {
-    return this.description;
+
+    if(enemy != null && interactable != null){
+    return description  + "" + interactable + "\nYou see a " + enemy + " in the area.";
+    }
+    else if(enemy == null && interactable != null){
+      return description + interactable;
+    }
+      else if (interactable == null && enemy != null){
+        return description + "\nYou see a " + enemy + " in the area.";
+      }
+      else if(interactable == null && enemy == null){
+        return description;
+    }
+      return null;
   }
 
   public Interactables getInteractable() {
