@@ -21,14 +21,14 @@ public class Creator {
 
 
 
-    Room room2 = new Room("Room: 2", "", new ArrayList<Item>(), interactables1, null);
-    Room room3 = new Room("Room: 3", "", new ArrayList<Item>(), interactables1, null);
-    Room room4 = new Room("Room: 4", "", new ArrayList<Item>(), interactables1, null);
-    Room room5 = new Room("Room: 5", "", new ArrayList<Item>(), interactables1, null);
-    Room room6 = new Room("Room: 6", "", new ArrayList<Item>(), interactables1, null);
-    Room room7 = new Room("Room: 7", "", new ArrayList<Item>(), interactables1, null);
-    Room room8 = new Room("Room: 8", "", new ArrayList<Item>(), interactables1, null);
-    Room room9 = new Room("Room: 9", "", new ArrayList<Item>(), interactables1, null);
+    Room room2 = new Room("Galley", "", new ArrayList<Item>(), interactables1, null);
+    Room room3 = new Room("Ship hold", "", new ArrayList<Item>(), interactables1, null);
+    Room room4 = new Room("Brig", "", new ArrayList<Item>(), interactables1, null);
+    Room room5 = new Room("Stern deck", "", new ArrayList<Item>(), interactables1, null);
+    Room room6 = new Room("Stern bow", "", new ArrayList<Item>(), interactables1, null);
+    Room room7 = new Room("Mast", "", new ArrayList<Item>(), interactables1, null);
+    Room room8 = new Room("Deck helm", "", new ArrayList<Item>(), interactables1, null);
+    Room room9 = new Room("Captain's quarters", "", new ArrayList<Item>(), interactables1, null);
 
     firstRoom = room1;
 
