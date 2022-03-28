@@ -101,13 +101,13 @@ public class GameEngine {
                   ui.printString("This item does not exist");
                 }
               }
-            if(intTake.equalsIgnoreCase("exit")){
-              interact = false;
+              if (intTake.equalsIgnoreCase("exit")) {
+                interact = false;
+              }
             }
-            }
-
+          } else {
+            ui.printString("This item does not exist.");
           }
-          else{ui.printString("This item does not exist.");}
         }/*String intItem = ui.getUserInput();
               if (player.currentRoom.getInteractable().getDescription().equalsIgnoreCase(intItem))
               player.takeItem(player.currentRoom.getInteractable(), intItem);
