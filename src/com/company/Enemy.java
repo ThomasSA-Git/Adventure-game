@@ -7,7 +7,6 @@ public class Enemy {
   private Weapon weapon;
   UserInterface ui = new UserInterface();
   Room room;
-  Player player = new Player(room);
 
 
   public Enemy(String description, int health, Weapon weapon) {
@@ -32,8 +31,8 @@ public class Enemy {
     return this.weapon;
   }
 
-  public void dropWeapon(){
-    player.getCurrentRoom().addToInventory(weapon);
+  public Weapon dropWeapon(){
+    return weapon;
   }
 
   public void setDescription(String description) {
@@ -52,16 +51,16 @@ public class Enemy {
     this.weapon = weapon;
   }
 
-  public void attack() {
+  public int attack() {
     ui.printString("Slap noise");
     int damage = this.weapon.getDamage();
     if(damage == this.weapon.getMaxDamage()){
       //critical hit
       damage *= this.weapon.getMaxDamage();
     }
-    player.takeDamage(damage);
     ui.printString(this.description + " did " + damage + " damage to you.");
-  }
+    return damage;
+      }
 
   public void dyingEnemy() {
 

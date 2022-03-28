@@ -11,7 +11,6 @@ public class Creator {
 
     Interactables interactables1 = new Interactables("Door", "You can't open this.", new ArrayList<Item>());
     Weapon testWeapon = new Weapon("club", 2, 4);
-
     Enemy testEnemy = new Enemy("troll", 20, testWeapon);
     Room room1 = new Room("Room: 1", "The room contains:\n", new ArrayList<Item>(), interactables1, testEnemy);
     room1.addToInventory(new Item("key"));

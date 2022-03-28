@@ -1,5 +1,6 @@
 package com.company;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 
 public class Player {
@@ -12,13 +13,16 @@ public class Player {
   private Weapon fists = new Weapon("Fists", 1, 2);
   private Weapon equippedWeapon = fists;
 
-  public Player
 
   public void eat(Food food) {
     this.health = health + food.getHealthGain();
     if (health > 100) {
       health = 100;
     }
+  }
+
+  public Player(){
+
   }
 
   public void equip(Weapon weapon) {
@@ -30,13 +34,8 @@ public class Player {
   }
 
   public void deEquip() {
-    setEquippedWeapon(null);
-    /*setDamage(1);*/
+    setEquippedWeapon(fists);
   }
-
- /* public void setDamage(int damage) {
-    this.damage = damage;
-  }*/
 
   public Weapon getEquippedWeapon() {
     return equippedWeapon;

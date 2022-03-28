@@ -94,18 +94,23 @@ public class GameEngine {
           String weapon = ui.getUserInput();
           boolean found = false;
           for (int i = 0; i < player.getPlayerInventory().size(); i++){
-            if (player.getPlayerInventory().get(i).getDescription().equals(weapon)){
+            if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(weapon)){
               found = true;
               Weapon foundWeapon = (Weapon) player.getPlayerInventory().get(i);
-              player.equip(foundWeapon);
+              player.setEquippedWeapon(foundWeapon);
             }
           }
         }
 
         case "deequip" -> player.deEquip();
 
-        case "weapon" -> ui.printString(player.getEquippedWeapon() + ", Damage: " + player.getEquippedWeapon().getMinDamage() + " to " + player.getEquippedWeapon().getMaxDamage());
-
+        case "weapon" -> {
+          if (player.getEquippedWeapon() != null) {
+            ui.printString(player.getEquippedWeapon() + ", Damage: " + player.getEquippedWeapon().getMinDamage() + " to " + player.getEquippedWeapon().getMaxDamage());
+          } else {
+            ui.printString("You have no weapon equipped.");
+          }
+        }
         case "attack" -> {
           boolean engaged = true;
           if (player.getCurrentRoom().getEnemy() != null) {
@@ -118,10 +123,11 @@ public class GameEngine {
               //End game?
             }
             if(player.getCurrentRoom().getEnemy().getHealth() > 0){
-            player.getCurrentRoom().getEnemy().attack();
-            ui.printString("you have " + player.getHealth() + " health left.");}
+            player.takeDamage(player.getCurrentRoom().getEnemy().attack());
+            ui.printString("You have " + player.getHealth() + " health left.");}
             else if(player.getCurrentRoom().getEnemy().getHealth() <= 0){
               engaged = false;
+              player.getCurrentRoom().addToInventory(player.getCurrentRoom().getEnemy().dropWeapon());
               ui.printString("Your enemy has been defeated.");
             }
           }
