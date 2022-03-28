@@ -20,6 +20,10 @@ public class Enemy {
     return this.description;
   }
 
+  public String toString(){
+    return description;
+  }
+
   public int getHealth() {
     return this.health;
   }
@@ -55,7 +59,7 @@ public class Enemy {
       //critical hit
       damage *= this.weapon.getMaxDamage();
     }
-    player.setHealth(damage);
+    player.takeDamage(damage);
     ui.printString(this.description + " did " + damage + " damage to you.");
   }
 

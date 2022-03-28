@@ -7,7 +7,6 @@ public class Player {
   ArrayList<Item> playerInventory;
   Room room = new Room();
   UserInterface ui = new UserInterface();
-  Enemy enemy;
 
   private int damage = 1;
   private int health = 70;
@@ -48,16 +47,21 @@ public class Player {
   }
 
   public int getHealth() {
-    return health;
+    return this.health;
   }
 
   public void setHealth(int damage) {
-    health -= damage;
+    health = damage;
+  }
+
+  public void takeDamage(int damage){
+    this.health -= damage;
   }
 
   public Player(Room currentRoom) {
     this.currentRoom = currentRoom;
     playerInventory = new ArrayList<>();
+    this.health = getHealth();
   }
 
   public void takeItem(Room currentRoom, Item item) {

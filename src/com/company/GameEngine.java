@@ -114,7 +114,7 @@ public class GameEngine {
           }
           }
           else if(player.getCurrentRoom().getEnemy() == null){
-            ui.printString("Who are you attacking, there's no one there.");
+            ui.printString("Who are you attacking? There's no one there.");
           }
         }
         case "eat" -> {

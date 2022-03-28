@@ -6,9 +6,13 @@ public class Creator {
 
   Room firstRoom;
 
+
   public void createRooms() {
     Interactables interactables1 = new Interactables("Door", "You can't open this.", new ArrayList<Item>());
-    Room room1 = new Room("Room: 1", "The room contains:\n", new ArrayList<Item>(), interactables1, null);
+    Weapon testWeapon = new Weapon("club", 2, 4);
+    Enemy testEnemy = new Enemy("troll", 20, testWeapon);
+
+    Room room1 = new Room("Room: 1", "The room contains:\n", new ArrayList<Item>(), interactables1, testEnemy);
     room1.addToInventory(new Item("key"));
     room1.addToInventory(new Food("banana", 20));
     room1.addToInventory(new Weapon("Frying Pan", 3, 5
@@ -17,14 +21,14 @@ public class Creator {
 
 
 
-    Room room2 = new Room("Room: 2", "", new ArrayList<Item>(), null, null);
-    Room room3 = new Room("Room: 3", "", new ArrayList<Item>(), null, null);
-    Room room4 = new Room("Room: 4", "", new ArrayList<Item>(), null, null);
-    Room room5 = new Room("Room: 5", "", new ArrayList<Item>(), null, null);
-    Room room6 = new Room("Room: 6", "", new ArrayList<Item>(), null, null);
-    Room room7 = new Room("Room: 7", "", new ArrayList<Item>(), null, null);
-    Room room8 = new Room("Room: 8", "", new ArrayList<Item>(), null, null);
-    Room room9 = new Room("Room: 9", "", new ArrayList<Item>(), null, null);
+    Room room2 = new Room("Room: 2", "", new ArrayList<Item>(), interactables1, null);
+    Room room3 = new Room("Room: 3", "", new ArrayList<Item>(), interactables1, null);
+    Room room4 = new Room("Room: 4", "", new ArrayList<Item>(), interactables1, null);
+    Room room5 = new Room("Room: 5", "", new ArrayList<Item>(), interactables1, null);
+    Room room6 = new Room("Room: 6", "", new ArrayList<Item>(), interactables1, null);
+    Room room7 = new Room("Room: 7", "", new ArrayList<Item>(), interactables1, null);
+    Room room8 = new Room("Room: 8", "", new ArrayList<Item>(), interactables1, null);
+    Room room9 = new Room("Room: 9", "", new ArrayList<Item>(), interactables1, null);
 
     firstRoom = room1;
 
