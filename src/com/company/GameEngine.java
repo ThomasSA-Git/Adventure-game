@@ -139,6 +139,8 @@ public class GameEngine {
               found = true;
               Weapon foundWeapon = (Weapon) player.getPlayerInventory().get(i);
               player.setEquippedWeapon(foundWeapon);
+            } else {
+              ui.printString("You don't have that weapon and can't equip it.");
             }
           }
         }
@@ -154,6 +156,7 @@ public class GameEngine {
         }
         case "attack" -> {
           boolean engaged = true;
+
           if (player.getCurrentRoom().getEnemy() != null) {
             while (engaged) {
               if (player.getHealth() > 0) {
@@ -182,13 +185,13 @@ public class GameEngine {
           String food = ui.getUserInput();
           boolean found = false;
           for (int i = 0; i < player.getPlayerInventory().size(); i++) {
-            if (player.getPlayerInventory().get(i).getDescription().equals(food)) {
+            if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(food)) {
               found = true;
               Food foundFood = (Food) player.getPlayerInventory().get(i);
               player.eat(foundFood);
               player.getPlayerInventory().remove(foundFood);
-            }
-            if (!found) {
+              ui.printString("You have gained " + foundFood.getHealthGain() + " health");
+            } else if (!found) {
               ui.printString("You can't eat that!");
             }
           }
