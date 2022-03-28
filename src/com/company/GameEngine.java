@@ -121,6 +121,7 @@ public class GameEngine {
               engaged = false;
               ui.printString("You have been killed. The game is over.");
               //End game?
+
             }
             if(player.getCurrentRoom().getEnemy().getHealth() > 0){
             player.takeDamage(player.getCurrentRoom().getEnemy().attack());
