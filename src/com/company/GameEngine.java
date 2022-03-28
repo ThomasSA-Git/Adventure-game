@@ -51,7 +51,7 @@ public class GameEngine {
           ui.printString("What do you want to take?");
           String take = ui.getUserInput();
           for (int i = 0; i < player.getCurrentRoom().getMapInventory().size(); i++) {
-            if (player.getCurrentRoom().getMapInventory().get(i).getDescription().equals(take)) {
+            if (player.getCurrentRoom().getMapInventory().get(i).getDescription().equalsIgnoreCase(take)) {
               player.takeItem(player.getCurrentRoom(), player.getCurrentRoom().getMapInventory().get(i));
               containsItem = true;
             }
@@ -65,7 +65,7 @@ public class GameEngine {
           ui.printString("What do you want to drop?");
           String drop = ui.getUserInput();
           for (int i = 0; i < player.getPlayerInventory().size(); i++) {
-            if (player.getPlayerInventory().get(i).getDescription().equals(drop)) {
+            if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(drop)) {
               player.dropItem(player.getCurrentRoom(), player.getPlayerInventory().get(i));
             } else {
               ui.printString("This item does not exist");
@@ -104,13 +104,26 @@ public class GameEngine {
 
         case "deequip" -> player.deEquip();
 
-        case "weapon" -> ui.printString(player.getEquippedWeapon() + ", Damage: " + player.getDamage());
+        case "weapon" -> ui.printString(player.getEquippedWeapon() + ", Damage: " + player.getEquippedWeapon().getMinDamage() + " to " + player.getEquippedWeapon().getMaxDamage());
 
         case "attack" -> {
+          boolean engaged = true;
           if (player.getCurrentRoom().getEnemy() != null) {
-          while(player.getHealth() > 0 && player.getCurrentRoom().getEnemy().getHealth() > 0){
-            player.attack();
+          while(engaged){
+            if(player.getHealth() > 0){
+            player.attack();}
+            else if (player.getHealth() <= 0){
+              engaged = false;
+              ui.printString("You have been killed. The game is over.");
+              //End game?
+            }
+            if(player.getCurrentRoom().getEnemy().getHealth() > 0){
             player.getCurrentRoom().getEnemy().attack();
+            ui.printString("you have " + player.getHealth() + " health left.");}
+            else if(player.getCurrentRoom().getEnemy().getHealth() <= 0){
+              engaged = false;
+              ui.printString("Your enemy has been defeated.");
+            }
           }
           }
           else if(player.getCurrentRoom().getEnemy() == null){
