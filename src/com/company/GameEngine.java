@@ -96,9 +96,16 @@ public class GameEngine {
                     for (int i = 0; i < player.getPlayerInventory().size(); i++) {
                         if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(weapon)) {
                             found = true;
-                            Weapon foundWeapon = (Weapon) player.getPlayerInventory().get(i);
-                            player.setEquippedWeapon(foundWeapon);
+                            if (player.getPlayerInventory().get(i) instanceof Weapon) {
+                                Weapon foundWeapon = (Weapon) player.getPlayerInventory().get(i);
+                                player.setEquippedWeapon(foundWeapon);
+                            } else {
+                                ui.printString("That's not a weapon!");
+                            }
                         }
+                    }
+                    if (!found) {
+                        ui.printString("You don't have that");
                     }
                 }
 
@@ -165,13 +172,17 @@ public class GameEngine {
                     for (int i = 0; i < player.getPlayerInventory().size(); i++) {
                         if (player.getPlayerInventory().get(i).getDescription().equals(food)) {
                             found = true;
-                            Food foundFood = (Food) player.getPlayerInventory().get(i);
-                            player.eat(foundFood);
-                            player.getPlayerInventory().remove(foundFood);
+                            if (player.getPlayerInventory().get(i) instanceof Food) {
+                                Food foundFood = (Food) player.getPlayerInventory().get(i);
+                                player.eat(foundFood);
+                                player.getPlayerInventory().remove(foundFood);
+                            } else {
+                                ui.printString("That's not edible!");
+                            }
                         }
-                        if (!found) {
-                            ui.printString("You can't eat that!");
-                        }
+                    }
+                    if (!found) {
+                        ui.printString("You do not have that");
                     }
                 }
             }
