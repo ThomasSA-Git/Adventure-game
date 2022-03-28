@@ -106,6 +106,17 @@ public class GameEngine {
 
         case "weapon" -> ui.printString(player.getEquippedWeapon() + ", Damage: " + player.getDamage());
 
+        case "attack" -> {
+          if (player.getCurrentRoom().getEnemy() != null) {
+          while(player.getHealth() > 0 && player.getCurrentRoom().getEnemy().getHealth() > 0){
+            player.attack();
+            player.getCurrentRoom().getEnemy().attack();
+          }
+          }
+          else if(player.getCurrentRoom().getEnemy() == null){
+            ui.printString("Who are you attacking, there's no one there.");
+          }
+        }
         case "eat" -> {
           ui.printString("What do you want to eat?");
           String food = ui.getUserInput();
