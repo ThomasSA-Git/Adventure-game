@@ -7,7 +7,7 @@ public class Enemy {
   private Weapon weapon;
   UserInterface ui = new UserInterface();
   Room room;
-  Player player;
+  Player player = new Player(room);
 
 
   public Enemy(String description, int health, Weapon weapon) {
@@ -54,7 +54,7 @@ public class Enemy {
 
   public void attack() {
     ui.printString("Slap noise");
-    int damage = player.getHealth() - this.weapon.getDamage();
+    int damage = this.weapon.getDamage();
     if(damage == this.weapon.getMaxDamage()){
       //critical hit
       damage *= this.weapon.getMaxDamage();

@@ -8,13 +8,14 @@ public class Player {
   Room room = new Room();
   UserInterface ui = new UserInterface();
 
-  private int damage = 1;
   private int health = 70;
   private Weapon fists = new Weapon("Fists", 1, 2);
   private Weapon equippedWeapon = fists;
 
+  public Player
+
   public void eat(Food food) {
-    health = health + food.getHealthGain();
+    this.health = health + food.getHealthGain();
     if (health > 100) {
       health = 100;
     }
@@ -22,36 +23,35 @@ public class Player {
 
   public void equip(Weapon weapon) {
     setEquippedWeapon(weapon);
-    setDamage(equippedWeapon.getDamage());
   }
 
   public int getDamage() {
-    return damage;
+    return this.equippedWeapon.getDamage();
   }
 
   public void deEquip() {
-    setEquippedWeapon(fists);
-    setDamage(1);
+    setEquippedWeapon(null);
+    /*setDamage(1);*/
   }
 
-  public void setDamage(int damage) {
+ /* public void setDamage(int damage) {
     this.damage = damage;
-  }
+  }*/
 
   public Weapon getEquippedWeapon() {
     return equippedWeapon;
   }
 
-  public void setEquippedWeapon(Weapon equippedWeapon) {
-    this.equippedWeapon = equippedWeapon;
+  public void setEquippedWeapon(Weapon equipWeapon) {
+    this.equippedWeapon = equipWeapon;
   }
 
   public int getHealth() {
     return this.health;
   }
 
-  public void setHealth(int damage) {
-    health = damage;
+  public void setHealth(int health) {
+    this.health = health;
   }
 
   public void takeDamage(int damage){
@@ -93,7 +93,7 @@ public class Player {
 
   public void attack() {
     ui.printString("Slap noise");
-    int damage = getHealth() - this.equippedWeapon.getDamage();
+    int damage = this.equippedWeapon.getDamage();
     if (damage == this.equippedWeapon.getMaxDamage()) {
       //critical hit
       damage *= this.equippedWeapon.getMaxDamage();
