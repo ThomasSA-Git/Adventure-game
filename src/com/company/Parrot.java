@@ -6,8 +6,10 @@ public abstract class Parrot extends NPC{
     super(name, description, item);
   }
 
-  public void dialogue(){
-
+  public String dialogue(){
+    String parrotQuest = "Shark Bait: Don't go blabbing about the secret password Shark Bait*squack*,\ndon't go blabbing about the secret password";
+    String crumbs = "Biscuit crumbs are scattered all over the floor of the crow's nest";
+    return parrotQuest + "\n" + crumbs;
   }
 
   @Override

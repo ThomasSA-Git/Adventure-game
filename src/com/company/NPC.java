@@ -1,13 +1,13 @@
 package com.company;
 
 public class NPC {
-  private String NPCname;
-  private String NPCdescription;
+  private String NpcName;
+  private String NpcDescription;
   private Item item;
 
   public NPC(String name, String description, Item item){
-    this.NPCname = name;
-    this.NPCdescription = description;
+    this.NpcName = name;
+    this.NpcDescription = description;
     this.item = item;
   }
 
@@ -28,14 +28,14 @@ public class NPC {
   }
 
   public String getNPCdescription() {
-    return NPCdescription;
+    return NpcDescription;
   }
 
-  public String getNPCname() {
-    return NPCname;
+  public String getNpcName() {
+    return NpcName;
   }
 
-  public void dialogue(){
-
+  public String dialogue(){
+  return "";
   }
 }

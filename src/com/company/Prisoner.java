@@ -6,8 +6,10 @@ public class Prisoner extends NPC{
     super(name, description, item);
   }
 
-  public void dialogue(){
-
+  public String dialogue(){
+  String prisonerQuest = "Prisoner: Ahoy thar matey! Get a bowl o' chili fer a poor starvin' ole pirate 'n I'll share me secret booty wit' ye.";
+  String bars = "A shabby set of bars are between you and the prisoner.";
+    return prisonerQuest + "\n" + bars;
   }
 
   public void turnHostile(){
