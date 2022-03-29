@@ -21,7 +21,7 @@ public class Player {
     }
   }
 
-  public Player(){
+  public Player() {
 
   }
 
@@ -53,7 +53,7 @@ public class Player {
     this.health = health;
   }
 
-  public void takeDamage(int damage){
+  public void takeDamage(int damage) {
     this.health -= damage;
   }
 
@@ -69,7 +69,7 @@ public class Player {
     System.out.println(playerInventory);
   }
 
-  public void takeIntItem(Interactables interactables, Item item){
+  public void takeIntItem(Interactables interactables, Item item) {
     playerInventory.add(item);
     interactables.removeFromInventory(item);
   }

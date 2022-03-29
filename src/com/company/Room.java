@@ -91,19 +91,16 @@ public class Room {
 
   public String getDescription() {
 
-    if(enemy != null && interactable != null){
-    return description  + "" + interactable + "\nYou see a " + enemy + " in the area.";
-    }
-    else if(enemy == null && interactable != null){
+    if (enemy != null && interactable != null) {
+      return description + "" + interactable + "\nYou see a " + enemy + " in the area.";
+    } else if (enemy == null && interactable != null) {
       return description + interactable;
+    } else if (interactable == null && enemy != null) {
+      return description + "\nYou see a " + enemy + " in the area.";
+    } else if (interactable == null && enemy == null) {
+      return description;
     }
-      else if (interactable == null && enemy != null){
-        return description + "\nYou see a " + enemy + " in the area.";
-      }
-      else if(interactable == null && enemy == null){
-        return description;
-    }
-      return null;
+    return null;
   }
 
   public Interactables getInteractable() {

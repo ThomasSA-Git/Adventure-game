@@ -1,6 +1,6 @@
 package com.company;
 
-public class Food extends Item{
+public class Food extends Item {
 
   private int healthGain;
 
@@ -9,7 +9,7 @@ public class Food extends Item{
     this.healthGain = healthGain;
   }
 
-  public int getHealthGain(){
+  public int getHealthGain() {
     return healthGain;
   }
 }

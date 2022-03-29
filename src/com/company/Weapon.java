@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public abstract class Weapon extends Item{
+public abstract class Weapon extends Item {
 
   private int minDamage;
   private int maxDamage;
@@ -13,7 +13,7 @@ public abstract class Weapon extends Item{
     this.maxDamage = maxDamage;
   }
 
-  public String toString(){
+  public String toString() {
     return getDescription();
   }
 
@@ -22,11 +22,11 @@ public abstract class Weapon extends Item{
     return damage;
   }
 
-  public int getMaxDamage(){
+  public int getMaxDamage() {
     return this.maxDamage;
   }
 
-  public int getMinDamage(){
+  public int getMinDamage() {
     return this.minDamage;
   }
 }
