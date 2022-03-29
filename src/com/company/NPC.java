@@ -23,6 +23,10 @@ public class NPC {
     return item;
   }
 
+  public void removeItem(){
+    item = null;
+  }
+
   public String getNPCdescription() {
     return NPCdescription;
   }
@@ -32,10 +36,6 @@ public class NPC {
   }
 
   public void dialogue(){
-
-  }
-
-  public void setHostile(){
 
   }
 }
