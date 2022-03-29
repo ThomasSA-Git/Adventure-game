@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Weapon extends Item{
+public abstract class Weapon extends Item{
 
   private int minDamage;
   private int maxDamage;

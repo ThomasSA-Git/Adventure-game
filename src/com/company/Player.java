@@ -10,7 +10,7 @@ public class Player {
   UserInterface ui = new UserInterface();
 
   private int health = 70;
-  private Weapon fists = new Weapon("Fists", 1, 2);
+  private Weapon fists = new MeleeWeapon("Fists", 1, 2);
   private Weapon equippedWeapon = fists;
 
 
@@ -66,12 +66,12 @@ public class Player {
   public void takeItem(Room currentRoom, Item item) {
     playerInventory.add(item);
     currentRoom.removeFromInventory(item);
+    System.out.println(playerInventory);
   }
 
   public void takeIntItem(Interactables interactables, Item item){
     playerInventory.add(item);
     interactables.removeFromInventory(item);
-
   }
 
   public ArrayList<Item> getPlayerInventory() {
