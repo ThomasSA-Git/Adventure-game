@@ -119,6 +119,10 @@ public class Room {
     return this.enemy;
   }
 
+  public void setEnemy(Enemy enemy){
+    this.enemy = enemy;
+  }
+
   public boolean getDoorLocked() {
     return this.lockedDoor;
   }

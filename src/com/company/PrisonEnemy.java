@@ -8,7 +8,7 @@ public class PrisonEnemy extends Enemy{
   }
 
   public String attackMessage(){
-    String action = "Throws chilibowl at bars.";
+    String action = "Throws chilibowl at bars and attacks you.";
     String message = "";
     return action + "\n" + message;
   }

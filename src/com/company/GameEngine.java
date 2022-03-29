@@ -195,6 +195,7 @@ public class GameEngine {
                 engaged = false;
                 player.getCurrentRoom().addToInventory(player.getCurrentRoom().getEnemy().dropWeapon());
                 ui.printString("Your enemy has been defeated.");
+                player.getCurrentRoom().setEnemy(null);
               }
             }
           } else if (player.getCurrentRoom().getEnemy() == null) {
