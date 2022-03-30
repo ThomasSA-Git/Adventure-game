@@ -36,7 +36,10 @@ public class UserInterface {
         take: Pick up item and put in your inventory
         drop: Drop item from inventory on ground
         inventory: Get a list of your inventory
-        interact: Interact with object/NPC in room
+        use: Use item with another object
+        open: Open door
+        talk: Talk to a NPC
+        give: Give item away
         equip: Equip weapon
         deequip: Unequip weapon
         attack: Attack enemy
