@@ -1,11 +1,11 @@
 package com.company;
 
-public class NPC {
+public abstract class NPC {
   private String NpcName;
   private String NpcDescription;
   private Item item;
 
-  public NPC(String name, String description, Item item){
+  public NPC(String name, String description, Item item) {
     this.NpcName = name;
     this.NpcDescription = description;
     this.item = item;
@@ -19,11 +19,11 @@ public class NPC {
     this.item = item;
   }
 
-  public Item takeItem(){
+  public Item takeItem() {
     return item;
   }
 
-  public void removeItem(){
+  public void removeItem() {
     item = null;
   }
 
@@ -35,7 +35,11 @@ public class NPC {
     return NpcName;
   }
 
-  public String dialogue(){
-  return "";
+  public void NpcRecieve(Item receive) {
+
+  }
+
+  public String dialogue() {
+    return "";
   }
 }

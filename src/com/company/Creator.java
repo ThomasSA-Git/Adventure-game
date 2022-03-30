@@ -10,7 +10,8 @@ public class Creator {
   public void createRooms() {
 
     Interactables interactables1 = new Interactables("Door", "You can't open this.", new ArrayList<Item>());
-    NPC prisoner = new Prisoner("Prisoner", "Chili crazed prisoner", new Food("biscuits", 1));
+    Prisoner prisoner = new Prisoner("Prisoner", "Chili crazed prisoner", new Food("biscuits", 1));
+    Parrot parrot = new Parrot("Shark Bait the parrot", "Disease-ridden parrot", null);
     Weapon testWeapon = new MeleeWeapon("club", 2, 4);
     Enemy testEnemy = new Enemy("troll", 20, testWeapon);
     Room room1 = new Room("Room: 1", "The room contains:\n", new ArrayList<Item>(), prisoner, testEnemy);
@@ -21,7 +22,7 @@ public class Creator {
     System.out.println(room1.getMapInventory());
 
 
-    Room room2 = new Room("Room: 2", "", new ArrayList<Item>(), null, null);
+    Room room2 = new Room("Room: 2", "", new ArrayList<Item>(), parrot, null);
     Room room3 = new Room("Room: 3", "", new ArrayList<Item>(), null, null);
     Room room4 = new Room("Room: 4", "", new ArrayList<Item>(), null, null);
     Room room5 = new Room("Room: 5", "", new ArrayList<Item>(), null, null);

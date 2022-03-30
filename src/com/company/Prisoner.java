@@ -12,6 +12,16 @@ public class Prisoner extends NPC{
     return prisonerQuest + "\n" + bars;
   }
 
+  public void NpcRecieve(Item receive){
+    if(receive.getDescription().equalsIgnoreCase("bowl of chili")) {
+      turnHostile();
+
+    }
+    else {
+
+    }
+  }
+
   public void turnHostile(){
 
   }

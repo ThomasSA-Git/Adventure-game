@@ -136,8 +136,12 @@ public class GameEngine {
           ui.printString("What do you want to give?");
           String give = ui.getUserInput();
           for (int i = 0; i < player.playerInventory.size(); i++) {
-            if (player.playerInventory.get(i).getDescription().equalsIgnoreCase(give)){
-
+            if (player.playerInventory.get(i).getDescription().equalsIgnoreCase(give)) {
+              ui.printString("Who do you want to give it to?");
+              String receiver = ui.getUserInput();
+              if(player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(receiver)){
+                player.getCurrentRoom().getNPC().NpcRecieve(player.playerInventory.get(i));
+              }
             }
           }
         }
