@@ -14,8 +14,9 @@ public class Room {
   private Room south = null;
   private Room west = null;
   private ArrayList<Item> mapInventory = new ArrayList<>();
-  private Interactables interactable;
+  private NPC npc;
   private ArrayList<Door> doors = new ArrayList<>();
+
 
   public Room(String name, String description, Room north, Room east, Room south, Room west) {
     this.name = name;
@@ -25,18 +26,20 @@ public class Room {
     this.east = east;
     this.south = south;
     this.west = west;
+
+
   }
 
   public ArrayList<Item> getMapInventory() {
     return this.mapInventory;
   }
 
-  public Room(String name, String description, ArrayList<Item> mapInventory, ArrayList<Door> doors, Interactables interactable, Enemy enemy) {
+  public Room(String name, String description, ArrayList<Item> mapInventory, ArrayList<Door> doors, NPC npc, Enemy enemy) {
     this.name = name;
     this.description = description + "" + interactable.getDescription();
     this.mapInventory = mapInventory;
     this.doors = doors;
-    this.interactable = interactable;
+    this.npc = npc;
     this.enemy = enemy;
   }
 
@@ -100,11 +103,19 @@ public class Room {
   }
 
   public String getDescription() {
-    return this.description;
+    if (enemy != null) {
+      return description + "\nYou see a " + enemy + " in the area.";
+    } else {
+      return description;
+    }
   }
 
-  public Interactables getInteractable() {
-    return this.interactable;
+  public NPC getNPC() {
+    return npc;
+  }
+
+  public void setNpc(NPC npc){
+    this.npc = npc;
   }
 
   public void setDoorLocked() {
@@ -117,6 +128,10 @@ public class Room {
 
   public Enemy getEnemy() {
     return this.enemy;
+  }
+
+  public void setEnemy(Enemy enemy){
+    this.enemy = enemy;
   }
 
   public boolean getDoorLocked() {

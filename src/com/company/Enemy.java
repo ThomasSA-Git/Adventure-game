@@ -19,7 +19,7 @@ public class Enemy {
     return this.description;
   }
 
-  public String toString(){
+  public String toString() {
     return description;
   }
 
@@ -31,7 +31,7 @@ public class Enemy {
     return this.weapon;
   }
 
-  public Weapon dropWeapon(){
+  public Weapon dropWeapon() {
     return weapon;
   }
 
@@ -43,7 +43,7 @@ public class Enemy {
     this.health = health;
   }
 
-  public void takeDamage(int damage){
+  public void takeDamage(int damage) {
     this.health -= damage;
   }
 
@@ -54,13 +54,13 @@ public class Enemy {
   public int attack() {
     ui.printString("Slap noise");
     int damage = this.weapon.getDamage();
-    if(damage == this.weapon.getMaxDamage()){
+    if (damage == this.weapon.getMaxDamage()) {
       //critical hit
       damage *= this.weapon.getMaxDamage();
     }
     ui.printString(this.description + " did " + damage + " damage to you.");
     return damage;
-      }
+  }
 
   public void dyingEnemy() {
 

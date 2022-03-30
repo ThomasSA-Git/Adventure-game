@@ -7,7 +7,7 @@ public class UserInterface {
 
   Scanner sc = new Scanner(System.in);
 
-  public String getUserInput(){
+  public String getUserInput() {
 
     return sc.nextLine();
   }
@@ -36,26 +36,30 @@ public class UserInterface {
         take: Pick up item and put in your inventory
         drop: Drop item from inventory on ground
         inventory: Get a list of your inventory
-        
+        interact: Interact with object/NPC in room
+        equip: Equip weapon
+        deequip: Unequip weapon
+        attack: Attack enemy
+                
         help: Display this menu
         exit: Close game
         """);
   }
 
-  public void printArrayList(ArrayList<Item> arrayList){
+  public void printArrayList(ArrayList<Item> arrayList) {
     System.out.println(String.valueOf(arrayList));
   }
 
-  public void printString(String input){
+  public void printString(String input) {
     System.out.println(input);
   }
 
-  public void blockedDirection(){
+  public void blockedDirection() {
     System.out.println("You can't go this way.");
   }
 
-  public void currentRoom(){
-   // System.out.println("You're currently in room" + cr.currentRoom);
+  public void currentRoom() {
+    // System.out.println("You're currently in room" + cr.currentRoom);
   }
 
   public void lockedDoor() {
@@ -74,12 +78,12 @@ public class UserInterface {
     System.out.println("You can't go this direction. The door is locked.");
   }
 
-  public void printCurrentRoom(Room currentRoom){
+  public void printCurrentRoom(Room currentRoom) {
 
     System.out.println(currentRoom);
   }
 
-  public void printList(ArrayList<Item> print){
+  public void printList(ArrayList<Item> print) {
     System.out.println(print);
   }
 
