@@ -17,8 +17,9 @@ public class Parrot extends NPC{
     return super.takeItem();
   }
 
-  public void NpcRecieve(Item receive){
+  public String NpcRecieve(Item receive, Room currentRoom){
     if(receive.getDescription().equalsIgnoreCase("Biscuits"));
+    return "";
   }
 
 }

@@ -12,18 +12,22 @@ public class Prisoner extends NPC{
     return prisonerQuest + "\n" + bars;
   }
 
-  public void NpcRecieve(Item receive){
+  public String NpcRecieve(Item receive, Room currentRoom){
     if(receive.getDescription().equalsIgnoreCase("bowl of chili")) {
-      turnHostile();
-
+      turnHostile(currentRoom);
+      String action = "The prisoner throws the bowl of chili at the prison bars and they quickly dissolve into nothing.";
+      String attackMessage = "Prisoner: You fool, I don't even like chili!";
+      return attackMessage;
     }
     else {
-
+      String message = "Prisoner: I don't want that.";
+      return message;
     }
   }
 
-  public void turnHostile(){
-
+  public void turnHostile(Room currentRoom){
+    currentRoom.setNpc(null);
+    currentRoom.setEnemy(new PrisonEnemy("Chili crazed prisoner", 20, new MeleeWeapon("Spoon", 5, 8)));
   }
 
 }

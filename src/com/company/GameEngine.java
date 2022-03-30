@@ -75,7 +75,9 @@ public class GameEngine {
         case "look" -> {
           ui.printString(player.getCurrentRoom().getDescription());
           ui.printList(player.getCurrentRoom().getMapInventory());
-          ui.printString(player.getCurrentRoom().getNPC().getNpcName());
+          if(player.getCurrentRoom().getNPC() != null) {
+            ui.printString(player.getCurrentRoom().getNPC().getNpcName());
+          }
         }
         case "help" -> ui.getHelpMenu();
         case "exit" -> running = false;
@@ -140,7 +142,7 @@ public class GameEngine {
               ui.printString("Who do you want to give it to?");
               String receiver = ui.getUserInput();
               if(player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(receiver)){
-                player.getCurrentRoom().getNPC().NpcRecieve(player.playerInventory.get(i));
+                ui.printString(player.getCurrentRoom().getNPC().NpcRecieve(player.playerInventory.get(i), player.getCurrentRoom()));
               }
             }
           }

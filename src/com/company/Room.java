@@ -102,6 +102,10 @@ public class Room {
     return npc;
   }
 
+  public void setNpc(NPC npc){
+    this.npc = npc;
+  }
+
   public void setDoorLocked() {
     if (lockedDoor) {
       lockedDoor = false;

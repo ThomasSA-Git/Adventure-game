@@ -9,12 +9,12 @@ public class Creator {
 
   public void createRooms() {
 
-    Interactables interactables1 = new Interactables("Door", "You can't open this.", new ArrayList<Item>());
     Prisoner prisoner = new Prisoner("Prisoner", "Chili crazed prisoner", new Food("biscuits", 1));
     Parrot parrot = new Parrot("Shark Bait the parrot", "Disease-ridden parrot", null);
     Weapon testWeapon = new MeleeWeapon("club", 2, 4);
     Enemy testEnemy = new Enemy("troll", 20, testWeapon);
     Room room1 = new Room("Room: 1", "The room contains:\n", new ArrayList<Item>(), prisoner, testEnemy);
+    room1.addToInventory(new Food("bowl of chili", 5));
     room1.addToInventory(new Item("key"));
     room1.addToInventory(new Food("banana", 20));
     room1.addToInventory(new MeleeWeapon("Frying Pan", 3, 5));

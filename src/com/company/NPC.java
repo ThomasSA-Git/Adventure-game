@@ -35,8 +35,8 @@ public abstract class NPC {
     return NpcName;
   }
 
-  public void NpcRecieve(Item receive) {
-
+  public String NpcRecieve(Item receive, Room currentRoom) {
+    return "";
   }
 
   public String dialogue() {
