@@ -113,25 +113,7 @@ public class GameEngine {
           }
         }
 
-        case "equip" -> {
-          ui.printString("What do you want to equip?");
-          String weapon = ui.getUserInput();
-          boolean found = false;
-          for (int i = 0; i < player.getPlayerInventory().size(); i++) {
-            if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(weapon)) {
-              found = true;
-              if (player.getPlayerInventory().get(i) instanceof Weapon) {
-                Weapon foundWeapon = (Weapon) player.getPlayerInventory().get(i);
-                player.setEquippedWeapon(foundWeapon);
-              } else {
-                ui.printString("That's not a weapon!");
-              }
-            }
-          }
-          if (!found) {
-            ui.printString("You don't have that");
-          }
-        }
+        case "equip" -> equip(player, ui);
 
         case "use" -> {
           ui.printString("What do you want to use?");
@@ -201,60 +183,8 @@ public class GameEngine {
             }
           }
         }
-        case "attack" -> {
-          boolean engaged = true;
-          int counter = 1;
-          if (player.getCurrentRoom().getEnemy() != null) {
-            while (engaged) {
-              if (player.getHealth() > 0) {
-                if (player.getEquippedWeapon() instanceof RangedWeapon tmpWeapon) {
-                  int tmpAmmo = tmpWeapon.getAmmo();
-                  if (tmpAmmo > 0) {
-                    tmpAmmo--;
-                    tmpWeapon.setAmmo(tmpAmmo);
-                    player.attack();
-                    ui.printString("You have " + tmpAmmo + " arrows left");
-                  } else {
-                    ui.printString("You're out of ammunition!");
-                    engaged = false;
-                  }
-                } else {
-                  player.attack();
-                }
-              } else if (player.getHealth() <= 0) {
-                engaged = false;
-                ui.printString("You have been killed. The game is over.");
-                running = false;
+        case "attack" -> attackSequence(player, ui);
 
-              }
-              if (player.getCurrentRoom().getEnemy().getHealth() > 0) {
-                player.takeDamage(player.getCurrentRoom().getEnemy().attack());
-                ui.printString("You have " + player.getHealth() + " health left.");
-              } else if (player.getCurrentRoom().getEnemy().getHealth() <= 0) {
-                player.getCurrentRoom().addToInventory(player.getCurrentRoom().getEnemy().dropWeapon());
-                player.getCurrentRoom().setEnemy(null);
-                ui.printString("Your enemy has been defeated.");
-                engaged = false;
-/*
-                boolean endTurn = false;
-                counter++;
-                while (endTurn){
-                  ui.printString("End of round " + counter);
-                  ui.printString("Do you wish ");
-                }
-*/
-
-              }
-            }
-          } else if (player.getCurrentRoom().getEnemy() == null) {
-            ui.printString("Narrater: ");
-            try {
-              ui.printOneLetterAtATime("Who are you attacking? There's no one there.", 0.05);
-            } catch (InterruptedException e) {
-              e.printStackTrace();
-            }
-          }
-        }
         case "eat" -> {
           ui.printString("What do you want to eat?");
           String food = ui.getUserInput();
@@ -277,7 +207,92 @@ public class GameEngine {
         }
       }
     }
+
+
   }
+
+  public void attackSequence(Player player, UserInterface ui) {
+    boolean engaged = true;
+    int counter = 0;
+    if (player.getCurrentRoom().getEnemy() != null) {
+      while (engaged) {
+        if (player.getHealth() > 0) {
+          if (player.getEquippedWeapon() instanceof RangedWeapon tmpWeapon) {
+            int tmpAmmo = tmpWeapon.getAmmo();
+            if (tmpAmmo > 0) {
+              tmpAmmo--;
+              tmpWeapon.setAmmo(tmpAmmo);
+              player.attack();
+              ui.printString("You have " + tmpAmmo + " arrows left");
+            } else {
+              ui.printString("You're out of ammunition!");
+              engaged = false;
+            }
+          } else {
+            player.attack();
+          }
+        } else if (player.getHealth() <= 0) {
+          engaged = false;
+          ui.printString("You have been killed. The game is over.");
+        }
+        if (player.getCurrentRoom().getEnemy().getHealth() > 0) {
+          player.takeDamage(player.getCurrentRoom().getEnemy().attack());
+          ui.printString("You have " + player.getHealth() + " health left.");
+        } else if (player.getCurrentRoom().getEnemy().getHealth() <= 0) {
+          player.getCurrentRoom().addToInventory(player.getCurrentRoom().getEnemy().dropWeapon());
+          player.getCurrentRoom().setEnemy(null);
+          ui.printString("Your enemy has been defeated.");
+          engaged = false;
+        }
+        boolean endTurn = true;
+        counter++;
+        while (endTurn) {
+          ui.printString("End of round " + counter);
+          ui.printString("Do you wish 'equip' another weapon, 'disengage' or 'end turn'?");
+          String combatAction = ui.getUserInput();
+          switch (combatAction) {
+            case "equip" -> equip(player, ui);
+            case "disengage" -> {
+              engaged = false;
+              endTurn = false;
+              ui.printString(player.getCurrentRoom().getEnemy().getDescription() + " gets in another hit while you run away.");
+              player.getCurrentRoom().getEnemy().attack();
+            }
+            case "end turn" -> endTurn = false;
+          }
+
+        }
+      }
+    } else if (player.getCurrentRoom().getEnemy() == null) {
+      ui.printString("Narrater: ");
+      try {
+        ui.printOneLetterAtATime("Who are you attacking? There's no one there.", 0.05);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
+  public void equip(Player player, UserInterface ui) {
+    ui.printString("What do you want to equip?");
+    String weapon = ui.getUserInput();
+    boolean found = false;
+    for (int i = 0; i < player.getPlayerInventory().size(); i++) {
+      if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(weapon)) {
+        found = true;
+        if (player.getPlayerInventory().get(i) instanceof Weapon) {
+          Weapon foundWeapon = (Weapon) player.getPlayerInventory().get(i);
+          player.setEquippedWeapon(foundWeapon);
+        } else {
+          ui.printString("That's not a weapon!");
+        }
+      }
+    }
+    if (!found) {
+      ui.printString("You don't have that");
+    }
+  }
+
 
   public boolean checkTake(String input) {
     return getPrefix(input).equals("take");
