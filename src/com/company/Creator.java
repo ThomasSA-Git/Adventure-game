@@ -4,76 +4,92 @@ import java.util.ArrayList;
 
 public class Creator {
 
-  Room firstRoom;
-  Player player;
+    Room firstRoom;
+    Player player;
 
-  public void createRooms() {
+    public void createRooms() {
 
-    Prisoner prisoner = new Prisoner("Prisoner", "Chili crazed prisoner", new Food("biscuits", 1));
-    Parrot parrot = new Parrot("Shark Bait the parrot", "Disease-ridden parrot", null);
-    Weapon testWeapon = new MeleeWeapon("club", 2, 4);
-    Enemy testEnemy = new Enemy("troll", 20, testWeapon);
-    Room room1 = new Room("Cabin", "You find yourself in what looks like a cabin on a larger ship. The room has one door\n" +
-        "You feel the shift of gravity going from one end of the room to the other in a rhythmic motion\n" +
-        "Next to one of the bunk beds you see a large wooden crate\n" +
-        "The room contains:\n", new ArrayList<Item>(), new ArrayList<Door>(), null, testEnemy);
+        Prisoner prisoner = new Prisoner("Prisoner", "Chili crazed prisoner", new Food("biscuits", 1));
+        Parrot parrot = new Parrot("Shark Bait the parrot", "Disease-ridden parrot", null);
+
+        Room room1 = new Room("Cabin", "You find yourself in what looks like a cabin on a larger ship. The room has one door\n" +
+                "You feel the shift of gravity going from one end of the room to the other in a rhythmic motion\n" +
+                "Atop the sheets of one of the bunk beds you spot a shiny object\n" +
+                "The room contains:\n", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
 
 
-    Room room2 = new Room("Galley", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
-    Room room3 = new Room("Ship Hold", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
-    Room room4 = new Room("Brig", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
-    Room room5 = new Room("Deck (Stern)", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
-    Room room6 = new Room("Deck (Bow)", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
-    Room room7 = new Room("Mast", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
-    Room room8 = new Room("Bridge Deck", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
-    Room room9 = new Room("Captains Quarters", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
+        Room room2 = new Room("Galley", "You look around to see that you find yourself in a quaint small kitchen.\n" +
+                "This must be the galley of the ship.\n" +
+                "On the kitchen isle is a small electrical stove with one pot sitting on top\n" +
+                "In the sink lies a dirty frying pan, someone refused to wash (inspired by true events)\n" +
+                "Opposite the door where you entered, there's another white door", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
+        Room room3 = new Room("Ship Hold", "Barrels, crates, bags and sacks. This is clearly the hold of the ship\n" +
+                "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
+        Room room4 = new Room("Brig", "This room smells like booze and something else absolutely ghastly.\n" +
+                "to the left you see a wall of metal bars. A jail cell. This must be the brig\n" +
+                "Inside sits a ragged man with a crooked smile." +
+                "Next to him in the corner of his cell sits a bucket which is obviously the source of the foul smell." +
+                "After a more thorough peak you realise the bucket is full of (you guessed it) anchovies.", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
+        Room room5 = new Room("Deck (Stern)", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
+        Room room6 = new Room("Deck (Bow)", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
+        Room room7 = new Room("Mast", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
+        Room room8 = new Room("Bridge Deck", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
+        Room room9 = new Room("Captains Quarters", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
 
-    firstRoom = room1;
+        firstRoom = room1;
 
-    //ROOM 1 (Cabin)
-    //CONNECTIONS
-    room1.setEast(room2);
+        //ROOM 1 (Cabin)
+        //CONNECTIONS
+        room1.setEast(room2);
 
-    //DOOR
-    room1.addToDoors(new Door("Heavy Door", true, "Shiny Key", room2, "You hear a clicking noise. The door is unlocked"));
+        //DOOR
+        room1.addToDoors(new Door("heavy door", true, "shiny key", room2, "You fumble a bit with the keys and drop on the ground.\n The keys slide through a grate at your feet.\n" +
+                "The narrator sighs in distraught and unlocks the door"));
 
-    //INVENTORY
-    room1.addToInventory(new Item("Shiny Key"));
-    room1.addToInventory(new Food("banana", 20));
-    room1.addToInventory(new MeleeWeapon("Frying Pan", 3, 5));
-    room1.addToInventory(new RangedWeapon("Bow", 5, 7, 2));
-    System.out.println(room1.getMapInventory());
+        //INVENTORY
+        room1.addToInventory(new Item("shiny key"));
+        System.out.println(room1.getMapInventory());
 
-    //ROOM 2 (Galley)
-    room2.setEast(room3);
-    room2.setWest(room1);
+        //ROOM 2 (Galley)
 
-    //ROOM 3 (Ship Hold)
-    room3.setWest(room2);
-    room3.setEast(room4);
-    room3.setNorth(room5);
+        //DOORS
+        room2.addToDoors(new Door("heavy door", false, null, room1));
+        room2.addToDoors(new Door("white door", false, null, room3));
 
-    //ROOM 4 (Brig)
-    room4.setWest(room3);
+        //INVENTORY
+        room2.addToInventory(new MeleeWeapon("frying pan", 3, 5));
 
-    //ROOM 5 (Stern)
-    room5.setSouth(room3);
-    room5.setEast(room6);
-    room5.setWest(room8);
-    room5.setDoorLocked();
+        //CONNECTIONS
+        room2.setEast(room3);
+        room2.setWest(room1);
 
-    //ROOM 6 (Bow)
-    room6.setWest(room5);
-    room6.setNorth(room7);
+        //ROOM 3 (Ship Hold)
 
-    //ROOM 7 (Mast)
-    room7.setSouth(room6);
+        room3.setWest(room2);
+        room3.setEast(room4);
+        room3.setNorth(room5);
 
-    //ROOM 8 (Bridge Deck)
-    room8.setEast(room5);
-    room9.setSouth(room9);
+        //ROOM 4 (Brig)
+        room4.setWest(room3);
 
-    //ROOM 9 (Captains Quarters)
-    room9.setNorth(room8);
-  }
+        //ROOM 5 (Stern)
+        room5.setSouth(room3);
+        room5.setEast(room6);
+        room5.setWest(room8);
+        room5.setDoorLocked();
+
+        //ROOM 6 (Bow)
+        room6.setWest(room5);
+        room6.setNorth(room7);
+
+        //ROOM 7 (Mast)
+        room7.setSouth(room6);
+
+        //ROOM 8 (Bridge Deck)
+        room8.setEast(room5);
+        room9.setSouth(room9);
+
+        //ROOM 9 (Captains Quarters)
+        room9.setNorth(room8);
+    }
 }

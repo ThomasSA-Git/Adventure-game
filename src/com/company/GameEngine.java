@@ -94,7 +94,6 @@ public class GameEngine {
         }
         case "look" -> {
           ui.printString(player.getCurrentRoom().getDescription());
-          ui.printList(player.getCurrentRoom().getMapInventory());
           if(player.getCurrentRoom().getNPC() != null) {
             ui.printString(player.getCurrentRoom().getNPC().getNpcName());
           }
@@ -287,4 +286,3 @@ public class GameEngine {
     return input.substring(space + 1);
   }
 }
-

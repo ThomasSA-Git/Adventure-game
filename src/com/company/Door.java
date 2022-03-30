@@ -16,6 +16,13 @@ public class Door {
     this.unlockMessage = unlockMessage;
   }
 
+  Door(String description, boolean locked, String key, Room leadsTo){
+    this.leadsTo = leadsTo;
+    this.description = description;
+    this.locked = locked;
+    this.key = key;
+  }
+
   public String getDescription(){
     return description;
   }
