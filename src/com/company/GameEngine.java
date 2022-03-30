@@ -81,17 +81,7 @@ public class GameEngine {
           }
         }
 
-        case "drop" -> {
-          ui.printString("What do you want to drop?");
-          String drop = ui.getUserInput();
-          for (int i = 0; i < player.getPlayerInventory().size(); i++) {
-            if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(drop)) {
-              player.dropItem(player.getCurrentRoom(), player.getPlayerInventory().get(i));
-            } else {
-              ui.printString("This item does not exist");
-            }
-          }
-        }
+        case "drop" -> drop(player, ui);
         case "look" -> {
           ui.printString(player.getCurrentRoom().getDescription());
           ui.printString("The following items are in the area:");
@@ -142,7 +132,6 @@ public class GameEngine {
           if (!found) {
             ui.printString("You can't use that item on that!");
           }
-
         }
 
         case "deequip" -> player.deEquip();
@@ -167,48 +156,12 @@ public class GameEngine {
             ui.printString("That doesn't talk");
           }
         }
-        case "give" -> {
-          ui.printString("What do you want to give?");
-          String give = ui.getUserInput();
-          for (int i = 0; i < player.playerInventory.size(); i++) {
-            if (player.playerInventory.get(i).getDescription().equalsIgnoreCase(give)) {
-              ui.printString("Who do you want to give it to?");
-              String receiver = ui.getUserInput();
-              if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(receiver)) {
-                ui.printString(player.getCurrentRoom().getNPC().NpcRecieve(player.playerInventory.get(i), player.getCurrentRoom()));
-                player.removeItem(player.playerInventory.get(i));
-              } else {
-                ui.printString("You can't give anything to that!");
-              }
-            }
-          }
-        }
+        case "give" -> give(player, ui);
         case "attack" -> attackSequence(player, ui);
 
-        case "eat" -> {
-          ui.printString("What do you want to eat?");
-          String food = ui.getUserInput();
-          boolean found = false;
-          for (int i = 0; i < player.getPlayerInventory().size(); i++) {
-            if (player.getPlayerInventory().get(i).getDescription().equals(food)) {
-              found = true;
-              if (player.getPlayerInventory().get(i) instanceof Food) {
-                Food foundFood = (Food) player.getPlayerInventory().get(i);
-                player.eat(foundFood);
-                player.getPlayerInventory().remove(foundFood);
-              } else {
-                ui.printString("That's not edible!");
-              }
-            }
-          }
-          if (!found) {
-            ui.printString("You do not have that");
-          }
-        }
+        case "eat" -> eat(player, ui);
       }
     }
-
-
   }
 
   public void attackSequence(Player player, UserInterface ui) {
@@ -273,6 +226,10 @@ public class GameEngine {
     }
   }
 
+  public void weapon(Player player, UserInterface ui) {
+
+  }
+
   public void equip(Player player, UserInterface ui) {
     ui.printString("What do you want to equip?");
     String weapon = ui.getUserInput();
@@ -290,6 +247,64 @@ public class GameEngine {
     }
     if (!found) {
       ui.printString("You don't have that");
+    }
+  }
+
+  public void take(Player player, UserInterface ui) {
+
+  }
+
+  public void drop(Player player, UserInterface ui) {
+    ui.printString("What do you want to drop?");
+    String drop = ui.getUserInput();
+    for (int i = 0; i < player.getPlayerInventory().size(); i++) {
+      if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(drop)) {
+        player.dropItem(player.getCurrentRoom(), player.getPlayerInventory().get(i));
+      } else {
+        ui.printString("This item does not exist");
+      }
+    }
+  }
+
+  public void eat(Player player, UserInterface ui) {
+    ui.printString("What do you want to eat?");
+    String food = ui.getUserInput();
+    boolean found = false;
+    for (int i = 0; i < player.getPlayerInventory().size(); i++) {
+      if (player.getPlayerInventory().get(i).getDescription().equals(food)) {
+        found = true;
+        if (player.getPlayerInventory().get(i) instanceof Food) {
+          Food foundFood = (Food) player.getPlayerInventory().get(i);
+          player.eat(foundFood);
+          player.getPlayerInventory().remove(foundFood);
+        } else {
+          ui.printString("That's not edible!");
+        }
+      }
+    }
+    if (!found) {
+      ui.printString("You do not have that");
+    }
+  }
+
+  public void talk(Player player, UserInterface ui) {
+
+  }
+
+  public void give(Player player, UserInterface ui) {
+    ui.printString("What do you want to give?");
+    String give = ui.getUserInput();
+    for (int i = 0; i < player.playerInventory.size(); i++) {
+      if (player.playerInventory.get(i).getDescription().equalsIgnoreCase(give)) {
+        ui.printString("Who do you want to give it to?");
+        String receiver = ui.getUserInput();
+        if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(receiver)) {
+          ui.printString(player.getCurrentRoom().getNPC().NpcRecieve(player.playerInventory.get(i), player.getCurrentRoom()));
+          player.removeItem(player.playerInventory.get(i));
+        } else {
+          ui.printString("You can't give anything to that!");
+        }
+      }
     }
   }
 
