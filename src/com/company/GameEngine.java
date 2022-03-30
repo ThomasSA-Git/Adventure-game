@@ -44,6 +44,26 @@ public class GameEngine {
                         player.setCurrentRoom(player.getCurrentRoom().getSouth());
                     }
                 }
+
+                case "open" -> {
+                    ui.printString("What do you want to open?");
+                    String door = ui.getUserInput();
+                    boolean found = false;
+                    for (int i = 0; i < player.getCurrentRoom().getDoors().size(); i++){
+                        if (player.getCurrentRoom().getDoors().get(i).getDescription().equals(door)){
+                            found = true;
+                            Door tmpDoor = player.getCurrentRoom().getDoors().get(i);
+                            if (tmpDoor.getLocked()){
+                                ui.printString("Door is locked!");
+                            } else {
+                                player.setCurrentRoom(tmpDoor.getLeadsTo());
+                            }
+                        }
+                        if (!found) {
+                            ui.printString("There is nothing like that to open");
+                        }
+                    }
+                }
                 case "inventory" -> ui.printArrayList(player.getPlayerInventory());
 
                 case "take" -> {
@@ -107,6 +127,36 @@ public class GameEngine {
                     if (!found) {
                         ui.printString("You don't have that");
                     }
+                }
+
+                case "use" -> {
+                    ui.printString("What do you want to use?");
+                    String keyItem = ui.getUserInput();
+                    boolean found = false;
+                    Door tmpDoor;
+
+                    for (int i = 0; i < player.getPlayerInventory().size(); i++){
+                        if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(keyItem)){
+                            found = true;
+                        }
+                    }
+                    if (!found){
+                        ui.printString("You do not have that item!");
+                    }
+                    found = false;
+                    ui.printString("What do you want to use it on?");
+                    String keySlot = ui.getUserInput();
+                    for (int i = 0; i < player.currentRoom.getDoors().size(); i++){
+                        if (player.currentRoom.getDoors().get(i).getDescription().equalsIgnoreCase(keySlot)){
+                            found = true;
+                            tmpDoor = player.currentRoom.getDoors().get(i);
+                            tmpDoor.unlockDoor();
+                        }
+                    }
+                    if (!found) {
+                        ui.printString("You can't use that item on that!");
+                    }
+
                 }
 
                 case "deequip" -> player.deEquip();
