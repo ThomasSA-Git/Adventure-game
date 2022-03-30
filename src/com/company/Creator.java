@@ -4,20 +4,19 @@ import java.util.ArrayList;
 
 public class Creator {
 
-    Room firstRoom;
-    Player player;
+  Room firstRoom;
+  Player player;
 
-    public void createRooms() {
+  public void createRooms() {
 
-        Prisoner prisoner = new Prisoner("Prisoner", "Chili crazed prisoner", new Food("biscuits", 1));
-        Parrot parrot = new Parrot("Shark Bait the parrot", "Disease-ridden parrot", null);
+    Prisoner prisoner = new Prisoner("Prisoner", "Chili crazed prisoner", new Food("biscuits", 1));
+    Parrot parrot = new Parrot("Shark Bait the parrot", "Disease-ridden parrot", null);
     Weapon testWeapon = new MeleeWeapon("club", 2, 4);
     Enemy testEnemy = new Enemy("troll", 20, testWeapon);
     Room room1 = new Room("Cabin", "You find yourself in what looks like a cabin on a larger ship. The room has one door\n" +
         "You feel the shift of gravity going from one end of the room to the other in a rhythmic motion\n" +
         "Next to one of the bunk beds you see a large wooden crate\n" +
         "The room contains:\n", new ArrayList<Item>(), new ArrayList<Door>(), null, testEnemy);
-
 
 
     Room room2 = new Room("Galley", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);

@@ -36,7 +36,7 @@ public class Room {
 
   public Room(String name, String description, ArrayList<Item> mapInventory, ArrayList<Door> doors, NPC npc, Enemy enemy) {
     this.name = name;
-    this.description = description + "" + interactable.getDescription();
+    this.description = description;
     this.mapInventory = mapInventory;
     this.doors = doors;
     this.npc = npc;
