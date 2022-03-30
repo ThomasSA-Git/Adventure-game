@@ -235,12 +235,14 @@ public class GameEngine {
                 player.getCurrentRoom().setEnemy(null);
                 ui.printString("Your enemy has been defeated.");
                 engaged = false;
+/*
                 boolean endTurn = false;
                 counter++;
                 while (endTurn){
                   ui.printString("End of round " + counter);
                   ui.printString("Do you wish ");
                 }
+*/
 
               }
             }
