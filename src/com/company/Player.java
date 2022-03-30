@@ -95,6 +95,10 @@ public class Player {
     playerInventory.remove(item);
   }
 
+  public void removeItem(Item item){
+    playerInventory.remove(item);
+  }
+
   public void attack() {
     ui.printString("Slap noise");
     int damage = this.equippedWeapon.getDamage();

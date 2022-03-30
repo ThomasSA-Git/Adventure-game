@@ -143,6 +143,10 @@ public class GameEngine {
               String receiver = ui.getUserInput();
               if(player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(receiver)){
                 ui.printString(player.getCurrentRoom().getNPC().NpcRecieve(player.playerInventory.get(i), player.getCurrentRoom()));
+                player.removeItem(player.playerInventory.get(i));
+              }
+              else{
+                ui.printString("You can't give anything to that!");
               }
             }
           }
