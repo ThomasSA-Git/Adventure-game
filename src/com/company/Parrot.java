@@ -19,7 +19,8 @@ public class Parrot extends NPC {
 
   public String NpcRecieve(Item receive, Room currentRoom) {
     if (receive.getDescription().equalsIgnoreCase("Biscuits")) {
-      String givePassword = "1234";
+      String action = "The parrot gobles up all the biscuits";
+      String givePassword = "Shark Bait the parrot: 1234";
       return givePassword;
     } else {
       String message = "The parrot ignores you.";

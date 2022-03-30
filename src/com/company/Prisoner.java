@@ -17,7 +17,7 @@ public class Prisoner extends NPC {
       turnHostile(currentRoom);
       String action = "The prisoner throws the bowl of chili at the prison bars and they quickly dissolve into nothing. He throws his biscuits defiantly at you.";
       String attackMessage = "Prisoner: You fool, I don't even like chili!";
-      return attackMessage;
+      return action + "\n" + attackMessage;
     } else {
       String message = "Prisoner: I don't want that.";
       return message;
