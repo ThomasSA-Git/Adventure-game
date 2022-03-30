@@ -50,7 +50,7 @@ public class GameEngine {
           String door = ui.getUserInput();
           boolean found = false;
           for (int i = 0; i < player.getCurrentRoom().getDoors().size(); i++) {
-            if (player.getCurrentRoom().getDoors().get(i).getDescription().equals(door)) {
+            if (player.getCurrentRoom().getDoors().get(i).getDescription().equalsIgnoreCase(door)) {
               found = true;
               Door tmpDoor = player.getCurrentRoom().getDoors().get(i);
               if (tmpDoor.getLocked()) {
