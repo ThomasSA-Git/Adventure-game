@@ -103,9 +103,17 @@ public class Room {
   }
 
   public String getDescription() {
-    if (enemy != null) {
+
+    if (enemy != null && npc != null) {
+      return description + "\nYou see a " + enemy + " in the area." + "\n" + "There a friendly looking " + npc.getNpcName() + " in the area";
+    }
+    if (enemy != null && npc == null){
       return description + "\nYou see a " + enemy + " in the area.";
-    } else {
+    }
+    if (enemy == null && npc != null){
+      return description + "There a friendly looking " + npc.getNpcName() + " in the area";
+    }
+    else {
       return description;
     }
   }

@@ -21,10 +21,10 @@ public class Creator {
 
     Room room2 = new Room("Galley", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
     Room room3 = new Room("Ship Hold", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
-    Room room4 = new Room("Brig", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
+    Room room4 = new Room("Brig", "", new ArrayList<Item>(), new ArrayList<Door>(), prisoner, null);
     Room room5 = new Room("Deck (Stern)", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
     Room room6 = new Room("Deck (Bow)", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
-    Room room7 = new Room("Mast", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
+    Room room7 = new Room("Mast", "", new ArrayList<Item>(), new ArrayList<Door>(), parrot, null);
     Room room8 = new Room("Bridge Deck", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
     Room room9 = new Room("Captains Quarters", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
 
