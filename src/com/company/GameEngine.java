@@ -203,6 +203,7 @@ public class GameEngine {
         }
         case "attack" -> {
           boolean engaged = true;
+          int counter = 1;
           if (player.getCurrentRoom().getEnemy() != null) {
             while (engaged) {
               if (player.getHealth() > 0) {
@@ -234,6 +235,12 @@ public class GameEngine {
                 player.getCurrentRoom().setEnemy(null);
                 ui.printString("Your enemy has been defeated.");
                 engaged = false;
+                boolean endTurn = false;
+                counter++;
+                while (endTurn){
+                  ui.printString("End of round " + counter);
+                  ui.printString("Do you wish ");
+                }
 
               }
             }
