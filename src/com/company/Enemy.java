@@ -64,9 +64,4 @@ public class Enemy {
     return damage;
   }
 
-  public void dyingEnemy() {
-
-  }
-
-
 }

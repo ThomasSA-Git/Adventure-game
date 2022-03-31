@@ -87,14 +87,6 @@ public class Room {
     this.west = west;
   }
 
-  public void setName(String input) {
-    name = input;
-  }
-
-  public String getName() {
-    return this.name;
-  }
-
   public String getDescription() {
 
     if (enemy != null && npc != null) {

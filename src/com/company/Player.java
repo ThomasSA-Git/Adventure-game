@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class Player {
   Room currentRoom;
   ArrayList<Item> playerInventory;
-  Room room = new Room();
   UserInterface ui = new UserInterface();
 
   private int health = 70;
@@ -19,10 +18,6 @@ public class Player {
     if (health > 100) {
       health = 100;
     }
-  }
-
-  public Player() {
-
   }
 
   public void equip(Weapon weapon) {
