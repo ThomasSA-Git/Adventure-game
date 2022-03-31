@@ -16,7 +16,6 @@ public class Creator {
         "Atop the sheets of one of the bunk beds you spot a shiny object\n" +
         "The room contains:\n", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
 
-    room1.addToInventory(new Food("bowl of chili", 2));
 
     Room room2 = new Room("Galley", "You look around to see that you find yourself in a quaint small kitchen.\n" +
         "This must be the galley of the ship.\n" +
@@ -82,6 +81,14 @@ public class Creator {
 
     //ROOM 3 (Ship Hold)
 
+    //DOORS
+    room3.addToDoors(new Door("rusty door", false, null, room4));
+    room3.addToDoors(new Door("hatch", true, "hatch key", room5));
+
+    //CONTAINS
+    room3.addToBoxes(new Box("crate", new Item("hatch key")));
+
+    //CONNECTIONS
     room3.setWest(room2);
     room3.setEast(room4);
     room3.setNorth(room5);

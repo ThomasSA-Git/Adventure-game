@@ -11,8 +11,17 @@ public class GameEngine {
 
     boolean running = true;
     while (running) {
-
       ui.printCurrentRoom(player.getCurrentRoom());
+
+      if (player.getHealth() <= 0){
+        running = false;
+      }
+
+      if (player.getCurrentRoom().getEnemy() != null) {
+        if (player.getCurrentRoom().getEnemy().getSurpriseAttack()) {
+          attackSequence(player, ui);
+        }
+      }
 
       String userInput = ui.getUserInput();
       switch (userInput) {
@@ -89,7 +98,6 @@ public class GameEngine {
               ui.printString("You have " + tmpAmmo + " arrows left");
             } else {
               ui.printString("You're out of ammunition!");
-              engaged = false;
             }
           } else {
             player.attack();
@@ -126,7 +134,7 @@ public class GameEngine {
 
         }
       }
-    } else if (player.getCurrentRoom().getEnemy() == null) {
+    } else {
       ui.printString("Narrater: ");
       try {
         ui.printOneLetterAtATime("Who are you attacking? There's no one there.", 0.05);
@@ -139,8 +147,9 @@ public class GameEngine {
   public void health(Player player, UserInterface ui) {
     ui.printString("Health: " + player.getHealth());
     if (player.getHealth() <= 50) {
+      ui.printString("Narrator: ");
       try {
-        ui.printOneLetterAtATime("Narrator: You look alive enough, but i wouldn't wrestle a bear in your condition", 0.05);
+        ui.printOneLetterAtATime("You look alive enough, but i wouldn't wrestle a bear in your condition", 0.05);
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
@@ -182,20 +191,30 @@ public class GameEngine {
   public void open(Player player, UserInterface ui) {
 
     ui.printString("What do you want to open?");
-    String door = ui.getUserInput();
+    String find = ui.getUserInput();
     boolean found = false;
     for (int i = 0; i < player.getCurrentRoom().getDoors().size(); i++) {
-      if (player.getCurrentRoom().getDoors().get(i).getDescription().equalsIgnoreCase(door)) {
+      if (player.getCurrentRoom().getDoors().get(i).getDescription().equalsIgnoreCase(find)) {
         found = true;
         Door tmpDoor = player.getCurrentRoom().getDoors().get(i);
         if (tmpDoor.getLocked()) {
-          ui.printString("Door is locked!");
+          ui.printString("The door is locked!");
         } else {
           player.setCurrentRoom(tmpDoor.getLeadsTo());
         }
       }
-      if (!found) {
-        ui.printString("There is nothing like that to open");
+    }
+    if (!found) {
+      for (int i = 0; i < player.getCurrentRoom().getBoxes().size(); i++) {
+        if (player.getCurrentRoom().getBoxes().get(i).getDescription().equalsIgnoreCase(find)) {
+          found = true;
+          Box tmpBox = player.getCurrentRoom().getBoxes().get(i);
+          if (tmpBox.getLocked()) {
+            ui.printString("The " + tmpBox.getDescription() + " is locked!");
+          } else {
+            player.getPlayerInventory().add(tmpBox.getContains());
+          }
+        }
       }
     }
   }
@@ -218,11 +237,13 @@ public class GameEngine {
   public void use(Player player, UserInterface ui) {
     ui.printString("What do you want to use?");
     String keyItem = ui.getUserInput();
+    Item tmpKey = null;
     boolean found = false;
     Door tmpDoor;
 
     for (int i = 0; i < player.getPlayerInventory().size(); i++) {
       if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(keyItem)) {
+        tmpKey = player.getPlayerInventory().get(i);
         found = true;
       }
     }
@@ -237,6 +258,7 @@ public class GameEngine {
         found = true;
         tmpDoor = player.currentRoom.getDoors().get(i);
         tmpDoor.unlockDoor();
+        player.getPlayerInventory().remove(tmpKey);
       }
     }
     if (!found) {

@@ -8,12 +8,15 @@ public class Enemy {
   private boolean surpriseAttack;
   UserInterface ui = new UserInterface();
 
-
   public Enemy(String description, int health, Weapon weapon, boolean surpriseAttack) {
     this.description = description;
     this.health = health;
     this.weapon = weapon;
     this.surpriseAttack = surpriseAttack;
+  }
+
+  public boolean getSurpriseAttack(){
+    return surpriseAttack;
   }
 
   public String getDescription() {
