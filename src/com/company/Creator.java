@@ -9,7 +9,8 @@ public class Creator {
   public void createRooms() {
 
     Prisoner prisoner = new Prisoner("Prisoner", "Chili crazed prisoner", new Food("biscuits", 1));
-    Figurehead figurehead = new Figurehead("Figurehead", "", null);
+    Figurehead figurehead = new Figurehead("Figurehead", "A beautifully carved figurehead painted in gold resembling a mermaid.\n" +
+        "It really gives the ship a majestic look", null);
     Parrot parrot = new Parrot("Shark Bait the parrot", "Disease-ridden parrot", null);
     Room room1 = new Room("Cabin", "You find yourself in what looks like a cabin on a larger ship. The room has one door\n" +
         "You feel the shift of gravity going from one end of the room to the other in a rhythmic motion\n" +

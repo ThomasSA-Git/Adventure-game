@@ -78,9 +78,6 @@ public class GameEngine {
     ui.printString(player.getCurrentRoom().getDescription());
     ui.printString("The following items are in the area:");
     ui.printArrayList((player.getCurrentRoom().getMapInventory()));
-    if (player.getCurrentRoom().getNPC() != null) {
-      ui.printString(player.getCurrentRoom().getNPC().getNpcName());
-    }
   }
 
   public void attackSequence(Player player, UserInterface ui) {
@@ -303,7 +300,7 @@ public class GameEngine {
     ui.printString("Who or what do you want to talk to?");
     String talk = ui.getUserInput();
     if (player.getCurrentRoom().getNPC() == null) {
-      ui.printString("That doesn't talk");
+      ui.printString("You can't do that.");
     } else if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(talk)) {
       ui.printString(player.getCurrentRoom().getNPC().dialogue());
     }
