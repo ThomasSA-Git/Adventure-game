@@ -294,12 +294,14 @@ public class GameEngine {
       if (player.playerInventory.get(i).getDescription().equalsIgnoreCase(give)) {
         ui.printString("Who do you want to give it to?");
         String receiver = ui.getUserInput();
-        if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(receiver)) {
-          ui.printString(player.getCurrentRoom().getNPC().NpcRecieve(player.playerInventory.get(i), player.getCurrentRoom()));
-          player.removeItem(player.playerInventory.get(i));
-        } else {
+        if(player.getCurrentRoom().getNPC() == null){
           ui.printString("You can't give anything to that!");
         }
+        else if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(receiver)) {
+          ui.printString(player.getCurrentRoom().getNPC().NpcRecieve(player.playerInventory.get(i), player.getCurrentRoom()));
+          player.removeItem(player.playerInventory.get(i));
+        }
+
       }
     }
   }

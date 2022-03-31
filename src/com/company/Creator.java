@@ -16,6 +16,7 @@ public class Creator {
         "Atop the sheets of one of the bunk beds you spot a shiny object\n" +
         "The room contains:\n", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
 
+    room1.addToInventory(new Food("bowl of chili", 2));
 
     Room room2 = new Room("Galley", "You look around to see that you find yourself in a quaint small kitchen.\n" +
         "This must be the galley of the ship.\n" +
@@ -33,7 +34,7 @@ public class Creator {
         "to the left you see a wall of metal bars. A jail cell. This must be the brig\n" +
         "Inside sits a ragged man with a crooked smile." +
         "Next to him in the corner of his cell sits a bucket which is obviously the source of the foul smell." +
-        "After a more thorough peak you realise the bucket is full of (you guessed it) anchovies.", new ArrayList<Item>(), new ArrayList<Door>(), null, null);
+        "After a more thorough peak you realise the bucket is full of (you guessed it) anchovies.", new ArrayList<Item>(), new ArrayList<Door>(), prisoner, null);
 
     Room room5 = new Room("Deck (Stern)", "Finally fresh air. The ship is surrounded by ocean as far as the eye can see.\n" +
         "In the middle of the deck stands the capstan with a large lever besides it\n" +

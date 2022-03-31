@@ -26,7 +26,7 @@ public class Prisoner extends NPC {
 
   public void turnHostile(Room currentRoom) {
     currentRoom.setNpc(null);
-    currentRoom.setEnemy(new PrisonEnemy("Chili crazed prisoner", 20, new MeleeWeapon("Spoon", 5, 8)));
+    currentRoom.setEnemy(new PrisonEnemy("Chili crazed prisoner", 20, new MeleeWeapon("Spoon", 5, 8), true));
     currentRoom.addToInventory(new Food("Biscuits", 1));
   }
 

@@ -2,8 +2,8 @@ package com.company;
 
 public class PrisonEnemy extends Enemy{
 
-  public PrisonEnemy(String description, int health, Weapon weapon){
-    super(description, health, weapon);
+  public PrisonEnemy(String description, int health, Weapon weapon, boolean surpriseAttack){
+    super(description, health, weapon, surpriseAttack);
 
   }
 
