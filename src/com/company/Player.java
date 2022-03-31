@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class Player {
   Room currentRoom;
   ArrayList<Item> playerInventory;
-  Room room = new Room();
   UserInterface ui = new UserInterface();
 
   private int health = 70;
