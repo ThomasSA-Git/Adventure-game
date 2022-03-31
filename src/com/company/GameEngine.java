@@ -84,6 +84,7 @@ public class GameEngine {
     boolean engaged = true;
     int counter = 0;
     if (player.getCurrentRoom().getEnemy() != null) {
+      ui.printString("You are now in combat!");
       while (engaged) {
         if (player.getHealth() > 0) {
           if (player.getEquippedWeapon() instanceof RangedWeapon tmpWeapon) {

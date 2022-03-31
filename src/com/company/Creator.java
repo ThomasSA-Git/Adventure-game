@@ -75,6 +75,7 @@ public class Creator {
     //INVENTORY
     room2.addToInventory(new MeleeWeapon("frying pan", 3, 5));
     room2.addToInventory(new Item("soup"));
+    room2.addToInventory(new Food("bowl of chili", 2));
 
     //CONNECTIONS
     room2.setEast(room3);

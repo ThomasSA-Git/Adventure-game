@@ -100,7 +100,7 @@ public class Player {
     }
     else {
       currentRoom.getEnemy().takeDamage(damage);
-      ui.printString("You did " + damage + " damage to " + currentRoom.getEnemy());
+      ui.printString("You did " + damage + " damage to " + currentRoom.getEnemy() + " with " + equippedWeapon);
     }
   }
 }
