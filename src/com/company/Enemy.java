@@ -7,7 +7,6 @@ public class Enemy {
   private Weapon weapon;
   private boolean surpriseAttack;
   UserInterface ui = new UserInterface();
-  Room room;
 
   public Enemy(String description, int health, Weapon weapon, boolean surpriseAttack) {
     this.description = description;
