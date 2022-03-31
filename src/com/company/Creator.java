@@ -9,6 +9,7 @@ public class Creator {
   public void createRooms() {
 
     Prisoner prisoner = new Prisoner("Prisoner", "Chili crazed prisoner", new Food("biscuits", 1));
+    Figurehead figurehead = new Figurehead("Figurehead", "", null);
     Parrot parrot = new Parrot("Shark Bait the parrot", "Disease-ridden parrot", null);
     Room room1 = new Room("Cabin", "You find yourself in what looks like a cabin on a larger ship. The room has one door\n" +
         "You feel the shift of gravity going from one end of the room to the other in a rhythmic motion\n" +
@@ -39,7 +40,7 @@ public class Creator {
         "You look up and spot something shiny in the ship's mast", new ArrayList<Item>(), new ArrayList<Door>(), null, null, new ArrayList<Box>());
 
     Room room6 = new Room("Deck (Bow)", "You stand at the foot of the ships mast.\n" +
-        "A robe ladder leads up to the crow's nest", new ArrayList<Item>(), new ArrayList<Door>(), null, null, new ArrayList<Box>());
+        "A robe ladder leads up to the crow's nest", new ArrayList<Item>(), new ArrayList<Door>(), figurehead, null, new ArrayList<Box>());
 
     Room room7 = new Room("Mast", "Even with this view, there's no land in sight. There's however, a parrot sitting on the railing.\n" +
         "The parrot is screetching several controversal political opinions. How highly inapropriate.", new ArrayList<Item>(), new ArrayList<Door>(), null, null, new ArrayList<Box>());
