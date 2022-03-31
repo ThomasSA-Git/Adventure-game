@@ -94,8 +94,6 @@ public class GameEngine {
         }
         case "look" -> {
           ui.printString(player.getCurrentRoom().getDescription());
-          ui.printString("The following items are in the area:");
-          ui.printList(player.getCurrentRoom().getMapInventory());
           if (player.getCurrentRoom().getNPC() != null) {
             ui.printString(player.getCurrentRoom().getNPC().getNpcName());
           }
@@ -173,7 +171,12 @@ public class GameEngine {
               ui.printString(player.getEquippedWeapon() + ", Damage: " + player.getEquippedWeapon().getMinDamage() + " - " + player.getEquippedWeapon().getMaxDamage());
             }
           } else {
-            ui.printString("You have no weapon equipped.");
+            ui.printString("Narrator");
+            try {
+              ui.printOneLetterAtATime("You have no weapon equipped.", 0.05);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
           }
         }
         case "talk" -> {
@@ -192,11 +195,16 @@ public class GameEngine {
             if (player.playerInventory.get(i).getDescription().equalsIgnoreCase(give)) {
               ui.printString("Who do you want to give it to?");
               String receiver = ui.getUserInput();
-              if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(receiver)) {
+              if(player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(receiver)){
                 ui.printString(player.getCurrentRoom().getNPC().NpcRecieve(player.playerInventory.get(i), player.getCurrentRoom()));
                 player.removeItem(player.playerInventory.get(i));
               } else {
-                ui.printString("You can't give anything to that!");
+                ui.printString("Narrator: ");
+                try {
+                  ui.printOneLetterAtATime("You can't give anything to that!", 0.05);
+                } catch (InterruptedException e) {
+                  e.printStackTrace();
+                }
               }
             }
           }
@@ -235,14 +243,6 @@ public class GameEngine {
                 player.getCurrentRoom().setEnemy(null);
                 ui.printString("Your enemy has been defeated.");
                 engaged = false;
-/*
-                boolean endTurn = false;
-                counter++;
-                while (endTurn){
-                  ui.printString("End of round " + counter);
-                  ui.printString("Do you wish ");
-                }
-*/
 
               }
             }
