@@ -71,9 +71,12 @@ public class Creator {
     room2.addToDoors(new Door("heavy door", false, null, room1));
     room2.addToDoors(new Door("white door", false, null, room3));
 
+    //CONTAINS
+    room2.addToBoxes(new Box("soup", new Item("spicy soup"), true, "hot sauce", "You pour the entire bottle in and use a spoon to stir the pot.\n" +
+        "The spoon deteriorates beyond recognision"));
+
     //INVENTORY
     room2.addToInventory(new MeleeWeapon("frying pan", 3, 5));
-    room2.addToInventory(new Item("soup"));
 
     //CONNECTIONS
     room2.setEast(room3);
@@ -110,8 +113,14 @@ public class Creator {
     room7.setSouth(room6);
 
     //ROOM 8 (Bridge Deck)
+
+    //CONTAINS
+    room8.addToBoxes(new Box("glass cabinet",new Item("hot sauce"), true, "hammer", "You smash the glass with the hammer. A bottle of hot sauce was inside."));
+
+    //CONNECTIONS
     room8.setEast(room5);
     room9.setSouth(room9);
+
 
     //ROOM 9 (Captains Quarters)
     room9.setNorth(room8);

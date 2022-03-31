@@ -4,14 +4,16 @@ public class Box {
   private String description;
   private Item contains;
   private boolean locked;
-  private Item key;
+  private String key;
+  private String unlockMessage;
 
 
-  public Box (String description, Item contains, boolean locked, Item key){
+  public Box (String description, Item contains, boolean locked, String key, String unlockMessage){
     this.description = description;
     this.contains = contains;
     this.locked = locked;
     this.key = key;
+    this.unlockMessage = unlockMessage;
   }
 
   public Box (String description, Item contains){
