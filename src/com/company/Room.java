@@ -59,13 +59,6 @@ public class Room {
     doors.add(door);
   }
 
-  public Room() {
-
-    this.name = name;
-    this.description = description;
-
-  }
-
   public ArrayList<Door> getDoors(){
     return doors;
   }

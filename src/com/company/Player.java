@@ -69,11 +69,6 @@ public class Player {
     System.out.println(playerInventory);
   }
 
-  public void takeIntItem(Interactables interactables, Item item) {
-    playerInventory.add(item);
-    interactables.removeFromInventory(item);
-  }
-
   public ArrayList<Item> getPlayerInventory() {
     return playerInventory;
   }

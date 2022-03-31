@@ -14,57 +14,58 @@ public class GameEngine {
 
       ui.printCurrentRoom(player.getCurrentRoom());
 
-            String userInput = ui.getUserInput();
-            switch (userInput) {
-                case "go east" -> {
-                    if (player.getCurrentRoom().getEast() == null) {
-                        ui.blockedDirection();
-                    } else {
-                        player.setCurrentRoom(player.getCurrentRoom().getEast());
-                    }
-                }
-                case "go north" -> {
-                    if (player.getCurrentRoom().getNorth() == null) {
-                        ui.blockedDirection();
-                    } else {
-                        player.setCurrentRoom(player.getCurrentRoom().getNorth());
-                    }
-                }
-                case "go west" -> {
-                    if (player.getCurrentRoom().getWest() == null) {
-                        ui.blockedDirection();
-                    } else {
-                        player.setCurrentRoom(player.getCurrentRoom().getWest());
-                    }
-                }
-                case "go south" -> {
-                    if (player.getCurrentRoom().getSouth() == null) {
-                        ui.blockedDirection();
-                    } else {
-                        player.setCurrentRoom(player.getCurrentRoom().getSouth());
-                    }
-                }
+      String userInput = ui.getUserInput();
+      switch (userInput) {
+        case "go east" -> {
 
-                case "open" -> {
-                    ui.printString("What do you want to open?");
-                    String door = ui.getUserInput();
-                    boolean found = false;
-                    for (int i = 0; i < player.getCurrentRoom().getDoors().size(); i++){
-                        if (player.getCurrentRoom().getDoors().get(i).getDescription().equals(door)){
-                            found = true;
-                            Door tmpDoor = player.getCurrentRoom().getDoors().get(i);
-                            if (tmpDoor.getLocked()){
-                                ui.printString("Door is locked!");
-                            } else {
-                                player.setCurrentRoom(tmpDoor.getLeadsTo());
-                            }
-                        }
-                        if (!found) {
-                            ui.printString("There is nothing like that to open");
-                        }
-                    }
-                }
-                case "inventory" -> ui.printArrayList(player.getPlayerInventory());
+          if (player.getCurrentRoom().getEast() == null) {
+            ui.blockedDirection();
+          } else {
+            player.setCurrentRoom(player.getCurrentRoom().getEast());
+          }
+        }
+        case "go north" -> {
+          if (player.getCurrentRoom().getNorth() == null) {
+            ui.blockedDirection();
+          } else {
+            player.setCurrentRoom(player.getCurrentRoom().getNorth());
+          }
+        }
+        case "go west" -> {
+          if (player.getCurrentRoom().getWest() == null) {
+            ui.blockedDirection();
+          } else {
+            player.setCurrentRoom(player.getCurrentRoom().getWest());
+          }
+        }
+        case "go south" -> {
+          if (player.getCurrentRoom().getSouth() == null) {
+            ui.blockedDirection();
+          } else {
+            player.setCurrentRoom(player.getCurrentRoom().getSouth());
+          }
+        }
+
+        case "open" -> {
+          ui.printString("What do you want to open?");
+          String door = ui.getUserInput();
+          boolean found = false;
+          for (int i = 0; i < player.getCurrentRoom().getDoors().size(); i++) {
+            if (player.getCurrentRoom().getDoors().get(i).getDescription().equals(door)) {
+              found = true;
+              Door tmpDoor = player.getCurrentRoom().getDoors().get(i);
+              if (tmpDoor.getLocked()) {
+                ui.printString("Door is locked!");
+              } else {
+                player.setCurrentRoom(tmpDoor.getLeadsTo());
+              }
+            }
+            if (!found) {
+              ui.printString("There is nothing like that to open");
+            }
+          }
+        }
+        case "inventory" -> ui.printArrayList(player.getPlayerInventory());
 
         case "take" -> {
           boolean containsItem = false;
@@ -94,7 +95,7 @@ public class GameEngine {
         }
         case "look" -> {
           ui.printString(player.getCurrentRoom().getDescription());
-          if(player.getCurrentRoom().getNPC() != null) {
+          if (player.getCurrentRoom().getNPC() != null) {
             ui.printString(player.getCurrentRoom().getNPC().getNpcName());
           }
         }
@@ -132,36 +133,36 @@ public class GameEngine {
         }
 
         case "use" -> {
-                    ui.printString("What do you want to use?");
-                    String keyItem = ui.getUserInput();
-                    boolean found = false;
-                    Door tmpDoor;
+          ui.printString("What do you want to use?");
+          String keyItem = ui.getUserInput();
+          boolean found = false;
+          Door tmpDoor;
 
-                    for (int i = 0; i < player.getPlayerInventory().size(); i++){
-                        if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(keyItem)){
-                            found = true;
-                        }
-                    }
-                    if (!found){
-                        ui.printString("You do not have that item!");
-                    }
-                    found = false;
-                    ui.printString("What do you want to use it on?");
-                    String keySlot = ui.getUserInput();
-                    for (int i = 0; i < player.currentRoom.getDoors().size(); i++){
-                        if (player.currentRoom.getDoors().get(i).getDescription().equalsIgnoreCase(keySlot)){
-                            found = true;
-                            tmpDoor = player.currentRoom.getDoors().get(i);
-                            tmpDoor.unlockDoor();
-                        }
-                    }
-                    if (!found) {
-                        ui.printString("You can't use that item on that!");
-                    }
+          for (int i = 0; i < player.getPlayerInventory().size(); i++) {
+            if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(keyItem)) {
+              found = true;
+            }
+          }
+          if (!found) {
+            ui.printString("You do not have that item!");
+          }
+          found = false;
+          ui.printString("What do you want to use it on?");
+          String keySlot = ui.getUserInput();
+          for (int i = 0; i < player.currentRoom.getDoors().size(); i++) {
+            if (player.currentRoom.getDoors().get(i).getDescription().equalsIgnoreCase(keySlot)) {
+              found = true;
+              tmpDoor = player.currentRoom.getDoors().get(i);
+              tmpDoor.unlockDoor();
+            }
+          }
+          if (!found) {
+            ui.printString("You can't use that item on that!");
+          }
 
-                }
+        }
 
-                case "deequip" -> player.deEquip();
+        case "deequip" -> player.deEquip();
 
         case "weapon" -> {
           if (player.getEquippedWeapon() != null) {
@@ -171,7 +172,12 @@ public class GameEngine {
               ui.printString(player.getEquippedWeapon() + ", Damage: " + player.getEquippedWeapon().getMinDamage() + " - " + player.getEquippedWeapon().getMaxDamage());
             }
           } else {
-            ui.printString("You have no weapon equipped.");
+            ui.printString("Narrator");
+            try {
+              ui.printOneLetterAtATime("You have no weapon equipped.", 0.05);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
           }
         }
         case "talk" -> {
@@ -190,12 +196,16 @@ public class GameEngine {
             if (player.playerInventory.get(i).getDescription().equalsIgnoreCase(give)) {
               ui.printString("Who do you want to give it to?");
               String receiver = ui.getUserInput();
-              if(player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(receiver)){
+              if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(receiver)) {
                 ui.printString(player.getCurrentRoom().getNPC().NpcRecieve(player.playerInventory.get(i), player.getCurrentRoom()));
                 player.removeItem(player.playerInventory.get(i));
-              }
-              else{
-                ui.printString("You can't give anything to that!");
+              } else {
+                ui.printString("Narrator: ");
+                try {
+                  ui.printOneLetterAtATime("You can't give anything to that!", 0.05);
+                } catch (InterruptedException e) {
+                  e.printStackTrace();
+                }
               }
             }
           }

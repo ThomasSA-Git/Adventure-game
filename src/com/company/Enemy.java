@@ -5,14 +5,16 @@ public class Enemy {
   private String description;
   private int health;
   private Weapon weapon;
+  private boolean surpriseAttack;
   UserInterface ui = new UserInterface();
   Room room;
 
 
-  public Enemy(String description, int health, Weapon weapon) {
+  public Enemy(String description, int health, Weapon weapon, boolean surpriseAttack) {
     this.description = description;
     this.health = health;
     this.weapon = weapon;
+    this.surpriseAttack = surpriseAttack;
   }
 
   public String getDescription() {
