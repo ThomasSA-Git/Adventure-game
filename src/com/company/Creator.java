@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Creator {
 
   Room firstRoom;
-  Player player;
 
   public void createRooms() {
 
