@@ -86,9 +86,9 @@ public class UserInterface {
     System.out.println(currentRoom);
   }
 
-  public void printList(ArrayList<Item> print) {
+ /* public void printList(ArrayList<Item> print) {
     System.out.println(print);
-  }
+  }*/
 
 }
 

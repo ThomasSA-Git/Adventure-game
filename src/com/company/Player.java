@@ -21,10 +21,6 @@ public class Player {
     }
   }
 
-  public Player() {
-
-  }
-
   public void equip(Weapon weapon) {
     setEquippedWeapon(weapon);
   }
@@ -67,11 +63,6 @@ public class Player {
     playerInventory.add(item);
     currentRoom.removeFromInventory(item);
     System.out.println(playerInventory);
-  }
-
-  public void takeIntItem(Interactables interactables, Item item) {
-    playerInventory.add(item);
-    interactables.removeFromInventory(item);
   }
 
   public ArrayList<Item> getPlayerInventory() {

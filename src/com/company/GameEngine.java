@@ -68,7 +68,7 @@ public class GameEngine {
   public void look(Player player, UserInterface ui) {
     ui.printString(player.getCurrentRoom().getDescription());
     ui.printString("The following items are in the area:");
-    ui.printList(player.getCurrentRoom().getMapInventory());
+    ui.printArrayList((player.getCurrentRoom().getMapInventory()));
     if (player.getCurrentRoom().getNPC() != null) {
       ui.printString(player.getCurrentRoom().getNPC().getNpcName());
     }
