@@ -13,7 +13,7 @@ public class GameEngine {
     while (running) {
       ui.printCurrentRoom(player.getCurrentRoom());
 
-      if (player.getHealth() <= 0){
+      if (player.getHealth() <= 0) {
         running = false;
       }
 
@@ -302,10 +302,10 @@ public class GameEngine {
   public void talk(Player player, UserInterface ui) {
     ui.printString("Who or what do you want to talk to?");
     String talk = ui.getUserInput();
-    if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(talk)) {
-      ui.printString(player.getCurrentRoom().getNPC().dialogue());
-    } else {
+    if (player.getCurrentRoom().getNPC() == null) {
       ui.printString("That doesn't talk");
+    } else if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(talk)) {
+      ui.printString(player.getCurrentRoom().getNPC().dialogue());
     }
   }
 
@@ -316,10 +316,9 @@ public class GameEngine {
       if (player.playerInventory.get(i).getDescription().equalsIgnoreCase(give)) {
         ui.printString("Who do you want to give it to?");
         String receiver = ui.getUserInput();
-        if(player.getCurrentRoom().getNPC() == null){
+        if (player.getCurrentRoom().getNPC() == null) {
           ui.printString("You can't give anything to that!");
-        }
-        else if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(receiver)) {
+        } else if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(receiver)) {
           ui.printString(player.getCurrentRoom().getNPC().NpcRecieve(player.playerInventory.get(i), player.getCurrentRoom()));
           player.removeItem(player.playerInventory.get(i));
         }
