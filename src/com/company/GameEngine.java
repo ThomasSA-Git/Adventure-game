@@ -235,32 +235,31 @@ public class GameEngine {
     ui.printString("What do you want to use?");
     String keyItem = ui.getUserInput();
     Item tmpKey = null;
-    boolean found = false;
+
     Door tmpDoor;
 
     for (int i = 0; i < player.getPlayerInventory().size(); i++) {
       if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(keyItem)) {
         tmpKey = player.getPlayerInventory().get(i);
-        found = true;
+
+        ui.printString("What do you want to use it on?");
+        String keySlot = ui.getUserInput();
+        for (int o = 0; o < player.currentRoom.getDoors().size(); o++) {
+          if (player.currentRoom.getDoors().get(o).getDescription().equalsIgnoreCase(keySlot)) {
+            tmpDoor = player.currentRoom.getDoors().get(o);
+            tmpDoor.unlockDoor();
+            player.getPlayerInventory().remove(tmpKey);
+          } else {
+            ui.printString("You can't use that item on that!");
+          }
+        }
+      } else {
+        ui.printString("You do not have that item!");
       }
+
     }
-    if (!found) {
-      ui.printString("You do not have that item!");
-    }
-    found = false;
-    ui.printString("What do you want to use it on?");
-    String keySlot = ui.getUserInput();
-    for (int i = 0; i < player.currentRoom.getDoors().size(); i++) {
-      if (player.currentRoom.getDoors().get(i).getDescription().equalsIgnoreCase(keySlot)) {
-        found = true;
-        tmpDoor = player.currentRoom.getDoors().get(i);
-        tmpDoor.unlockDoor();
-        player.getPlayerInventory().remove(tmpKey);
-      }
-    }
-    if (!found) {
-      ui.printString("You can't use that item on that!");
-    }
+
+
   }
 
   public void drop(Player player, UserInterface ui) {
