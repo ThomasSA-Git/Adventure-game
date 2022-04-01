@@ -95,9 +95,13 @@ public class Player {
     if (damage == this.equippedWeapon.getMaxDamage()) {
       //critical hit
       damage *= this.equippedWeapon.getMaxDamage();
+      currentRoom.getEnemy().takeDamage(damage);
+      ui.printString("You did " + damage + " damage to " + currentRoom.getEnemy());
     }
-    currentRoom.getEnemy().takeDamage(damage);
-    ui.printString("You did " + damage + " damage to " + currentRoom.getEnemy());
+    else {
+      currentRoom.getEnemy().takeDamage(damage);
+      ui.printString("You did " + damage + " damage to " + currentRoom.getEnemy() + " with " + equippedWeapon);
+    }
   }
 }
 

@@ -19,6 +19,10 @@ public class Enemy {
     return surpriseAttack;
   }
 
+  public void surpriseAttack(){
+   surpriseAttack = true;
+  }
+
   public String getDescription() {
     return this.description;
   }
@@ -57,12 +61,12 @@ public class Enemy {
 
   public int attack() {
     ui.printString("Slap noise");
-    int damage = this.weapon.getDamage();
-    if (damage == this.weapon.getMaxDamage()) {
+    int damage = weapon.getDamage();
+    if (damage == weapon.getMaxDamage()) {
       //critical hit
-      damage *= this.weapon.getMaxDamage();
+      damage *= weapon.getMaxDamage();
     }
-    ui.printString(this.description + " did " + damage + " damage to you.");
+    ui.printString(description + " did " + damage + " damage to you with " + weapon);
     return damage;
   }
 

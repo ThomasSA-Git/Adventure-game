@@ -2,12 +2,6 @@ package com.company;
 
 import com.company.gags.FunnyBeeEncounter;
 
-import javax.print.attribute.standard.Media;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import java.io.File;
-
-
 public class GameEngine {
 
   public void runGame() {
@@ -318,8 +312,6 @@ public class GameEngine {
     Item tmpKey = null;
     boolean found = false;
     Door tmpDoor;
-    boolean isBox = false;
-    Box tmpBox = null;
 
     for (int i = 0; i < player.getPlayerInventory().size(); i++) {
       if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(keyItem)) {
@@ -441,10 +433,10 @@ public class GameEngine {
   public void talk(Player player, UserInterface ui) {
     ui.printString("Who or what do you want to talk to?");
     String talk = ui.getUserInput();
-    if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(talk)) {
+    if (player.getCurrentRoom().getNPC() == null) {
+      ui.printString("You can't do that.");
+    } else if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(talk)) {
       ui.printString(player.getCurrentRoom().getNPC().dialogue());
-    } else {
-      ui.printString("That doesn't talk");
     }
   }
 
@@ -465,6 +457,7 @@ public class GameEngine {
       }
     }
   }
+
 
   public boolean checkTake(String input) {
     return getPrefix(input).equals("take");
