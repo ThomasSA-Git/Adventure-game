@@ -10,9 +10,12 @@ public class Creator {
   public void createRooms() {
 
     Prisoner prisoner = new Prisoner("Prisoner", "Chili crazed prisoner", new Food("biscuits", 1));
+
+    Parrot parrot = new Parrot("parrot", "Disease-ridden parrot", null);
+
+
     Figurehead figurehead = new Figurehead("Figurehead", "A beautifully carved figurehead painted in gold resembling a mermaid.\n" +
         "It really gives the ship a majestic look", null);
-    Parrot parrot = new Parrot("Shark Bait the parrot", "Disease-ridden parrot", null);
     Room room1 = new Room("Cabin", "You find yourself in what looks like a cabin on a larger ship. The room has one door\n" +
         "You feel the shift of gravity going from one end of the room to the other in a rhythmic motion\n" +
         "Atop the sheets of one of the bunk beds you spot a shiny object\n" +
@@ -39,7 +42,7 @@ public class Creator {
 
     Room room5 = new Room("Deck (Stern)", "Finally fresh air. The ship is surrounded by ocean as far as the eye can see.\n" +
         "In the middle of the deck stands the capstan with a large lever besides it\n" +
-        "You look up and spot something shiny in the ship's mast", new ArrayList<Item>(), new ArrayList<Door>(), null, null, new ArrayList<Box>(), new ArrayList<Inspectables>());
+        "You look up and spot something shiny in the ship's mast", new ArrayList<Item>(), new ArrayList<Door>(), parrot, null, new ArrayList<Box>(), new ArrayList<Inspectables>());
 
     Room room6 = new Room("Deck (Bow)", "You stand at the foot of the ships mast.\n" +
         "A robe ladder leads up to the crow's nest", new ArrayList<Item>(), new ArrayList<Door>(), figurehead, null, new ArrayList<Box>(), new ArrayList<Inspectables>());

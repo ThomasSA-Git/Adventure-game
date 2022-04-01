@@ -2,9 +2,18 @@ package com.company;
 
 import com.company.gags.FunnyBeeEncounter;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
+
 public class GameEngine {
 
+
+  Clip clip;
+
   public void runGame() {
+    playNarratorTheme();
     Creator creator = new Creator();
     UserInterface ui = new UserInterface();
     creator.createRooms();
@@ -55,7 +64,7 @@ public class GameEngine {
             player.setCurrentRoom(player.getCurrentRoom().getSouth());
           }
         }
-
+        case "stop" ->stopNarratorTheme();
         case "open" -> open(player, ui);
         case "inventory" -> ui.printArrayList(player.getPlayerInventory());
         case "take" -> take(player, ui);
@@ -88,6 +97,9 @@ public class GameEngine {
   }
 
   public void attackSequence(Player player, UserInterface ui) {
+    if (player.getCurrentRoom().getEnemy().getDescription().equals("Wasp")){
+      playWaspSong();
+    }
     ui.printString("Narrator:");
     try {
       ui.printOneLetterAtATime(player.currentRoom.getEnemy().getDescription() + " Attacks!", 0.05);
@@ -124,6 +136,7 @@ public class GameEngine {
           if (player.getCurrentRoom().getEnemy().getDescription() == "Wasp"){
             player.getCurrentRoom().addToBoxes(new Box("crate", new Item("hatch key"), false, null, "The lid creaks as it opens.\n" +
                 "A hatch key was inside. You take it"));
+                stopWaspSong();
           }
           player.getCurrentRoom().setEnemy(null);
           ui.printString("Your enemy has been defeated.");
@@ -475,6 +488,85 @@ public class GameEngine {
 
   public String getPrefix(String input) {
     return input.substring(0, getSpace(input));
+  }
+
+
+  public void stopNarratorTheme() {
+        clip.stop();
+        clip.close();
+  }
+
+  public void playNarratorTheme() {
+    try {
+      String musicLocation = "getThatPotion.wav";
+      File musicPath = new File(musicLocation);
+      if (musicPath.exists()) {
+        AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioInput);
+        clip.start();
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+        long clipTimePosition = clip.getMicrosecondPosition();
+        clip.stop();
+
+        clip.setMicrosecondPosition(clipTimePosition);
+        clip.start();
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+      } else {
+        System.out.println("Can't find file");
+      }
+    } catch (Exception ex) {
+      ex.printStackTrace();
+
+    }
+  }
+
+  public void playWaspSong() {
+    try {
+      String musicLocation = "notABee.wav";
+      File musicPath = new File(musicLocation);
+      if (musicPath.exists()) {
+        AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioInput);
+        clip.start();
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+        long clipTimePosition = clip.getMicrosecondPosition();
+        clip.stop();
+
+        clip.setMicrosecondPosition(clipTimePosition);
+        clip.start();
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+      } else {
+        System.out.println("Can't find file");
+      }
+    } catch (Exception ex) {
+      ex.printStackTrace();
+
+    }
+  }
+
+  public void stopWaspSong() {
+    try {
+      String musicLocation = "notABee.wav";
+      File musicPath = new File(musicLocation);
+      if (musicPath.exists()) {
+        AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioInput);
+        clip.stop();
+
+      } else {
+        System.out.println("Can't find file");
+      }
+    } catch (Exception ex) {
+      ex.printStackTrace();
+
+    }
   }
 
   public String getUserSuffix(String input) {
