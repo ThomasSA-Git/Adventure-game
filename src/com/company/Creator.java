@@ -13,6 +13,8 @@ public class Creator {
 
     Parrot parrot = new Parrot("parrot", "Disease-ridden parrot", null);
 
+    CaptainNPC captain = new CaptainNPC("captain", "very very very drunk captain", new Item("jack daniels"));
+
 
     Figurehead figurehead = new Figurehead("Figurehead", "A beautifully carved figurehead painted in gold resembling a mermaid.\n" +
         "It really gives the ship a majestic look", null);

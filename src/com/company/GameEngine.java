@@ -22,6 +22,19 @@ public class GameEngine {
 
     boolean running = true;
     while (running) {
+
+      for (int i = 0; i < player.getPlayerInventory().size(); i++){
+        if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase("jack daniels")){
+          ui.printString("Narrator:");
+          try {
+            ui.printOneLetterAtATime("YOU DID IT. YOU GOT IT. YOU WIN KK BYE BYE", 0.05);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
+          running = false;
+        }
+      }
+
       ui.printCurrentRoom(player.getCurrentRoom());
 
       if (player.getHealth() <= 0) {
