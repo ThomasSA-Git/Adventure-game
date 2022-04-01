@@ -22,7 +22,7 @@ public class UserInterface {
   }
 
   public void presentGame() {
-    /*
+
     try {
       printOneLetterAtATime("...", 1);
       printOneLetterAtATime("...", 1);
@@ -75,7 +75,7 @@ public class UserInterface {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-     */
+
 
 
   }
