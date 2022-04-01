@@ -9,7 +9,7 @@ public class Creator {
 
   public void createRooms() {
 
-    Prisoner prisoner = new Prisoner("Prisoner", "Chili crazed prisoner", new Food("biscuits", 1));
+    Prisoner prisoner = new Prisoner("prisoner", "Chili crazed prisoner", new Food("biscuits", 1));
 
     Parrot parrot = new Parrot("parrot", "Disease-ridden parrot", null);
 
@@ -27,6 +27,7 @@ public class Creator {
     Room room2 = new Room("Galley", "You look around to see that you find yourself in a quaint small kitchen.\n" +
         "This must be the galley of the ship.\n" +
         "On the kitchen isle is a small electrical stove with one pot sitting on top\n" +
+        "Next to the stove lies a banana\n" +
         "In the sink lies a dirty frying pan, someone refused to wash (inspired by true events)\n" +
         "Opposite the door where you entered, there's another white door", new ArrayList<Item>(), new ArrayList<Door>(), null, null, new ArrayList<Box>(), new ArrayList<Inspectables>());
 
@@ -56,7 +57,7 @@ public class Creator {
         "Upon closer inspection, the helm is not attached to anything.\n" +
         "On the wall is an emergency glass cabinet.", new ArrayList<Item>(), new ArrayList<Door>(), null, null, new ArrayList<Box>(), new ArrayList<Inspectables>());
 
-    Room room9 = new Room("Captains Quarters", "", new ArrayList<Item>(), new ArrayList<Door>(), null, null, new ArrayList<Box>(), new ArrayList<Inspectables>());
+    Room room9 = new Room("Captains Quarters", "", new ArrayList<Item>(), new ArrayList<Door>(), captain, null, new ArrayList<Box>(), new ArrayList<Inspectables>());
 
     firstRoom = room1;
 
@@ -65,7 +66,7 @@ public class Creator {
     room1.setEast(room2);
 
     //DOOR
-    room1.addToDoors(new Door("heavy door", true, "shiny key", room2, "You fumble a bit with the keys and drop on the ground.\n The keys slide through a grate at your feet.\n" +
+    room1.addToDoors(new Door("door", true, "shiny key", room2, "You fumble a bit with the keys and drop on the ground.\n The keys slide through a grate at your feet.\n" +
         "The narrator sighs in distraught and unlocks the door"));
 
     //INVENTORY
@@ -75,7 +76,7 @@ public class Creator {
     //ROOM 2 (Galley)
 
     //DOORS
-    room2.addToDoors(new Door("heavy door", false, null, room1));
+    room2.addToDoors(new Door("door", false, null, room1));
     room2.addToDoors(new Door("white door", false, null, room3));
 
     //CONTAINS
@@ -84,6 +85,7 @@ public class Creator {
         "You take the spicy soup"));
 
     //INVENTORY
+    room2.addToInventory(new Food("banana", 30));
     room2.addToInventory(new MeleeWeapon("frying pan", 3, 5));
 
     //CONNECTIONS
@@ -93,8 +95,8 @@ public class Creator {
     //ROOM 3 (Ship Hold)
 
     //DOORS
-    room3.addToDoors(new Door("rusty door", false, null, room4));
-    room3.addToDoors(new Door("hatch", true, "hatch key", room5));
+    room3.addToDoors(new Door("metal door", false, null, room4));
+    room3.addToDoors(new Door("hatch", true, "hatch key", room5, "The hatch flings open. Your face is hit with a cold breeze"));
     room3.addToDoors(new Door("white door", false, null, room2));
 
     //CONTAINS

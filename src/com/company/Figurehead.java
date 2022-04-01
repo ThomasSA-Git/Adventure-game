@@ -8,7 +8,7 @@ public class Figurehead extends NPC{
     super(name, description, item);
   }
 
-  public String dialogue() {
+  public String dialogue(Room currentRoom) {
     int gibberish = ThreadLocalRandom.current().nextInt(1, 5);
     switch (gibberish){
       case 1 -> {

@@ -22,7 +22,7 @@ public class UserInterface {
   }
 
   public void presentGame() {
-
+/*
     try {
       printOneLetterAtATime("...", 1);
       printOneLetterAtATime("...", 1);
@@ -76,25 +76,40 @@ public class UserInterface {
       e.printStackTrace();
     }
 
+ */
 
 
+
+
+  }
+
+  public void getMainMenu(){
+    System.out.println("" +
+        " ▄▀▀▀▀▄    ▄▀▀▀▀▄   ▄▀▀▀▀▄  ▄▀▀▀█▀▀▄      ▄▀▀█▄   ▄▀▀▀█▀▀▄      ▄▀▀▀▀▄  ▄▀▀█▄▄▄▄  ▄▀▀█▄  \n" +
+        "█    █    █      █ █ █   ▐ █    █  ▐     ▐ ▄▀ ▀▄ █    █  ▐     █ █   ▐ ▐  ▄▀   ▐ ▐ ▄▀ ▀▄ \n" +
+        "▐    █    █      █    ▀▄   ▐   █           █▄▄▄█ ▐   █            ▀▄     █▄▄▄▄▄    █▄▄▄█ \n" +
+        "    █     ▀▄    ▄▀ ▀▄   █     █           ▄▀   █    █          ▀▄   █    █    ▌   ▄▀   █ \n" +
+        "  ▄▀▄▄▄▄▄▄▀ ▀▀▀▀    █▀▀▀    ▄▀           █   ▄▀   ▄▀            █▀▀▀    ▄▀▄▄▄▄   █   ▄▀  \n" +
+        "  █                 ▐      █             ▐   ▐   █              ▐       █    ▐   ▐   ▐   \n" +
+        "  ▐                        ▐                     ▐                      ▐              ");
   }
 
   public void getHelpMenu() {
     System.out.println("""
         ---------HELP MENU---------
-        go <direction>: Moves your character to the next room in chosen location
         look: Look around (You might find something interesting)
         take: Pick up item and put in your inventory
         drop: Drop item from inventory on ground
         inventory: Get a list of your inventory
-        use: Use item with another object
+        use: Use item with another object. Or in some cases interact
         open: Open door
-        talk: Talk to a NPC
+        talk: Speak to a character
         give: Give item away
         equip: Equip weapon
-        deequip: Unequip weapon
+        deequip: Unequip current weapon
         attack: Attack enemy
+        inspect: Get a closer look at something
+        give: Give a character an item from your inventory
                 
         help: Display this menu
         exit: Close game

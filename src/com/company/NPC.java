@@ -39,7 +39,7 @@ public abstract class NPC {
     return "";
   }
 
-  public String dialogue(Room currentRoom) {
+  public String dialogue(Room currentRoom){
     return "";
   }
 

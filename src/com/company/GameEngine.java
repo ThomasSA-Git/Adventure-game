@@ -13,14 +13,18 @@ public class GameEngine {
   Clip clip;
 
   public void runGame() {
-    playNarratorTheme();
+
+
     Creator creator = new Creator();
     UserInterface ui = new UserInterface();
     creator.createRooms();
     Player player = new Player(creator.firstRoom);
+    //playNarratorTheme();
     ui.presentGame();
 
     boolean running = true;
+
+
     while (running) {
 
       for (int i = 0; i < player.getPlayerInventory().size(); i++){
@@ -100,10 +104,12 @@ public class GameEngine {
   }
 
   public void look(Player player, UserInterface ui) {
-    ui.printString(player.getCurrentRoom().getDescription());
-    ui.printString("The following items are in the area:");
-    ui.printArrayList(player.getCurrentRoom().getMapInventory());
-    ui.printBoxList(player.getCurrentRoom().getBoxes());
+    ui.printString("Narrator:");
+    try {
+      ui.printOneLetterAtATime(player.getCurrentRoom().getDescription(), 0.05);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
     if (player.getCurrentRoom().getNPC() != null) {
       ui.printString(player.getCurrentRoom().getNPC().getNpcName());
     }
@@ -468,10 +474,14 @@ public class GameEngine {
     if (player.getCurrentRoom().getNPC() == null) {
       ui.printString("You can't do that.");
     } else if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(talk)) {
-      ui.printString(player.getCurrentRoom().getNPC().dialogue(player.currentRoom));
-      if(player.getCurrentRoom().getNPC().getNpcName().equals("captain"));
-      player.getCurrentRoom().getNPC().turnHostile(player.currentRoom);
+      try {
+        ui.printOneLetterAtATime(player.getCurrentRoom().getNPC().dialogue(player.getCurrentRoom()), 0.05);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
     }
+    if(player.getCurrentRoom().getNPC().getNpcName().equals("captain")){
+      player.getCurrentRoom().getNPC().turnHostile(player.currentRoom);}
   }
 
   public void give(Player player, UserInterface ui) {
