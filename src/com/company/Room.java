@@ -17,6 +17,7 @@ public class Room {
   private NPC npc;
   private ArrayList<Door> doors = new ArrayList<>();
   private ArrayList<Box> boxes = new ArrayList<>();
+  private ArrayList<Inspectables> inspectables = new ArrayList<>();
 
 
   public Room(String name, String description, Room north, Room east, Room south, Room west) {
@@ -35,7 +36,7 @@ public class Room {
     return this.mapInventory;
   }
 
-  public Room(String name, String description, ArrayList<Item> mapInventory, ArrayList<Door> doors, NPC npc, Enemy enemy, ArrayList<Box> boxes) {
+  public Room(String name, String description, ArrayList<Item> mapInventory, ArrayList<Door> doors, NPC npc, Enemy enemy, ArrayList<Box> boxes, ArrayList<Inspectables> inspecables) {
     this.name = name;
     this.description = description;
     this.mapInventory = mapInventory;
@@ -43,6 +44,7 @@ public class Room {
     this.npc = npc;
     this.enemy = enemy;
     this.boxes = boxes;
+    this.inspectables = inspecables;
   }
 
   public void setMapInventory(ArrayList<Item> newArrayList) {
@@ -63,6 +65,14 @@ public class Room {
 
   public ArrayList<Door> getDoors(){
     return doors;
+  }
+
+  public ArrayList<Inspectables> getInspectables(){
+    return inspectables;
+  }
+
+  public void addToInspectables(Inspectables inspectable){
+    inspectables.add(inspectable);
   }
 
   public String toString() {

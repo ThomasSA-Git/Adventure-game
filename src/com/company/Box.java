@@ -21,8 +21,21 @@ public class Box {
     this.contains = contains;
   }
 
+  public String getKey(){
+    return key;
+  }
+
+
+  public String toString(){
+    return description;
+  }
+
   public String getDescription(){
     return description;
+  }
+
+  public String getUnlockMessage(){
+    return unlockMessage;
   }
 
   public boolean getLocked(){

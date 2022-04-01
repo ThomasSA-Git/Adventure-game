@@ -53,6 +53,10 @@ public class UserInterface {
     System.out.println(String.valueOf(arrayList));
   }
 
+  public void printBoxList(ArrayList<Box> arrayList){
+    System.out.println(String.valueOf(arrayList));
+  }
+
   public void printString(String input) {
     System.out.println(input);
   }

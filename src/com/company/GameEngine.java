@@ -1,5 +1,13 @@
 package com.company;
 
+import com.company.gags.FunnyBeeEncounter;
+
+import javax.print.attribute.standard.Media;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
+
+
 public class GameEngine {
 
   public void runGame() {
@@ -13,7 +21,7 @@ public class GameEngine {
     while (running) {
       ui.printCurrentRoom(player.getCurrentRoom());
 
-      if (player.getHealth() <= 0){
+      if (player.getHealth() <= 0) {
         running = false;
       }
 
@@ -70,6 +78,7 @@ public class GameEngine {
         case "give" -> give(player, ui);
         case "attack" -> attackSequence(player, ui);
         case "eat" -> eat(player, ui);
+        case "inspect" -> inspect(player, ui);
       }
     }
   }
@@ -77,13 +86,20 @@ public class GameEngine {
   public void look(Player player, UserInterface ui) {
     ui.printString(player.getCurrentRoom().getDescription());
     ui.printString("The following items are in the area:");
-    ui.printArrayList((player.getCurrentRoom().getMapInventory()));
+    ui.printArrayList(player.getCurrentRoom().getMapInventory());
+    ui.printBoxList(player.getCurrentRoom().getBoxes());
     if (player.getCurrentRoom().getNPC() != null) {
       ui.printString(player.getCurrentRoom().getNPC().getNpcName());
     }
   }
 
   public void attackSequence(Player player, UserInterface ui) {
+    ui.printString("Narrator:");
+    try {
+      ui.printOneLetterAtATime(player.currentRoom.getEnemy().getDescription() + " Attacks!", 0.05);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
     boolean engaged = true;
     int counter = 0;
     if (player.getCurrentRoom().getEnemy() != null) {
@@ -168,6 +184,47 @@ public class GameEngine {
     }
   }
 
+
+  public void inspect(Player player, UserInterface ui) {
+    boolean found = false;
+    Inspectables tmpInspectable = null;
+    ui.printString("What do you want to inspect?");
+    String inspect = ui.getUserInput();
+    for (int i = 0; i < player.getCurrentRoom().getInspectables().size(); i++) {
+      if (player.getCurrentRoom().getInspectables().get(i).getDescription().equals(inspect)) {
+        found = true;
+        tmpInspectable = player.getCurrentRoom().getInspectables().get(i);
+      }
+    }
+
+    if (!found) {
+      ui.printString("Narrator:");
+      try {
+        ui.printOneLetterAtATime("There is nothing like that here", 0.05);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+    if (found) {
+      if (tmpInspectable.getDescription().equals("crate")) {
+        try {
+          new FunnyBeeEncounter().execute();
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+        player.getCurrentRoom().setEnemy(new Enemy("Wasp", 30, new MeleeWeapon("stinger", 1, 2), true));
+      } else {
+        ui.printString("Narrator:");
+        try {
+          ui.printOneLetterAtATime(tmpInspectable.getInspectMessage(), 0.05);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+
+  }
+
   public void equip(Player player, UserInterface ui) {
     ui.printString("What do you want to equip?");
     String weapon = ui.getUserInput();
@@ -198,7 +255,28 @@ public class GameEngine {
         found = true;
         Door tmpDoor = player.getCurrentRoom().getDoors().get(i);
         if (tmpDoor.getLocked()) {
-          ui.printString("The door is locked!");
+          if (tmpDoor instanceof CodeDoor) {
+            ui.printString("Narrator:");
+            try {
+              ui.printOneLetterAtATime("This door needs a password!", 0.05);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+            ui.printString("Password: ");
+            String code = ui.getUserInput();
+            if (code.equals(((CodeDoor) tmpDoor).getCode())){
+              tmpDoor.unlockDoor();
+            } else {
+              ui.printString("Narrator:");
+              try {
+                ui.printOneLetterAtATime("Wrong password!", 0.05);
+              } catch (InterruptedException e) {
+                e.printStackTrace();
+              }
+            }
+          } else {
+            ui.printString("The door is locked!");
+          }
         } else {
           player.setCurrentRoom(tmpDoor.getLeadsTo());
         }
@@ -240,6 +318,8 @@ public class GameEngine {
     Item tmpKey = null;
     boolean found = false;
     Door tmpDoor;
+    boolean isBox = false;
+    Box tmpBox = null;
 
     for (int i = 0; i < player.getPlayerInventory().size(); i++) {
       if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(keyItem)) {
@@ -248,21 +328,80 @@ public class GameEngine {
       }
     }
     if (!found) {
-      ui.printString("You do not have that item!");
-    }
-    found = false;
-    ui.printString("What do you want to use it on?");
-    String keySlot = ui.getUserInput();
-    for (int i = 0; i < player.currentRoom.getDoors().size(); i++) {
-      if (player.currentRoom.getDoors().get(i).getDescription().equalsIgnoreCase(keySlot)) {
-        found = true;
-        tmpDoor = player.currentRoom.getDoors().get(i);
-        tmpDoor.unlockDoor();
-        player.getPlayerInventory().remove(tmpKey);
+      for (int i = 0; i < player.getCurrentRoom().getBoxes().size(); i++) {
+        if (player.getCurrentRoom().getBoxes().get(i).getDescription().equalsIgnoreCase(keyItem)) {
+          found = true;
+          isBox = true;
+          tmpBox = player.getCurrentRoom().getBoxes().get(i);
+          if (!tmpBox.getLocked()) {
+            ui.printString("Narrator: ");
+            try {
+              ui.printOneLetterAtATime(tmpBox.getUnlockMessage(), 0.05);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+            player.getPlayerInventory().add(tmpBox.getContains());
+          }
+        }
       }
     }
+
     if (!found) {
-      ui.printString("You can't use that item on that!");
+      ui.printString("You do not have that item!");
+    }
+    if (!isBox) {
+      found = false;
+      isBox = false;
+      ui.printString("What do you want to use it on?");
+      String keySlot = ui.getUserInput();
+      for (int i = 0; i < player.currentRoom.getDoors().size(); i++) {
+        if (player.currentRoom.getDoors().get(i).getDescription().equalsIgnoreCase(keySlot)) {
+          found = true;
+          tmpDoor = player.currentRoom.getDoors().get(i);
+          if (tmpDoor.getKey().equalsIgnoreCase(keyItem)) {
+            tmpDoor.unlockDoor();
+            player.getPlayerInventory().remove(tmpKey);
+          } else {
+            ui.printString("Narrator:");
+            try {
+              ui.printOneLetterAtATime("That won't do it", 0.05);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+          }
+        }
+      }
+
+      if (!found) {
+        for (int i = 0; i < player.currentRoom.getBoxes().size(); i++) {
+          if (player.currentRoom.getBoxes().get(i).getDescription().equalsIgnoreCase(keySlot)) {
+            found = true;
+            tmpBox = player.currentRoom.getBoxes().get(i);
+            if (tmpBox.getKey().equalsIgnoreCase(keyItem)) {
+              player.getPlayerInventory().add(tmpBox.getContains());
+              player.getPlayerInventory().remove(tmpKey);
+              ui.printString("Narrator:");
+              try {
+                ui.printOneLetterAtATime(tmpBox.getUnlockMessage(), 0.05);
+              } catch (InterruptedException e) {
+                e.printStackTrace();
+              }
+            } else {
+              ui.printString("Narrator:");
+              try {
+                ui.printOneLetterAtATime("That won't work", 0.05);
+              } catch (InterruptedException e) {
+                e.printStackTrace();
+              }
+            }
+
+          }
+        }
+      }
+
+      if (!found) {
+        ui.printString("You can't use that item on that!");
+      }
     }
   }
 
@@ -316,10 +455,9 @@ public class GameEngine {
       if (player.playerInventory.get(i).getDescription().equalsIgnoreCase(give)) {
         ui.printString("Who do you want to give it to?");
         String receiver = ui.getUserInput();
-        if(player.getCurrentRoom().getNPC() == null){
+        if (player.getCurrentRoom().getNPC() == null) {
           ui.printString("You can't give anything to that!");
-        }
-        else if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(receiver)) {
+        } else if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(receiver)) {
           ui.printString(player.getCurrentRoom().getNPC().NpcRecieve(player.playerInventory.get(i), player.getCurrentRoom()));
           player.removeItem(player.playerInventory.get(i));
         }
@@ -327,7 +465,6 @@ public class GameEngine {
       }
     }
   }
-
 
   public boolean checkTake(String input) {
     return getPrefix(input).equals("take");
