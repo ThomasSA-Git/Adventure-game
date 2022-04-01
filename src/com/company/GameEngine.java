@@ -312,6 +312,8 @@ public class GameEngine {
     Item tmpKey = null;
     boolean found = false;
     Door tmpDoor;
+    Box tmpBox = null;
+    boolean isBox = false;
 
     for (int i = 0; i < player.getPlayerInventory().size(); i++) {
       if (player.getPlayerInventory().get(i).getDescription().equalsIgnoreCase(keyItem)) {
