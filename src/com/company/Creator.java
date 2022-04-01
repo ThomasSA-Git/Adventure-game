@@ -42,13 +42,13 @@ public class Creator {
 
     Room room5 = new Room("Deck (Stern)", "Finally fresh air. The ship is surrounded by ocean as far as the eye can see.\n" +
         "In the middle of the deck stands the capstan with a large lever besides it\n" +
-        "You look up and spot something shiny in the ship's mast", new ArrayList<Item>(), new ArrayList<Door>(), parrot, null, new ArrayList<Box>(), new ArrayList<Inspectables>());
+        "You look up and spot something shiny in the ship's mast", new ArrayList<Item>(), new ArrayList<Door>(), null, null, new ArrayList<Box>(), new ArrayList<Inspectables>());
 
     Room room6 = new Room("Deck (Bow)", "You stand at the foot of the ships mast.\n" +
         "A robe ladder leads up to the crow's nest", new ArrayList<Item>(), new ArrayList<Door>(), figurehead, null, new ArrayList<Box>(), new ArrayList<Inspectables>());
 
     Room room7 = new Room("Mast", "Even with this view, there's no land in sight. There's however, a parrot sitting on the railing.\n" +
-        "The parrot is screetching several controversal political opinions. How highly inapropriate.", new ArrayList<Item>(), new ArrayList<Door>(), null, null, new ArrayList<Box>(), new ArrayList<Inspectables>());
+        "The parrot is screetching several controversal political opinions. How highly inapropriate.", new ArrayList<Item>(), new ArrayList<Door>(), parrot, null, new ArrayList<Box>(), new ArrayList<Inspectables>());
 
     Room room8 = new Room("Bridge Deck", "A sense of power washes over you when you stand before the ships helm.\n" +
         "Upon closer inspection, the helm is not attached to anything.\n" +

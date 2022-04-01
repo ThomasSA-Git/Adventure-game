@@ -1,10 +1,9 @@
 package com.company;
 
-public class PrisonEnemy extends Enemy{
+public class CaptainEvil extends Enemy{
 
-  public PrisonEnemy(String description, int health, Weapon weapon, boolean surpriseAttack){
+  public CaptainEvil(String description, int health, Weapon weapon, boolean surpriseAttack){
     super(description, health, weapon, surpriseAttack);
-
   }
 
   public String attackMessage(){
