@@ -469,7 +469,7 @@ public class GameEngine {
       ui.printString("You can't do that.");
     } else if (player.getCurrentRoom().getNPC().getNpcName().equalsIgnoreCase(talk)) {
       ui.printString(player.getCurrentRoom().getNPC().dialogue(player.currentRoom));
-      if(player.getCurrentRoom().getNPC().getNpcName().equals("CaptainNPC"));
+      if(player.getCurrentRoom().getNPC().getNpcName().equals("captain"));
       player.getCurrentRoom().getNPC().turnHostile(player.currentRoom);
     }
   }
