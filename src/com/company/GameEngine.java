@@ -121,6 +121,10 @@ public class GameEngine {
           ui.printString("You have " + player.getHealth() + " health left.");
         } else if (player.getCurrentRoom().getEnemy().getHealth() <= 0) {
           player.getCurrentRoom().addToInventory(player.getCurrentRoom().getEnemy().dropWeapon());
+          if (player.getCurrentRoom().getEnemy().getDescription() == "Wasp"){
+            player.getCurrentRoom().addToBoxes(new Box("crate", new Item("hatch key"), false, null, "The lid creaks as it opens.\n" +
+                "A hatch key was inside. You take it"));
+          }
           player.getCurrentRoom().setEnemy(null);
           ui.printString("Your enemy has been defeated.");
           engaged = false;

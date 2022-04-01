@@ -34,7 +34,7 @@ public class Creator {
     Room room4 = new Room("Brig", "This room smells like booze and something else absolutely ghastly.\n" +
         "to the left you see a wall of metal bars. A jail cell. This must be the brig\n" +
         "Inside sits a ragged man with a crooked smile." +
-        "Next to him in the corner of his cell sits a bucket which is obviously the source of the foul smell." +
+        "Next to him in the corner of his cell sits a bucket which is obviously the source of the foul smell.\n" +
         "After a more thorough peak you realise the bucket is full of (you guessed it) anchovies.", new ArrayList<Item>(), new ArrayList<Door>(), prisoner, null, new ArrayList<Box>(), new ArrayList<Inspectables>());
 
     Room room5 = new Room("Deck (Stern)", "Finally fresh air. The ship is surrounded by ocean as far as the eye can see.\n" +
@@ -90,6 +90,7 @@ public class Creator {
     //DOORS
     room3.addToDoors(new Door("rusty door", false, null, room4));
     room3.addToDoors(new Door("hatch", true, "hatch key", room5));
+    room3.addToDoors(new Door("white door", false, null, room2));
 
     //CONTAINS
     room3.addToInspectables(new Inspectables("crate"));
@@ -101,6 +102,9 @@ public class Creator {
 
     //ROOM 4 (Brig)
     room4.setWest(room3);
+
+    //DOORS
+    room4.addToDoors(new Door("rusty door", false, null, room3));
 
     //ROOM 5 (Stern)
 
