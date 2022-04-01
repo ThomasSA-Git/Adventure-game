@@ -6,7 +6,7 @@ public class CaptainNPC extends NPC{
     super(name, description, item);
   }
 
-  public String dialogue() {
+  public String dialogue(Room currentRoom) {
     String prisonerQuest = "Captain: What ar' ya doin' in me capn' quarters? Did he send ye? Yer' not getting me bottle!";
     String narrator = "Narrator: THERE IT IS! GET THAT POTION";
     String potion = "The captain has a firm grip around a bottle of Jack Daniels";
